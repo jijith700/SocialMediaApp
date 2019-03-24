@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SocialMediaApp</string>
+
+    <string name="retry">Retry</string>
+    <string name="post_error">An error occurred while loading the posts</string>
+
+    <!--LoginActivity-->
+    <string name="txt_login">Login</string>
+    <string name="txt_forgot_password">Forgot Password?</string>
+    <string name="txt_sign_up">Not a member? Sign Up</string>
+    <string name="txt_hint_username">Username</string>
+    <string name="txt_hint_password">Password</string>
+
+    <!--RegisterActivity-->
+    <string name="txt_hint_first_name">First Name</string>
+    <string name="txt_hint_middle_name">Middle Name</string>
+    <string name="txt_hint_last_name">Last Name</string>
+    <string name="txt_hint_email">Email</string>
+    <string name="txt_hint_phone">Phone</string>
+    <string name="txt_hint_otp">OTP</string>
+    <string name="txt_register">Register</string>
+    <string name="txt_already_login">Already a member? Login</string>
+
+</resources>

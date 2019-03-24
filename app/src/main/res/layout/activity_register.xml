@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sma.socialmediaapp.ui.registration.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBgLogin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <EditText
+                android:id="@+id/edtFirstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_first_name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtMiddleName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_middle_name"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="@+id/edtFirstName"
+                app:layout_constraintStart_toStartOf="@+id/edtFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtFirstName" />
+
+            <EditText
+                android:id="@+id/edtLastName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_last_name"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="@+id/edtMiddleName"
+                app:layout_constraintStart_toStartOf="@+id/edtMiddleName"
+                app:layout_constraintTop_toBottomOf="@+id/edtMiddleName" />
+
+            <EditText
+                android:id="@+id/edtPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_phone"
+                android:inputType="phone"
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="@+id/edtLastName"
+                app:layout_constraintStart_toStartOf="@+id/edtLastName"
+                app:layout_constraintTop_toBottomOf="@+id/edtLastName" />
+
+            <EditText
+                android:id="@+id/edtOtp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_otp"
+                android:inputType="phone"
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="@+id/edtPhone"
+                app:layout_constraintStart_toStartOf="@+id/edtPhone"
+                app:layout_constraintTop_toBottomOf="@+id/edtPhone" />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="@+id/edtOtp"
+                app:layout_constraintStart_toStartOf="@+id/edtOtp"
+                app:layout_constraintTop_toBottomOf="@+id/edtOtp" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/btn_yellow"
+                android:text="@string/txt_register"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+                app:layout_constraintStart_toStartOf="@+id/edtPassword"
+                app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="@string/txt_already_login"
+            android:textColor="@color/colorTextCommon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

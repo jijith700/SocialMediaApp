@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation6">
+    <navigation android:id="@+id/navigation6">
+        <action
+            android:id="@+id/action_global_navigation7"
+            app:destination="@id/navigation7" />
+        <action
+            android:id="@+id/action_global_navigation72"
+            app:destination="@id/navigation7" />
+    </navigation>
+    <navigation
+        android:id="@+id/navigation7"
+        app:startDestination="@id/registerActivity2">
+        <activity
+            android:id="@+id/registerActivity2"
+            android:name="com.sma.socialmediaapp.ui.registration.RegisterActivity"
+            android:label="RegisterActivity" />
+    </navigation>
+</navigation>

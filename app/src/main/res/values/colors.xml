@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#292929</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorBgLogin">#3f3f3f</color>
+    <color name="colorEdtLine">#ffc000</color>
+    <color name="colorTextForgotPass">#e60808</color>
+
+    <color name="colorTextCommon">#FFFFFF</color>
+
+    <color name="colorTab">#3f4156</color>
+
+</resources>
