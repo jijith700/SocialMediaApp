@@ -15,39 +15,41 @@
         android:background="@color/colorBgLogin">
 
         <EditText
-            android:id="@+id/edtUserName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/colorEdtLine"
-            android:ems="10"
-            android:hint="@string/txt_hint_username"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/colorTextCommon"
-            android:textColorHint="@color/colorTextCommon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.40" />
+                android:id="@+id/edtUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_username"
+                android:inputType="textEmailAddress"
+                android:drawableLeft="@drawable/ic_user"
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.40" />
 
         <EditText
-            android:id="@+id/edtPassword"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/colorEdtLine"
-            android:ems="10"
-            android:hint="@string/txt_hint_password"
-            android:inputType="textPassword"
-            android:textColor="@color/colorTextCommon"
-            android:textColorHint="@color/colorTextCommon"
-            app:layout_constraintEnd_toEndOf="@+id/edtUserName"
-            app:layout_constraintStart_toStartOf="@+id/edtUserName"
-            app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
+                android:id="@+id/edtPassword"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorEdtLine"
+                android:ems="10"
+                android:hint="@string/txt_hint_password"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/ic_password"
+                android:textColor="@color/colorTextCommon"
+                android:textColorHint="@color/colorTextCommon"
+                app:layout_constraintEnd_toEndOf="@+id/edtUserName"
+                app:layout_constraintStart_toStartOf="@+id/edtUserName"
+                app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -91,6 +93,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
+        <RelativeLayout
+                android:id="@+id/layoutLoading"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                    android:id="@+id/pbLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

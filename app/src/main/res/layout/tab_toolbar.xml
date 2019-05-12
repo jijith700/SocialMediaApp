@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="@dimen/tab_toolbar_height">
+
+    <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+                android:id="@+id/rbTab1"
+                android:layout_width="@dimen/tab_toolbar_side_menu_width"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:background="@drawable/rb_tab1"/>
+
+        <RadioButton
+                android:id="@+id/rbTab2"
+                android:layout_width="@dimen/tab_toolbar_side_menu_width"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:background="@drawable/rb_tab2"/>
+
+        <RadioButton
+                android:id="@+id/rbTab3"
+                android:layout_width="@dimen/tab_toolbar_side_menu_width"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:background="@drawable/rb_tab3"/>
+
+        <RadioButton
+                android:id="@+id/rbTab4"
+                android:layout_width="@dimen/tab_toolbar_side_menu_width"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:background="@drawable/rb_tab4"/>
+
+        <RadioButton
+                android:id="@+id/rbTa5"
+                android:layout_width="@dimen/tab_toolbar_side_menu_width"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:background="@drawable/rb_tab5"/>
+
+        <RadioButton
+                android:id="@+id/rbTab6"
+                android:layout_width="@dimen/tab_toolbar_side_menu_width"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:background="@drawable/rb_tab6"/>
+
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

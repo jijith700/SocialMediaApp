@@ -22,9 +22,12 @@ class HomeActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(HomeViewModel::class.java)
         binding.viewModel = viewModel
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Feed"));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Profile"));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Chat"));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Search"));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab1))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab2))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab3))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab4))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab5))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab6))
+        binding.tabLayout.tabSelectedIndicator
     }
 }

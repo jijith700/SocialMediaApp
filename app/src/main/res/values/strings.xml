@@ -21,4 +21,12 @@
     <string name="txt_register">Register</string>
     <string name="txt_already_login">Already a member? Login</string>
 
+
+    <string name="btn_ok">Ok</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+
+    <string name="error_login">Incorrect email or password</string>
+    <string name="error_registration">Registration failed</string>
+
 </resources>

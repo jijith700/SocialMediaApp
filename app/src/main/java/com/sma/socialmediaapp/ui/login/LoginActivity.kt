@@ -3,7 +3,6 @@ package com.sma.socialmediaapp.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -14,6 +13,7 @@ import com.sma.socialmediaapp.databinding.ActivityLoginBinding
 import com.sma.socialmediaapp.injection.ViewModelFactory
 import com.sma.socialmediaapp.ui.home.HomeActivity
 import com.sma.socialmediaapp.ui.registration.RegisterActivity
+import com.sma.socialmediaapp.utils.Utils
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,6 +28,18 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(LoginViewModel::class.java)
         binding.viewModel = viewModel
 
+        viewModel.error.observe(this, Observer { error ->
+            if (error) Utils.alert(this, getString(R.string.error_login)) else {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
+
+        viewModel.loading.observe(this, Observer { isVisible ->
+            binding.layoutLoading.visibility = isVisible
+        })
+
         binding.btnLogin.setOnClickListener({
 
             if (TextUtils.isEmpty(binding.edtUserName.text)) {
@@ -36,8 +48,7 @@ class LoginActivity : AppCompatActivity() {
             } else if (TextUtils.isEmpty(binding.edtPassword.text)) {
                 binding.edtPassword.error = "Invalid password"
             } else {
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
+                viewModel.onclickLogin(binding.edtUserName.text.toString(), binding.edtPassword.text.toString());
             }
         })
 

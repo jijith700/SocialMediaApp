@@ -1,6 +1,7 @@
 package com.sma.socialmediaapp.model
 
 data class User(
-        val userName: String,
-        val password: String
+    val name: String,
+    val email: String,
+    val password: String
 )

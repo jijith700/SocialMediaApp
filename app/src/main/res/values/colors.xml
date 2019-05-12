@@ -11,5 +11,11 @@
     <color name="colorTextCommon">#FFFFFF</color>
 
     <color name="colorTab">#3f4156</color>
+    <color name="colorBgTab1Normal">#ff5e3a</color>
+    <color name="colorBgTab1Selected">#EB5535</color>
+    <color name="colorBgTab6Normal">#7442ce</color>
+    <color name="colorBgTab6Selected">#653AB6</color>
+    <color name="colorBgTabNormal">#404257</color>
+    <color name="colorBgTabSelected">#37394B</color>
 
 </resources>
