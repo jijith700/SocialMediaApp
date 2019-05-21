@@ -15,7 +15,7 @@
     <color name="colorBgTab1Selected">#EB5535</color>
     <color name="colorBgTab6Normal">#7442ce</color>
     <color name="colorBgTab6Selected">#653AB6</color>
-    <color name="colorBgTabNormal">#404257</color>
+    <color name="colorBgTabNormal">#3D3F53</color>
     <color name="colorBgTabSelected">#37394B</color>
 
 </resources>
