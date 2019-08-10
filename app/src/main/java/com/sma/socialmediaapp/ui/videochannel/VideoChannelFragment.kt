@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.socialmediaapp.R
+import com.sma.socialmediaapp.databinding.FragmentVideoChannelBinding
 import com.sma.socialmediaapp.ui.adapter.VideoChannelAdapter
 
 
