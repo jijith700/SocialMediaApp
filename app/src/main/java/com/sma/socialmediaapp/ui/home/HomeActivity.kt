@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.sma.socialmediaapp.R
+import com.sma.socialmediaapp.databinding.ActivityHomeBinding
 import com.sma.socialmediaapp.injection.ViewModelFactory
 import com.sma.socialmediaapp.ui.adapter.TabAdapter
 import com.sma.socialmediaapp.ui.gallery.GalleryFragment

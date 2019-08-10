@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.sma.socialmediaapp.R
+import com.sma.socialmediaapp.databinding.FragmentAboutBinding
 
 
 /**

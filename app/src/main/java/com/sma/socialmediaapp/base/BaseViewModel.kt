@@ -1,6 +1,7 @@
 package com.sma.socialmediaapp.base
 
 import androidx.lifecycle.ViewModel
+import com.sma.socialmediaapp.injection.component.DaggerViewModelInjector
 import com.sma.socialmediaapp.injection.component.ViewModelInjector
 import com.sma.socialmediaapp.injection.module.NetworkModule
 import com.sma.socialmediaapp.ui.home.HomeViewModel

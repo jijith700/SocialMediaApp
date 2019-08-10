@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sma.socialmediaapp.R
+import com.sma.socialmediaapp.databinding.FragmentFriendsBinding
 import com.sma.socialmediaapp.ui.adapter.FriendsAdapter
 
 /**

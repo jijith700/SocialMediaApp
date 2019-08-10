@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sma.socialmediaapp.R
+import com.sma.socialmediaapp.databinding.LayoutVideoItemBinding
 
 
 class VideoChannelAdapter : RecyclerView.Adapter<VideoChannelAdapter.VideoItemViewHolder>() {

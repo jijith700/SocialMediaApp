@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sma.socialmediaapp.R
+import com.sma.socialmediaapp.databinding.LayoutFriendItemBinding
 
 
 class FriendsAdapter : RecyclerView.Adapter<FriendsAdapter.FriendItemViewHolder>() {
