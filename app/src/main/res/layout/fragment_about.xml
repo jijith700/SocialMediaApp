@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.sma.socialmediaapp.ui.about.AboutViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBgCommonWhite">
+
+
+        <ScrollView
+                android:id="@+id/svUserDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="James Spiegel"
+                        android:textColor="@color/colorTextCommonBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                        android:id="@+id/tvUserDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="San Francisco, CA"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUserName"/>
+
+                <RelativeLayout
+                        android:id="@+id/rlUserDetails"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_user_details"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUserDetails">
+
+                    <RelativeLayout
+                            android:id="@+id/rlProfileInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp">
+
+                        <TextView
+                                android:id="@+id/tvProfileInfoHolder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:text="@string/tv_profile_info"
+                                android:textColor="@color/colorTextCommonBlack"
+                                android:textSize="14sp"
+                                android:textStyle="bold"/>
+
+                    </RelativeLayout>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/rlProfileInfo"
+                            android:background="@color/colorLine"/>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rlProfileInfo"
+                            android:orientation="vertical"
+                            android:paddingStart="20dp"
+                            android:paddingTop="30dp"
+                            android:paddingEnd="20dp"
+                            android:paddingBottom="20dp">
+
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_about_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_about_me"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_about"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="Hi, I'm James, I'm 36 work as a Digital Designer for the &quot;DayDreams&quot; Agency in Pier 56"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_birthday_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_birthday"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_birthday"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="December 14, 1980"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_birth_place_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_birth_place"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_birth_place"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="Austin Texas, USA"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_lives_in_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_lives_in"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_lives_in"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="San Francisco California, USA"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_occupation_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_occupation"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_occupation"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="UI/UX Designer"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_joined_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_joined"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_joined"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="April 31st, 2014"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_gender_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_gender"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_gender"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="Male"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_status_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_status"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_status"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="Married"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                            <TextView
+                                    android:id="@+id/tv_email_holder"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".3"
+                                    android:text="@string/tv_email"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold"/>
+
+                            <TextView
+                                    android:id="@+id/tv_email"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".7"
+                                    android:text="jspiegel@yourmail.com"
+                                    android:textColor="@color/colorTextCommonGrey"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

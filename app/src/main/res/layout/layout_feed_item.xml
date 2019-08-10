@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="post"
+                type="com.sma.socialmediaapp.model.Post"/>
+
+        <variable
+                name="postCallback"
+                type="com.sma.socialmediaapp.ui.timeline.PostClickCallback"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorLine">
+
+        <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:background="@color/colorBgCommonWhite"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                    android:id="@+id/rlTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/ivUser"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/ic_sample"/>
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/ivUser">
+
+                    <TextView
+                            android:id="@+id/tvFeedTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_toStartOf="@+id/ivMore"
+                            android:text="Mariana Valentine shared a link"
+                            android:textColor="@color/colorTextCommonBlack"
+                            android:textStyle="bold"/>
+
+                    <TextView
+                            android:id="@+id/tvTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvFeedTitle"
+                            android:layout_marginStart="10dp"
+                            android:text="March 4 at 2:05pm"/>
+
+                    <ImageView
+                            android:id="@+id/ivMore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/tvMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlTop"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Hey cindi, you should really checkout this song bv Iron Maid. The next time they come to the city we should totally go! "/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clUsers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvMessage"
+                    android:layout_marginTop="20dp">
+
+                <ImageView
+                        android:id="@+id/ivUser1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/ic_sample"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                        android:id="@+id/ivUser2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/ic_sample"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivUser1"
+                        app:layout_constraintStart_toStartOf="@+id/ivUser1"
+                        app:layout_constraintTop_toTopOf="@+id/ivUser1"
+                        app:layout_constraintVertical_bias="0.0"/>
+
+                <ImageView
+                        android:id="@+id/ivUser3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/ic_sample"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivUser2"
+                        app:layout_constraintStart_toStartOf="@+id/ivUser2"
+                        app:layout_constraintTop_toTopOf="@+id/ivUser2"
+                        app:layout_constraintVertical_bias="0.0"/>
+
+                <ImageView
+                        android:id="@+id/ivUser4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/ic_sample"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivUser3"
+                        app:layout_constraintStart_toStartOf="@+id/ivUser3"
+                        app:layout_constraintTop_toTopOf="@+id/ivUser3"
+                        app:layout_constraintVertical_bias="0.0"/>
+
+                <ImageView
+                        android:id="@+id/ivUser5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/ic_sample"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivUser4"
+                        app:layout_constraintStart_toStartOf="@+id/ivUser4"
+                        app:layout_constraintTop_toTopOf="@+id/ivUser4"
+                        app:layout_constraintVertical_bias="0.0"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                    android:id="@+id/tvLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/clUsers"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="You, Elaine and"
+                    android:textColor="@color/colorTextCommonBlack"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/tvLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvLikes"
+                    android:layout_marginStart="10dp"
+                    android:text="24 more liked this"/>
+
+            <ImageView
+                    android:id="@+id/ivTotalChat"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/tvLike"
+                    android:background="@drawable/ic_start_chat_grey"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"/>
+
+            <TextView
+                    android:id="@+id/tvTotalChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="24"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/tvLike"
+                    android:layout_toEndOf="@+id/ivTotalChat"/>
+
+            <ImageView
+                    android:id="@+id/ivTotalShare"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/tvLike"
+                    android:background="@drawable/ic_share_grey"
+                    android:layout_toEndOf="@+id/tvTotalChat"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"/>
+
+            <TextView
+                    android:id="@+id/tvTotalShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="24"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/tvLike"
+                    android:layout_toEndOf="@+id/ivTotalShare"/>
+
+        </RelativeLayout>
+
+        <ImageView
+                android:id="@+id/ivLike"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_btn_like"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/ivChat"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+                android:id="@+id/ivChat"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_btn_chat"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/ivShare"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_btn_share"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
