@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -10,9 +10,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBgLogin">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_login">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -37,8 +37,8 @@
                     android:inputType="textPersonName"
                     android:text=""
                     android:drawableLeft="@drawable/ic_user"
-                    android:textColor="@color/colorTextCommon"
-                    android:textColorHint="@color/colorTextCommon"
+                    android:textColor="@color/colorTextCommonWhite"
+                    android:textColorHint="@color/colorTextCommonWhite"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -53,8 +53,8 @@
                     android:hint="@string/txt_hint_middle_name"
                     android:inputType="textPersonName"
                     android:drawableLeft="@drawable/ic_user"
-                    android:textColor="@color/colorTextCommon"
-                    android:textColorHint="@color/colorTextCommon"
+                    android:textColor="@color/colorTextCommonWhite"
+                    android:textColorHint="@color/colorTextCommonWhite"
                     app:layout_constraintEnd_toEndOf="@+id/edtFirstName"
                     app:layout_constraintStart_toStartOf="@+id/edtFirstName"
                     app:layout_constraintTop_toBottomOf="@+id/edtFirstName" />
@@ -69,8 +69,8 @@
                     android:hint="@string/txt_hint_last_name"
                     android:inputType="textPersonName"
                     android:drawableLeft="@drawable/ic_user"
-                    android:textColor="@color/colorTextCommon"
-                    android:textColorHint="@color/colorTextCommon"
+                    android:textColor="@color/colorTextCommonWhite"
+                    android:textColorHint="@color/colorTextCommonWhite"
                     app:layout_constraintEnd_toEndOf="@+id/edtMiddleName"
                     app:layout_constraintStart_toStartOf="@+id/edtMiddleName"
                     app:layout_constraintTop_toBottomOf="@+id/edtMiddleName" />
@@ -85,8 +85,8 @@
                     android:hint="@string/txt_hint_phone"
                     android:inputType="phone"
                     android:drawableLeft="@drawable/ic_password"
-                    android:textColor="@color/colorTextCommon"
-                    android:textColorHint="@color/colorTextCommon"
+                    android:textColor="@color/colorTextCommonWhite"
+                    android:textColorHint="@color/colorTextCommonWhite"
                     app:layout_constraintEnd_toEndOf="@+id/edtLastName"
                     app:layout_constraintStart_toStartOf="@+id/edtLastName"
                     app:layout_constraintTop_toBottomOf="@+id/edtLastName" />
@@ -101,8 +101,8 @@
                     android:hint="@string/txt_hint_email"
                     android:inputType="textEmailAddress"
                     android:drawableLeft="@drawable/ic_password"
-                    android:textColor="@color/colorTextCommon"
-                    android:textColorHint="@color/colorTextCommon"
+                    android:textColor="@color/colorTextCommonWhite"
+                    android:textColorHint="@color/colorTextCommonWhite"
                     app:layout_constraintEnd_toEndOf="@+id/edtPhone"
                     app:layout_constraintStart_toStartOf="@+id/edtPhone"
                     app:layout_constraintTop_toBottomOf="@+id/edtPhone" />
@@ -118,40 +118,40 @@
                     android:drawableRight="@drawable/ic_psw_visibility"
                     android:inputType="textPassword"
                     android:drawableLeft="@drawable/ic_password"
-                    android:textColor="@color/colorTextCommon"
-                    android:textColorHint="@color/colorTextCommon"
+                    android:textColor="@color/colorTextCommonWhite"
+                    android:textColorHint="@color/colorTextCommonWhite"
                     app:layout_constraintEnd_toEndOf="@+id/edtOtp"
                     app:layout_constraintStart_toStartOf="@+id/edtOtp"
                     app:layout_constraintTop_toBottomOf="@+id/edtOtp" />
 
             <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/btn_yellow"
-                android:text="@string/txt_register"
-                android:textAllCaps="false"
-                android:textColor="@color/colorTextCommon"
-                app:layout_constraintEnd_toEndOf="@+id/edtPassword"
-                app:layout_constraintStart_toStartOf="@+id/edtPassword"
-                app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+                    android:id="@+id/btnRegister"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/btn_yellow"
+                    android:text="@string/txt_register"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorTextCommonWhite"
+                    app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+                    app:layout_constraintStart_toStartOf="@+id/edtPassword"
+                    app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/txt_already_login"
-            android:textColor="@color/colorTextCommon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                android:id="@+id/tvLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="@string/txt_already_login"
+                android:textColor="@color/colorTextCommonWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         <RelativeLayout
                 android:id="@+id/layoutLoading"

@@ -4,6 +4,7 @@ import com.sma.socialmediaapp.injection.module.NetworkModule
 import com.sma.socialmediaapp.ui.home.HomeViewModel
 import com.sma.socialmediaapp.ui.login.LoginViewModel
 import com.sma.socialmediaapp.ui.registration.RegisterViewModel
+import com.sma.socialmediaapp.ui.timeline.TimelineViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -27,9 +28,15 @@ interface ViewModelInjector {
 
     /**
      * Injects required dependencies into the specified PostViewModel.
-     * @param registerViewModel RegisterViewModel in which to inject the dependencies
+     * @param homeViewModel HomeViewModel in which to inject the dependencies
      */
     fun inject(homeViewModel: HomeViewModel)
+
+    /**
+     * Injects required dependencies into the specified PostViewModel.
+     * @param timelineViewModel TimelineViewModel in which to inject the dependencies
+     */
+    fun inject(timelineViewModel: TimelineViewModel)
 
     @Component.Builder
     interface Builder {

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.sma.socialmediaapp.ui.home.HomeViewModel
 import com.sma.socialmediaapp.ui.login.LoginViewModel
 import com.sma.socialmediaapp.ui.registration.RegisterViewModel
+import com.sma.socialmediaapp.ui.timeline.TimelineViewModel
 
 class ViewModelFactory(private val activity: AppCompatActivity) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -18,6 +19,9 @@ class ViewModelFactory(private val activity: AppCompatActivity) : ViewModelProvi
         } else if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return HomeViewModel() as T
+        } else if (modelClass.isAssignableFrom(TimelineViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return TimelineViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
 

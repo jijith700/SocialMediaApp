@@ -1,17 +1,10 @@
 package com.sma.socialmediaapp.ui.login
 
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.sma.socialmediaapp.base.BaseViewModel
-import com.sma.socialmediaapp.model.LoginResponse
 import com.sma.socialmediaapp.model.User
 import com.sma.socialmediaapp.network.WebApiListener
 import com.sma.socialmediaapp.utils.AppLog
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
-import retrofit2.Response
 import javax.inject.Inject
 
 class LoginViewModel() : BaseViewModel() {
@@ -30,7 +23,7 @@ class LoginViewModel() : BaseViewModel() {
     fun onclickLogin(userName: String, password: String) {
         val user = User("", userName, password)
         AppLog.e(TAG, user.toString())
-        loading.value = View.VISIBLE
+        /*loading.value = View.VISIBLE
         webApiListener.login(user).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : DisposableObserver<Response<LoginResponse>>() {
@@ -54,6 +47,8 @@ class LoginViewModel() : BaseViewModel() {
                     AppLog.e(TAG, e.toString())
                     loading.value = View.GONE
                 }
-            });
+            });*/
+
+        error.value = false
     }
 }

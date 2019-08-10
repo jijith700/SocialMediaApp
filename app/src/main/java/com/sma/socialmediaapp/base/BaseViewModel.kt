@@ -1,12 +1,12 @@
 package com.sma.socialmediaapp.base
 
 import androidx.lifecycle.ViewModel
-import com.sma.socialmediaapp.injection.component.DaggerViewModelInjector
 import com.sma.socialmediaapp.injection.component.ViewModelInjector
 import com.sma.socialmediaapp.injection.module.NetworkModule
 import com.sma.socialmediaapp.ui.home.HomeViewModel
 import com.sma.socialmediaapp.ui.login.LoginViewModel
 import com.sma.socialmediaapp.ui.registration.RegisterViewModel
+import com.sma.socialmediaapp.ui.timeline.TimelineViewModel
 
 
 abstract class BaseViewModel : ViewModel() {
@@ -27,6 +27,7 @@ abstract class BaseViewModel : ViewModel() {
             is LoginViewModel -> injector.inject(this)
             is RegisterViewModel -> injector.inject(this)
             is HomeViewModel -> injector.inject(this)
+            is TimelineViewModel -> injector.inject(this)
         }
     }
 }

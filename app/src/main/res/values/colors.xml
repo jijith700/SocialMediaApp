@@ -8,7 +8,11 @@
     <color name="colorEdtLine">#ffc000</color>
     <color name="colorTextForgotPass">#e60808</color>
 
-    <color name="colorTextCommon">#FFFFFF</color>
+    <color name="colorTextCommonWhite">#FFFFFF</color>
+    <color name="colorTextCommonBlack">#000000</color>
+    <color name="colorTextCommonGrey">#9C9A9A</color>
+    <color name="colorBgCommonFeedButton">#9A9EC2</color>
+
 
     <color name="colorTab">#3f4156</color>
     <color name="colorBgTab1Normal">#ff5e3a</color>
@@ -17,5 +21,10 @@
     <color name="colorBgTab6Selected">#653AB6</color>
     <color name="colorBgTabNormal">#3D3F53</color>
     <color name="colorBgTabSelected">#37394B</color>
+
+    <color name="colorLine">#37000000</color>
+    <color name="colorBgCommonWhite">#FFFFFF</color>
+
+    <color name="colorBgPlay">#C34F3D</color>
 
 </resources>

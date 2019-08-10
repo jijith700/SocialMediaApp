@@ -10,9 +10,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBgLogin">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_login">
 
         <EditText
                 android:id="@+id/edtUserName"
@@ -27,8 +27,8 @@
                 android:hint="@string/txt_hint_username"
                 android:inputType="textEmailAddress"
                 android:drawableLeft="@drawable/ic_user"
-                android:textColor="@color/colorTextCommon"
-                android:textColorHint="@color/colorTextCommon"
+                android:textColor="@color/colorTextCommonWhite"
+                android:textColorHint="@color/colorTextCommonWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,28 +45,28 @@
                 android:hint="@string/txt_hint_password"
                 android:inputType="textPassword"
                 android:drawableLeft="@drawable/ic_password"
-                android:textColor="@color/colorTextCommon"
-                android:textColorHint="@color/colorTextCommon"
+                android:textColor="@color/colorTextCommonWhite"
+                android:textColorHint="@color/colorTextCommonWhite"
                 app:layout_constraintEnd_toEndOf="@+id/edtUserName"
                 app:layout_constraintStart_toStartOf="@+id/edtUserName"
                 app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
 
         <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/btn_yellow"
-            android:text="@string/txt_login"
-            android:textAllCaps="false"
-            android:textColor="@color/colorTextCommon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/edtPassword"
-            app:layout_constraintStart_toStartOf="@+id/edtPassword"
-            app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
+                android:id="@+id/btnLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/btn_yellow"
+                android:text="@string/txt_login"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextCommonWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+                app:layout_constraintStart_toStartOf="@+id/edtPassword"
+                app:layout_constraintTop_toBottomOf="@+id/edtUserName" />
 
         <TextView
             android:id="@+id/tvForgotPass"
@@ -84,15 +84,15 @@
             app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
         <TextView
-            android:id="@+id/tvSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/txt_sign_up"
-            android:textColor="@color/colorTextCommon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                android:id="@+id/tvSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="@string/txt_sign_up"
+                android:textColor="@color/colorTextCommonWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         <RelativeLayout
