@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_timeline"
+        android:title="@string/menu_timeline"
+        android:icon="@drawable/ic_star"/>
+    <item
+        android:id="@+id/nav_friends"
+        android:title="@string/menu_friends"
+        android:icon="@drawable/ic_star"/>
+    <item
+        android:id="@+id/nav_favorites"
+        android:title="@string/menu_favorites"
+        android:icon="@drawable/ic_star"/>
+    <item
+        android:id="@+id/nav_groups"
+        android:title="@string/menu_groups"
+        android:icon="@drawable/ic_star"/>
+    <item
+        android:id="@+id/nav_pages"
+        android:title="@string/menu_pages"
+        android:icon="@drawable/ic_star"/>
+    <item
+        android:id="@+id/nav_birthdays"
+        android:title="@string/menu_birthdays"
+        android:icon="@drawable/ic_star"/>
+    <item
+        android:id="@+id/nav_myaccount"
+        android:title="@string/menu_myaccount"
+        android:icon="@drawable/ic_star"/>
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/menu_logout"
+        android:icon="@drawable/ic_star"/>
+</menu>

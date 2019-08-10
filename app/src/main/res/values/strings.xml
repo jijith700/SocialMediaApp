@@ -21,6 +21,23 @@
     <string name="txt_register">Register</string>
     <string name="txt_already_login">Already a member? Login</string>
 
+    <!--HomeActivity-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">View your profile</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_timeline">Timeline</string>
+    <string name="menu_friends">Friends</string>
+    <string name="menu_favorites">Favorite feeds</string>
+    <string name="menu_groups">Groups</string>
+    <string name="menu_pages">Pages</string>
+    <string name="menu_birthdays">Birthdays</string>
+    <string name="menu_myaccount">My account</string>
+    <string name="menu_logout">Logout</string>
+
 
     <!--TimelineAdapter-->
     <string name="edt_message">Share what you are thinking here…</string>
@@ -46,6 +63,13 @@
 
     <!--FriendsFragment-->
     <string name="tv_user_friends">James\'s Freinds (86)</string>
+
+    <!--GroupsFragment-->
+    <string name="btn_create_group">Create Group</string>
+    <string name="hint_search">Search</string>
+
+    <!--PagesFragment-->
+    <string name="btn_create_page">Create Page</string>
 
     <string name="btn_ok">Ok</string>
     <string name="btn_yes">Yes</string>

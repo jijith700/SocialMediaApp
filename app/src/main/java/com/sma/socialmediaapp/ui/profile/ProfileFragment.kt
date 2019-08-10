@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.sma.socialmediaapp.R
+import com.sma.socialmediaapp.databinding.FragmentProfileBinding
 import com.sma.socialmediaapp.ui.about.AboutFragment
 import com.sma.socialmediaapp.ui.adapter.TabAdapter
 import com.sma.socialmediaapp.ui.friends.FriendsFragment

@@ -1,25 +1,33 @@
 package com.sma.socialmediaapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.navigation.NavigationView
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.databinding.ActivityHomeBinding
 import com.sma.socialmediaapp.injection.ViewModelFactory
 import com.sma.socialmediaapp.ui.adapter.TabAdapter
+import com.sma.socialmediaapp.ui.friends.FriendsFragment
 import com.sma.socialmediaapp.ui.gallery.GalleryFragment
+import com.sma.socialmediaapp.ui.groups.GroupsFragment
+import com.sma.socialmediaapp.ui.login.LoginActivity
+import com.sma.socialmediaapp.ui.pages.PagesFragment
 import com.sma.socialmediaapp.ui.profile.ProfileFragment
 import com.sma.socialmediaapp.ui.timeline.TimelineFragment
 import com.sma.socialmediaapp.ui.videochannel.VideoChannelFragment
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     var TAG = HomeActivity::class.java.simpleName
 
@@ -100,6 +108,29 @@ class HomeActivity : AppCompatActivity() {
 //        binding.thTabs.addTab(tab3)
 //        binding.thTabs.addTab(tab4)
 
+        binding.drawerLayout.openDrawer(Gravity.START)
+
+        val navView: NavigationView = findViewById(R.id.nav_view)
+
+        navView.setNavigationItemSelectedListener(this);
+
+    }
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        when(menuItem.itemId) {
+            R.id.nav_timeline -> switchPage(TimelineFragment(), false)
+            R.id.nav_friends -> switchPage(FriendsFragment(), false)
+            R.id.nav_groups -> switchPage(GroupsFragment(), false)
+            R.id.nav_pages -> switchPage(PagesFragment(), false)
+            R.id.nav_logout -> {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        binding.drawerLayout.closeDrawers()
+        return true;
     }
 
 
