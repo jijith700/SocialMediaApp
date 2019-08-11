@@ -4,25 +4,28 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.databinding.ActivityHomeBinding
 import com.sma.socialmediaapp.injection.ViewModelFactory
+import com.sma.socialmediaapp.ui.about.AboutFragment
 import com.sma.socialmediaapp.ui.adapter.TabAdapter
 import com.sma.socialmediaapp.ui.friends.FriendsFragment
 import com.sma.socialmediaapp.ui.gallery.GalleryFragment
 import com.sma.socialmediaapp.ui.groups.GroupsFragment
 import com.sma.socialmediaapp.ui.login.LoginActivity
 import com.sma.socialmediaapp.ui.pages.PagesFragment
-import com.sma.socialmediaapp.ui.profile.ProfileFragment
 import com.sma.socialmediaapp.ui.timeline.TimelineFragment
 import com.sma.socialmediaapp.ui.videochannel.VideoChannelFragment
 
@@ -45,12 +48,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val tabView1 = View.inflate(this, R.layout.layout_tab, null)
 //        tabView1.setBackgroundColor(resources.getColor(R.color.colorBgTab1Normal, null))
-        tabView1.setBackgroundResource(R.drawable.rb_tab1)
-//        tabView1.findViewById<ImageView>(R.id.icon).setBackgroundResource(R.drawable.rb_tab1)
+        tabView1.setBackgroundResource(R.drawable.rb_tab_menu)
+//        tabView1.findViewById<ImageView>(R.id.icon).setBackgroundResource(R.drawable.rb_tab_menu)
         binding.tabLayout.addTab(binding.tabLayout.newTab().setCustomView(tabView1))
 
 
-        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab1))*/
+        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab_menu))*/
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab_home))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab2))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab3))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab4))
@@ -66,18 +70,17 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val tabsContainer = binding.tabLayout.getChildAt(0) as LinearLayout
 
         val childLayout1 = tabsContainer.getChildAt(0) as LinearLayout
-        val childLayout2 = tabsContainer.getChildAt(5) as LinearLayout
+        val childLayout2 = tabsContainer.getChildAt(6) as LinearLayout
 
         var tabViewColor1 = childLayout1.getChildAt(0).parent as LinearLayout
-        tabViewColor1.setBackgroundColor(resources.getColor(R.color.colorBgTab1Normal, null))
+        tabViewColor1.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgTab1Normal))
 
         var tabViewColor6 = childLayout2.getChildAt(0).parent as LinearLayout
-        tabViewColor6.setBackgroundColor(resources.getColor(R.color.colorBgTab6Normal, null))
+        tabViewColor6.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgTab6Normal))
 
         switchPage(TimelineFragment(), false)
         switchPage(VideoChannelFragment(), true)
         switchPage(GalleryFragment(), true)
-        switchPage(ProfileFragment(), true)
 
 
 //        val mLocalActivityManager = LocalActivityManager(this, false)
@@ -88,7 +91,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        binding.thTabs.
 //
 //        var tab1 = binding.thTabs.newTabSpec("A")
-//        tab1.setIndicator("A", resources.getDrawable(R.drawable.rb_tab1, null))
+//        tab1.setIndicator("A", resources.getDrawable(R.drawable.rb_tab_menu, null))
 //        tab1.setContent(Intent(this, LoginActivity::class.java))
 //
 //        var tab2 = binding.thTabs.newTabSpec("b")
@@ -108,16 +111,58 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        binding.thTabs.addTab(tab3)
 //        binding.thTabs.addTab(tab4)
 
-        binding.drawerLayout.openDrawer(Gravity.START)
-
         val navView: NavigationView = findViewById(R.id.nav_view)
-
         navView.setNavigationItemSelectedListener(this);
 
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                if (tab!!.position == 0) {
+                    if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                        binding.drawerLayout.openDrawer(GravityCompat.START)
+                    } else {
+                        binding.drawerLayout.closeDrawers()
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab!!.position) {
+                    0 -> {
+                        if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.openDrawer(GravityCompat.START)
+                        } else {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                    }
+                    1 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(TimelineFragment(), false)
+                    }
+                }
+            }
+        })
+
+        val headerView =  binding.navView.getHeaderView(0)
+        val tvViewProfile = headerView.findViewById<TextView>(R.id.tvViewProfile)
+        tvViewProfile.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    binding.drawerLayout.closeDrawers()
+                }
+                switchPage(AboutFragment(), false)
+            }
+        })
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when(menuItem.itemId) {
+        when (menuItem.itemId) {
             R.id.nav_timeline -> switchPage(TimelineFragment(), false)
             R.id.nav_friends -> switchPage(FriendsFragment(), false)
             R.id.nav_groups -> switchPage(GroupsFragment(), false)
@@ -131,6 +176,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.drawerLayout.closeDrawers()
         return true;
+    }
+
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawers()
+        } else {
+            super.onBackPressed()
+        }
     }
 
 
@@ -182,6 +235,5 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } catch (e: IllegalStateException) {
             Log.e(TAG, "fragment already added: " + e.toString())
         }
-
     }
 }

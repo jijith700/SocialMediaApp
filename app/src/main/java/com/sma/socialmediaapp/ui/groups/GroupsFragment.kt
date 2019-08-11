@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.ui.adapter.GroupAdapter
+import com.sma.socialmediaapp.utils.VerticalDividerItemDecoration
 
 /**
  * A simple [Fragment] subclass.
@@ -38,9 +37,7 @@ class GroupsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         groupAdapter = GroupAdapter()
         binding.rvGroups.layoutManager = LinearLayoutManager(context)
-        val itemDecorator = DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL)
-        itemDecorator.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_divider)!!)
-        binding.rvGroups.addItemDecoration(itemDecorator)
+        binding.rvGroups.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvGroups.adapter = groupAdapter
 
     }

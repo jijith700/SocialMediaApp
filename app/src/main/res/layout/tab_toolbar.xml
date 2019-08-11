@@ -27,7 +27,7 @@
                     android:layout_width="@dimen/tab_toolbar_side_menu_width"
                     android:layout_height="match_parent"
                     android:button="@null"
-                    android:background="@drawable/rb_tab1"/>
+                    android:background="@drawable/rb_tab_menu"/>
 
             <RadioButton
                     android:layout_weight="10"

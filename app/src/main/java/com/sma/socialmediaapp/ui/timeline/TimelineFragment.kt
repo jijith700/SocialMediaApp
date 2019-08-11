@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.databinding.FragmentTimeLineBinding
 import com.sma.socialmediaapp.ui.adapter.TimelineAdapter
+import com.sma.socialmediaapp.utils.VerticalDividerItemDecoration
 
 
 /**
@@ -44,9 +43,7 @@ class TimelineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvTimeline.layoutManager = LinearLayoutManager(context)
-        val itemDecorator = DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL)
-        itemDecorator.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_divider)!!)
-        binding.rvTimeline.addItemDecoration(itemDecorator)
+        binding.rvTimeline.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvTimeline.adapter = timelineAdapter
 
     }

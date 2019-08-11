@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.ui.adapter.PageAdapter
+import com.sma.socialmediaapp.utils.VerticalDividerItemDecoration
 
 /**
  * A simple [Fragment] subclass.
@@ -37,9 +36,7 @@ class PagesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         pageAdapter = PageAdapter()
         binding.rvPages.layoutManager = LinearLayoutManager(context)
-        val itemDecorator = DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL)
-        itemDecorator.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_divider)!!)
-        binding.rvPages.addItemDecoration(itemDecorator)
+        binding.rvPages.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvPages.adapter = pageAdapter
 
     }

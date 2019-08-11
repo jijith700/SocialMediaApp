@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.databinding.FragmentVideoChannelBinding
@@ -44,9 +42,7 @@ class VideoChannelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvVideoChannel.layoutManager = LinearLayoutManager(context)
-        val itemDecorator = DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL)
-        itemDecorator.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_divider)!!)
-        binding.rvVideoChannel.addItemDecoration(itemDecorator)
+        /*binding.rvVideoChannel.addItemDecoration(VerticalDividerItemDecoration(20, false))*/
         binding.rvVideoChannel.adapter = videoChannelAdapter
 
     }

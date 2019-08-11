@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.databinding.FragmentGalleryBinding
 import com.sma.socialmediaapp.ui.adapter.GalleryAdapter
+import com.sma.socialmediaapp.utils.VerticalDividerItemDecoration
 
 /**
  * A simple [Fragment] subclass.
@@ -42,9 +41,7 @@ class GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvGallery.layoutManager = LinearLayoutManager(context)
-        val itemDecorator = DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL)
-        itemDecorator.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_divider)!!)
-        binding.rvGallery.addItemDecoration(itemDecorator)
+        binding.rvGallery.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvGallery.adapter = galleryAdapter
 
     }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.sma.socialmediaapp.R
 import com.sma.socialmediaapp.databinding.FragmentFriendsBinding
 import com.sma.socialmediaapp.ui.adapter.FriendsAdapter
+import com.sma.socialmediaapp.utils.VerticalDividerItemDecoration
 
 /**
  * A simple [Fragment] subclass.
@@ -41,9 +42,7 @@ class FriendsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         friendsAdapter = FriendsAdapter()
         binding.rvFriends.layoutManager = GridLayoutManager(context, 4)
-        /*val itemDecorator = DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL)
-        itemDecorator.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_divider)!!)
-        binding.rvFriends.addItemDecoration(itemDecorator)*/
+        binding.rvFriends.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvFriends.adapter = friendsAdapter
 
     }
