@@ -7,7 +7,7 @@
 
         <variable
                 name="viewModel"
-                type="com.sma.socialmediaapp.ui.gallery.GalleryViewModel"/>
+                type="com.sma.liveler.ui.gallery.GalleryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

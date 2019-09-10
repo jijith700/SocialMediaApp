@@ -71,7 +71,7 @@
     <!--PagesFragment-->
     <string name="btn_create_page">Create Page</string>
 
-    <string name="btn_ok">Ok</string>
+    <string name="btn_ok">OK</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
 
@@ -81,5 +81,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Error-->
+    <string name="error_first_name">Invalid first name</string>
+    <string name="error_middle_name">Invalid middle name</string>
+    <string name="error_last_name">Invalid last name</string>
+    <string name="error_phone">Invalid phone</string>
+    <string name="error_password">Invalid password</string>
+    <string name="error_email">Invalid email</string>
+    <string name="error_name">"Invalid user name"</string>
+    <string name="error_email_response">"The email has already been taken."</string>
+    <string name="error_login_response">"User name or password is incorrect"</string>
+
+    <!--Preferences-->
+    <string name="token">token</string>
+    <string name="user">user</string>
 
 </resources>

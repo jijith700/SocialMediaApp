@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="post"
+                type="com.sma.liveler.vo.Post" />
+
+        <variable
+                name="postCallback"
+                type="com.sma.liveler.ui.timeline.PostClickCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBgCommonWhite">
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorBgCommonWhite">
+
+                <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBgCommonWhite"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <RelativeLayout
+                            android:id="@+id/rlTop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp">
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true">
+
+                            <TextView
+                                    android:id="@+id/tvFeedTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toStartOf="@+id/ivMore"
+                                    android:text="Mariana Valentine shared a link"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textStyle="bold" />
+
+                            <TextView
+                                    android:id="@+id/tvTime"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tvFeedTitle"
+                                    android:layout_marginStart="10dp"
+                                    android:text="March 4 at 2:05pm" />
+
+                            <ImageView
+                                    android:id="@+id/ivMore"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true" />
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                            android:id="@+id/tvMessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rlTop"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="Hey cindi, you should really checkout this song bv Iron Maid. The next time they come to the city we should totally go! " />
+
+                    <RelativeLayout
+                            android:id="@+id/rlShare"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvMessage"
+                            android:layout_alignStart="@+id/tvMessage"
+                            android:layout_alignEnd="@+id/tvMessage"
+                            android:layout_marginTop="15dp">
+
+                        <ImageView
+                                android:id="@+id/ivShare"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:background="@drawable/ic_sample_video_thumbnail" />
+
+                        <TextView
+                                android:id="@+id/tvShareTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_toEndOf="@id/ivShare"
+                                android:text="Iron Maid-Chill Gloves"
+                                android:textSize="16sp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvShareTitle"
+                                android:layout_alignStart="@+id/tvShareTitle"
+                                android:layout_alignEnd="@+id/tvShareTitle"
+                                android:layout_marginTop="10dp"
+                                android:text="you should really checkout this song bv Iron Maid.  "
+                                android:textSize="12sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rlShare"
+                            android:layout_alignStart="@+id/tvMessage"
+                            android:layout_alignEnd="@id/tvMessage">
+
+                        <LinearLayout
+                                android:id="@+id/llLike"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true">
+
+                            <ImageView
+                                    android:id="@+id/ivTotalLike"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:layout_marginTop="15dp"
+                                    android:background="@drawable/ic_like_post_grey" />
+
+                            <TextView
+                                    android:id="@+id/tvTotalLike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tvLike"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_toEndOf="@+id/ivTotalChat"
+                                    android:text="24" />
+
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clUsers"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_toEndOf="@+id/llLike">
+
+                            <ImageView
+                                    android:id="@+id/ivUser1"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="5dp"
+                                    android:background="@drawable/ic_sample"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                    android:id="@+id/ivUser2"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="8dp"
+                                    android:background="@drawable/ic_sample"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ivUser1"
+                                    app:layout_constraintStart_toStartOf="@+id/ivUser1"
+                                    app:layout_constraintTop_toTopOf="@+id/ivUser1"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                    android:id="@+id/ivUser3"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="8dp"
+                                    android:background="@drawable/ic_sample"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ivUser2"
+                                    app:layout_constraintStart_toStartOf="@+id/ivUser2"
+                                    app:layout_constraintTop_toTopOf="@+id/ivUser2"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                    android:id="@+id/ivUser4"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="8dp"
+                                    android:background="@drawable/ic_sample"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ivUser3"
+                                    app:layout_constraintStart_toStartOf="@+id/ivUser3"
+                                    app:layout_constraintTop_toTopOf="@+id/ivUser3"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                    android:id="@+id/ivUser5"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="8dp"
+                                    android:background="@drawable/ic_sample"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ivUser4"
+                                    app:layout_constraintStart_toStartOf="@+id/ivUser4"
+                                    app:layout_constraintTop_toTopOf="@+id/ivUser4"
+                                    app:layout_constraintVertical_bias="0.0" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                                android:id="@+id/llUsers"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/clUsers"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    android:id="@+id/tvLikes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/clUsers"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="You, Elaine and"
+                                    android:textColor="@color/colorTextCommonBlack"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+
+                            <TextView
+                                    android:id="@+id/tvLike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tvLikes"
+                                    android:layout_marginStart="10dp"
+                                    android:text="24 more liked this"
+                                    android:textSize="8sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:id="@+id/llComment"
+                                android:gravity="end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true">
+
+                            <ImageView
+                                    android:id="@+id/ivTotalChat"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:layout_below="@+id/tvLike"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="15dp"
+                                    android:background="@drawable/ic_start_chat_grey" />
+
+                            <TextView
+                                    android:id="@+id/tvTotalChat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tvLike"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_toEndOf="@+id/ivTotalChat"
+                                    android:text="24" />
+
+                            <ImageView
+                                    android:id="@+id/ivTotalShare"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:layout_below="@+id/tvLike"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_toEndOf="@+id/tvTotalChat"
+                                    android:background="@drawable/ic_share_grey" />
+
+                            <TextView
+                                    android:id="@+id/tvTotalShare"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tvLike"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_toEndOf="@+id/ivTotalShare"
+                                    android:text="24" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <ImageView
+                        android:id="@+id/ivLike"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/bg_btn_like"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+                android:id="@+id/ivUser"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/ic_sample"
+                android:elevation="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

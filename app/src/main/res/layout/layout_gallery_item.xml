@@ -7,7 +7,7 @@
 
         <variable
                 name="post"
-                type="com.sma.socialmediaapp.model.Gallery"/>
+                type="com.sma.liveler.vo.Gallery" />
     </data>
 
     <LinearLayout

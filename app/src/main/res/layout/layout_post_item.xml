@@ -6,11 +6,11 @@
 
         <variable
                 name="post"
-                type="com.sma.socialmediaapp.model.Post"/>
+                type="com.sma.liveler.vo.Post" />
 
         <variable
                 name="postCallback"
-                type="com.sma.socialmediaapp.ui.timeline.PostClickCallback"/>
+                type="com.sma.liveler.ui.timeline.PostClickCallback" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

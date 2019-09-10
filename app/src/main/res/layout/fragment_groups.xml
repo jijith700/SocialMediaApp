@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sma.socialmediaapp.ui.groups.GroupsViewModel" />
+                type="com.sma.liveler.ui.groups.GroupsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

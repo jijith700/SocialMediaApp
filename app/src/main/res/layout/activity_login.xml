@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.sma.socialmediaapp.ui.login.LoginViewModel" />
+                type="com.sma.liveler.ui.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

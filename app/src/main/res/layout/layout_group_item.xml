@@ -6,7 +6,7 @@
 
         <variable
             name="post"
-            type="com.sma.socialmediaapp.model.Page" />
+                type="com.sma.liveler.vo.Page" />
     </data>
 
     <LinearLayout
@@ -27,7 +27,7 @@
             <RelativeLayout
                 android:id="@+id/rlTop"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                    android:layout_height="110dp">
 
                 <ImageView
                     android:id="@+id/ivUser"

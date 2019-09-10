@@ -7,7 +7,7 @@
 
         <variable
                 name="post"
-                type="com.sma.socialmediaapp.model.Video"/>
+                type="com.sma.liveler.vo.Video" />
     </data>
 
     <LinearLayout

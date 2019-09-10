@@ -7,7 +7,7 @@
 
         <variable
                 name="viewModel"
-                type="com.sma.socialmediaapp.ui.videochannel.VideoChannelViewModel"/>
+                type="com.sma.liveler.ui.videochannel.VideoChannelViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

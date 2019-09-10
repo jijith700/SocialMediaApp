@@ -5,8 +5,12 @@
     <data>
 
         <variable
+                name="user"
+                type="com.sma.liveler.vo.User" />
+
+        <variable
             name="viewModel"
-            type="com.sma.socialmediaapp.ui.registration.RegisterViewModel" />
+                type="com.sma.liveler.ui.registration.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +27,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <EditText
                     android:id="@+id/edtFirstName"
                     android:layout_width="0dp"
@@ -35,7 +38,6 @@
                     android:ems="10"
                     android:hint="@string/txt_hint_first_name"
                     android:inputType="textPersonName"
-                    android:text=""
                     android:drawableLeft="@drawable/ic_user"
                     android:textColor="@color/colorTextCommonWhite"
                     android:textColorHint="@color/colorTextCommonWhite"
@@ -51,6 +53,7 @@
                     android:backgroundTint="@color/colorEdtLine"
                     android:ems="10"
                     android:hint="@string/txt_hint_middle_name"
+                    android:text="@{viewModel.user.middleName}"
                     android:inputType="textPersonName"
                     android:drawableLeft="@drawable/ic_user"
                     android:textColor="@color/colorTextCommonWhite"
@@ -67,6 +70,7 @@
                     android:backgroundTint="@color/colorEdtLine"
                     android:ems="10"
                     android:hint="@string/txt_hint_last_name"
+                    android:text="@{viewModel.user.lastName}"
                     android:inputType="textPersonName"
                     android:drawableLeft="@drawable/ic_user"
                     android:textColor="@color/colorTextCommonWhite"
@@ -83,6 +87,7 @@
                     android:backgroundTint="@color/colorEdtLine"
                     android:ems="10"
                     android:hint="@string/txt_hint_phone"
+                    android:text="@{viewModel.user.phone}"
                     android:inputType="phone"
                     android:drawableLeft="@drawable/ic_password"
                     android:textColor="@color/colorTextCommonWhite"
@@ -92,13 +97,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/edtLastName" />
 
             <EditText
-                    android:id="@+id/edtOtp"
+                    android:id="@+id/edtEmail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:backgroundTint="@color/colorEdtLine"
                     android:ems="10"
                     android:hint="@string/txt_hint_email"
+                    android:text="@{viewModel.user.email}"
                     android:inputType="textEmailAddress"
                     android:drawableLeft="@drawable/ic_password"
                     android:textColor="@color/colorTextCommonWhite"
@@ -115,14 +121,15 @@
                     android:backgroundTint="@color/colorEdtLine"
                     android:ems="10"
                     android:hint="@string/txt_hint_password"
+                    android:text="@{viewModel.user.password}"
                     android:drawableRight="@drawable/ic_psw_visibility"
                     android:inputType="textPassword"
                     android:drawableLeft="@drawable/ic_password"
                     android:textColor="@color/colorTextCommonWhite"
                     android:textColorHint="@color/colorTextCommonWhite"
-                    app:layout_constraintEnd_toEndOf="@+id/edtOtp"
-                    app:layout_constraintStart_toStartOf="@+id/edtOtp"
-                    app:layout_constraintTop_toBottomOf="@+id/edtOtp" />
+                    app:layout_constraintEnd_toEndOf="@+id/edtEmail"
+                    app:layout_constraintStart_toStartOf="@+id/edtEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
             <Button
                     android:id="@+id/btnRegister"
@@ -148,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:text="@string/txt_already_login"
+                android:onClick="@{viewModel.loginClickListener}"
                 android:textColor="@color/colorTextCommonWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
