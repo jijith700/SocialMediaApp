@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.liveler.R
 import com.sma.liveler.databinding.FragmentTimeLineBinding
+import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.TimelineAdapter
 import com.sma.liveler.utils.VerticalDividerItemDecoration
 
@@ -23,20 +27,29 @@ import com.sma.liveler.utils.VerticalDividerItemDecoration
 class TimelineFragment : Fragment() {
 
     private lateinit var binding: FragmentTimeLineBinding
-    private lateinit var viewModel: TimelineViewModel
     private lateinit var timelineAdapter: TimelineAdapter
+
+    /**
+     * Initializing the view model fo the current activity.
+     */
+    private val viewModel: TimelineViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return TimelineViewModel(
+                    activity!!,
+                    PostRepository(activity!!)
+                ) as T
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_time_line, container, false)
         timelineAdapter = TimelineAdapter()
-        // setting values to model
-        /* val user = DataBindingKotlinModel("Imtiyaz", "Khalani")
-         binding.model = user*/
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -46,12 +59,15 @@ class TimelineFragment : Fragment() {
         binding.rvTimeline.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvTimeline.adapter = timelineAdapter
 
+        viewModel.posts.observe(this, Observer {
+            timelineAdapter.updatePosts(it)
+        })
+
+        viewModel.getPosts()
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, null).get(TimelineViewModel::class.java)
         binding.viewModel = viewModel
-
     }
 }

@@ -7,3 +7,6 @@ const val NAME: String = "name"
 const val EMAIL: String = "email"
 const val PASSWORD: String = "password"
 const val C_PASSWORD: String = "c_password"
+const val GROUP_NAME: String = "group_name"
+
+const val BEARER: String = "Bearer %s"

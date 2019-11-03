@@ -67,6 +67,7 @@
     <!--GroupsFragment-->
     <string name="btn_create_group">Create Group</string>
     <string name="hint_search">Search</string>
+    <string name="tv_members">%1$s Friends in the Group</string>
 
     <!--PagesFragment-->
     <string name="btn_create_page">Create Page</string>

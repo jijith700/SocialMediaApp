@@ -10,5 +10,5 @@ data class User(
     @SerializedName("email") val email: String,
     val phone: String,
     @SerializedName("password") val password: String,
-    @SerializedName("c_password") val cPassword: String
+    @SerializedName("val groups: List<Group>,") val cPassword: String
 )

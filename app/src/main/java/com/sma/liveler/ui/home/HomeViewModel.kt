@@ -1,31 +1,32 @@
 package com.sma.liveler.ui.home
 
 import android.content.Context
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import io.reactivex.disposables.Disposable
+import com.sma.liveler.repository.PostRepository
+import com.sma.liveler.vo.Post
 
 class HomeViewModel() : ViewModel() {
 
     private lateinit var context: Context
+    private lateinit var postRepository: PostRepository
 
     var loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     var errorMessage: MutableLiveData<String> = MutableLiveData()
     var success: MutableLiveData<Boolean> = MutableLiveData()
 
-    constructor(context: Context) : this() {
+    var posts = MutableLiveData<List<Post>>()
+
+    constructor(context: Context, postRepository: PostRepository) : this() {
         this.context = context
+        this.postRepository = postRepository
+        posts = postRepository.posts
+        loadingVisibility = postRepository.loading
+        errorMessage = postRepository.errrorMessage
+        success = postRepository.success
     }
 
-    private lateinit var subscription: Disposable
-
-    private fun onRetrievePostListStart() {
-        loadingVisibility.value = View.VISIBLE
-        errorMessage.value = null
-    }
-
-    private fun onRetrievePostListFinish() {
-        loadingVisibility.value = View.GONE
+    fun getPosts() {
+        postRepository.getPost()
     }
 }

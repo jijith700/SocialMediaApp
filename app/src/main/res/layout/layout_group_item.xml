@@ -6,7 +6,7 @@
 
         <variable
             name="post"
-                type="com.sma.liveler.vo.Page" />
+                type="com.sma.liveler.vo.Group" />
     </data>
 
     <LinearLayout
@@ -30,7 +30,7 @@
                     android:layout_height="110dp">
 
                 <ImageView
-                    android:id="@+id/ivUser"
+                        android:id="@+id/ivGroup"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_alignParentStart="true"
@@ -43,27 +43,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/ivUser">
+                        android:layout_toEndOf="@id/ivGroup">
 
                     <TextView
-                        android:id="@+id/tvFeedTitle"
+                            android:id="@+id/tvGroupName"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:text="Candid clicks"
+                            android:text=""
                         android:gravity="center"
                         android:textColor="@color/colorTextCommonBlack"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvTime"
+                            android:id="@+id/tvMembers"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvFeedTitle"
+                            android:layout_below="@id/tvGroupName"
                         android:layout_marginStart="10dp"
                         android:gravity="center"
-                        android:text="146 persons liked this page" />
+                            android:text="@string/tv_members" />
 
                 </RelativeLayout>
 

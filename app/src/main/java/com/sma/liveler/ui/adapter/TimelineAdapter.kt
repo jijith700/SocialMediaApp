@@ -1,17 +1,22 @@
 package com.sma.liveler.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sma.liveler.R
 import com.sma.liveler.databinding.LayoutPostItemBinding
+import com.sma.liveler.vo.Post
 
 
 class TimelineAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val POST = 0
-    private val FEED = 1
+    private lateinit var context: Context
+    private var posts: List<Post> = ArrayList<Post>()
+
 
     private lateinit var layoutPostItemBinding: LayoutPostItemBinding
 
@@ -19,14 +24,10 @@ class TimelineAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var view: View? = null
         var viewHolder: RecyclerView.ViewHolder? = null
 
-        if (viewType == POST) {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.layout_post_item, parent, false)
-            viewHolder = PostViewHolder(view)
-        } else {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.layout_feed_item, parent, false)
-            viewHolder = FeedViewHolder(view)
-        }
+        view = LayoutInflater.from(parent.context).inflate(R.layout.layout_feed_item, parent, false)
+        viewHolder = FeedViewHolder(view)
 
+        context = view.context
         /* layoutPostItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.layout_post_item, parent, false);
 
          return PostViewHolder(layoutPostItemBinding.root)*/
@@ -35,18 +36,19 @@ class TimelineAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return posts.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+//        Glide.with(context).load(posts[position].post)
     }
 
-    override fun getItemViewType(position: Int): Int {
+    /*override fun getItemViewType(position: Int): Int {
         return if (position == 0)
-            POST;
+            POST
         else
-            FEED;
-    }
+            FEED
+    }*/
 
 
     class PostViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
@@ -58,10 +60,17 @@ class TimelineAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class FeedViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
-
+        var ivUser: ImageView?
+        var tvFeedTitle: TextView?
         init {
-
+            ivUser = view?.findViewById(R.id.ivUser)
+            tvFeedTitle = view?.findViewById(R.id.tvFeedTitle)
         }
 
+    }
+
+    fun updatePosts(posts: List<Post>) {
+        this.posts = posts
+        notifyDataSetChanged()
     }
 }

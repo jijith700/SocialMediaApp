@@ -3,7 +3,6 @@ package com.sma.liveler.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -20,6 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.sma.liveler.R
 import com.sma.liveler.databinding.ActivityHomeBinding
+import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.about.AboutFragment
 import com.sma.liveler.ui.adapter.TabAdapter
 import com.sma.liveler.ui.favfeeds.FavoriteFragment
@@ -28,11 +28,10 @@ import com.sma.liveler.ui.groups.GroupsFragment
 import com.sma.liveler.ui.login.LoginActivity
 import com.sma.liveler.ui.pages.PagesFragment
 import com.sma.liveler.ui.timeline.TimelineFragment
+import timber.log.Timber
 
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    var TAG = HomeActivity::class.java.simpleName
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var tabAdapter: TabAdapter
@@ -44,7 +43,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return HomeViewModel(this@HomeActivity) as T
+                return HomeViewModel(
+                    this@HomeActivity,
+                    PostRepository(this@HomeActivity)
+                ) as T
             }
         }
     }
@@ -159,9 +161,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
 
-        val headerView =  binding.navView.getHeaderView(0)
+        val headerView = binding.navView.getHeaderView(0)
         val tvViewProfile = headerView.findViewById<TextView>(R.id.tvViewProfile)
-        tvViewProfile.setOnClickListener(object: View.OnClickListener {
+        tvViewProfile.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     binding.drawerLayout.closeDrawers()
@@ -205,12 +207,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      * @param addToBackStack The flag used determine addition of fragment to back stack
      */
     fun switchPage(fragment: Fragment, addToBackStack: Boolean) {
-        Log.d(
-            TAG, "addToBackStack = [" + addToBackStack + "]"
-        )
+        Timber.d("addToBackStack = %s", addToBackStack)
 
         if (fragment == null) {
-            Log.e(TAG, "< fragment is null")
+            Timber.e("< fragment is null")
             return
         }
 
@@ -219,10 +219,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .findFragmentByTag(fragment.javaClass.getSimpleName())
 
             if (oldFragment != null && oldFragment.isAdded()) {
-                supportFragmentManager.beginTransaction().remove(oldFragment).commitAllowingStateLoss()
+                supportFragmentManager.beginTransaction().remove(oldFragment)
+                    .commitAllowingStateLoss()
             }
         } else {
-            Log.e(TAG, "< fragment name is null or empty")
+            Timber.e("< fragment name is null or empty")
         }
 
         val transaction = supportFragmentManager.beginTransaction()
@@ -238,13 +239,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (addToBackStack) {
             transaction.addToBackStack(fragment.javaClass.getSimpleName())
-            Log.i(TAG, "Fragment_Name: " + fragment.javaClass.getSimpleName())
+            Timber.i("Fragment_Name: %s", fragment.javaClass.getSimpleName())
         }
 
         try {
             transaction.commitAllowingStateLoss()
         } catch (e: IllegalStateException) {
-            Log.e(TAG, "fragment already added: " + e.toString())
+            Timber.e("fragment already added: %s", e.toString())
         }
     }
 }

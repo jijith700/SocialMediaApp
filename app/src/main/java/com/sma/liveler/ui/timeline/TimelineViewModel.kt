@@ -1,24 +1,32 @@
 package com.sma.liveler.ui.timeline
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sma.liveler.api.WebApiListener
-import javax.inject.Inject
+import com.sma.liveler.repository.PostRepository
+import com.sma.liveler.vo.Post
 
 class TimelineViewModel() : ViewModel() {
 
-    var TAG = TimelineViewModel::class.java.simpleName
+    private lateinit var context: Context
+    private lateinit var postRepository: PostRepository
 
-    @Inject
-    lateinit var webApiListener: WebApiListener
+    var loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    var errorMessage: MutableLiveData<String> = MutableLiveData()
+    var success: MutableLiveData<Boolean> = MutableLiveData()
 
-    val userName: MutableLiveData<String> = MutableLiveData()
-    val password: MutableLiveData<String> = MutableLiveData()
-    val error: MutableLiveData<Boolean> = MutableLiveData()
-    val loading: MutableLiveData<Int> = MutableLiveData()
+    var posts = MutableLiveData<List<Post>>()
 
+    constructor(context: Context, postRepository: PostRepository) : this() {
+        this.context = context
+        this.postRepository = postRepository
+        posts = postRepository.posts
+        loadingVisibility = postRepository.loading
+        errorMessage = postRepository.errrorMessage
+        success = postRepository.success
+    }
 
-    fun onclickLogin(userName: String, password: String) {
-
+    fun getPosts() {
+        postRepository.getPost()
     }
 }

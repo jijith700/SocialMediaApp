@@ -1,24 +1,36 @@
 package com.sma.liveler.ui.groups
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sma.liveler.api.WebApiListener
-import javax.inject.Inject
+import com.sma.liveler.repository.NavigationRepository
+import com.sma.liveler.vo.Group
 
 class GroupsViewModel() : ViewModel() {
 
-    var TAG = GroupsViewModel::class.java.simpleName
+    private lateinit var context: Context
+    private lateinit var navigationRepository: NavigationRepository
 
-    @Inject
-    lateinit var webApiListener: WebApiListener
+    var loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    var errorMessage: MutableLiveData<String> = MutableLiveData()
+    var success: MutableLiveData<Boolean> = MutableLiveData()
 
-    val userName: MutableLiveData<String> = MutableLiveData()
-    val password: MutableLiveData<String> = MutableLiveData()
-    val error: MutableLiveData<Boolean> = MutableLiveData()
-    val loading: MutableLiveData<Int> = MutableLiveData()
+    var groups = MutableLiveData<List<Group>>()
 
+    constructor(context: Context, navigationRepository: NavigationRepository) : this() {
+        this.context = context
+        this.navigationRepository = navigationRepository
+        groups = navigationRepository.groups
+        loadingVisibility = navigationRepository.loading
+        errorMessage = navigationRepository.errrorMessage
+        success = navigationRepository.success
+    }
 
-    fun onclickLogin(userName: String, password: String) {
+    fun getGroups() {
+        navigationRepository.getGroups()
+    }
 
+    fun createGroup(groupName: String) {
+        navigationRepository.createGroup(groupName)
     }
 }
