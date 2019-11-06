@@ -22,12 +22,14 @@ import com.sma.liveler.databinding.ActivityHomeBinding
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.about.AboutFragment
 import com.sma.liveler.ui.adapter.TabAdapter
+import com.sma.liveler.ui.adrequest.AdRequestFragment
 import com.sma.liveler.ui.favfeeds.FavoriteFragment
 import com.sma.liveler.ui.friends.FriendsFragment
 import com.sma.liveler.ui.groups.GroupsFragment
 import com.sma.liveler.ui.login.LoginActivity
 import com.sma.liveler.ui.pages.PagesFragment
 import com.sma.liveler.ui.timeline.TimelineFragment
+import com.sma.liveler.ui.videos.VideoFragment
 import timber.log.Timber
 
 
@@ -90,7 +92,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var tabViewColor6 = childLayout2.getChildAt(0).parent as LinearLayout
         tabViewColor6.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgTab6Normal))
 
-        switchPage(TimelineFragment(), false)
+        switchPage(AdRequestFragment(), false)
         /*switchPage(VideoChannelFragment(), true)
         switchPage(GalleryFragment(), true)*/
 
@@ -176,7 +178,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.nav_timeline -> switchPage(TimelineFragment(), false)
+            R.id.nav_video -> switchPage(VideoFragment(), false)
             R.id.nav_friends -> switchPage(FriendsFragment(), false)
+            R.id.nav_adrequest -> switchPage(AdRequestFragment(), false)
             R.id.nav_favorites -> switchPage(FavoriteFragment(), false)
             R.id.nav_groups -> switchPage(GroupsFragment(), false)
             R.id.nav_pages -> switchPage(PagesFragment(), false)
@@ -198,7 +202,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
     }
-
 
     /**
      * This method used for controlling the navigation throughout the application

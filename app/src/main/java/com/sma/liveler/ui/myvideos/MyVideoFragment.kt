@@ -1,4 +1,4 @@
-package com.sma.liveler.ui.videochannel
+package com.sma.liveler.ui.myvideos
 
 
 import android.os.Bundle
@@ -13,27 +13,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.liveler.R
-import com.sma.liveler.databinding.FragmentVideoChannelBinding
-import com.sma.liveler.ui.adapter.VideoChannelAdapter
+import com.sma.liveler.databinding.FragmentMyVideoBinding
+import com.sma.liveler.ui.adapter.MyVideoAdapter
 
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class VideoChannelFragment : Fragment() {
+class MyVideoFragment : Fragment() {
 
-    private lateinit var binding: FragmentVideoChannelBinding
-    private lateinit var videoChannelAdapter: VideoChannelAdapter
+    private lateinit var binding: FragmentMyVideoBinding
+    private lateinit var myVideoAdapter: MyVideoAdapter
 
     /**
      * Initializing the view model fo the current activity.
      */
-    private val viewModel: VideoChannelViewModel by viewModels {
+    private val viewModel: MyVideoViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return VideoChannelViewModel() as T
+                return MyVideoViewModel() as T
             }
         }
     }
@@ -42,8 +42,8 @@ class VideoChannelFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_video_channel, container, false)
-        videoChannelAdapter = VideoChannelAdapter()
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_video, container, false)
+        myVideoAdapter = MyVideoAdapter()
 
         return binding.root
     }
@@ -52,7 +52,7 @@ class VideoChannelFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvVideoChannel.layoutManager = LinearLayoutManager(context)
         /*binding.rvVideoChannel.addItemDecoration(VerticalDividerItemDecoration(20, false))*/
-        binding.rvVideoChannel.adapter = videoChannelAdapter
+        binding.rvVideoChannel.adapter = myVideoAdapter
 
     }
 

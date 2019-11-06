@@ -1,38 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/nav_timeline"
-        android:title="@string/menu_timeline"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_video"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_timeline"
+            android:visible="false" />
     <item
-        android:id="@+id/nav_friends"
-        android:title="@string/menu_friends"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_timeline"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_video" />
     <item
-        android:id="@+id/nav_favorites"
-        android:title="@string/menu_favorites"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_friends" />
     <item
-        android:id="@+id/nav_groups"
-        android:title="@string/menu_groups"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_bank"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_bank" />
     <item
-        android:id="@+id/nav_pages"
-        android:title="@string/menu_pages"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_adrequest"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_adrequest" />
     <item
-        android:id="@+id/nav_birthdays"
-        android:title="@string/menu_birthdays"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_favorites"
+            android:visible="false" />
     <item
-        android:id="@+id/nav_myaccount"
-        android:title="@string/menu_myaccount"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_groups"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_groups"
+            android:visible="false" />
     <item
-        android:id="@+id/nav_logout"
-        android:title="@string/menu_logout"
-        android:icon="@drawable/ic_star"/>
+            android:id="@+id/nav_pages"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_pages"
+            android:visible="false" />
+    <item
+            android:id="@+id/nav_birthdays"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_birthdays" />
+    <item
+            android:id="@+id/nav_myaccount"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_myaccount"
+            android:visible="false" />
+    <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_star"
+            android:title="@string/menu_logout"
+            android:visible="false" />
 </menu>
