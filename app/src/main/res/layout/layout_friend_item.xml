@@ -6,7 +6,7 @@
 
         <variable
                 name="post"
-                type="com.sma.liveler.vo.Video" />
+                type="com.sma.liveler.vo.Friend" />
     </data>
 
     <LinearLayout
@@ -24,74 +24,65 @@
                 app:cardCornerRadius="5dp"
                 app:cardUseCompatPadding="true">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
+                    android:id="@+id/rlTop"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="0dp"
-                    android:paddingBottom="20dp">
+                    android:layout_height="110dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp">
 
-                <ImageView
-                        android:id="@+id/ivThumbnail"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_sample_video_thumbnail"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivUser"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_sample" />
 
                 <RelativeLayout
-                        android:id="@+id/rlButton"
-                        android:layout_width="0dp"
-                        android:layout_height="140dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_sample_video_thumbnail"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:id="@+id/rlTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/ivUser"
+                        android:layout_toEndOf="@id/ivUser">
 
-                    <RelativeLayout
-                            android:layout_width="wrap_content"
+                    <TextView
+                            android:id="@+id/tvUserName"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true">
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="start"
+                            android:textColor="@color/colorTextCommonBlack"
+                            android:textStyle="bold" />
 
-
-                        <ImageButton
-                                android:id="@+id/ibPlay"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_centerHorizontal="true"
-                                android:background="@drawable/ic_sample"/>
-
-                        <TextView
-                                android:id="@+id/tvTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/ibPlay"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:text="Marina Valentine"
-                                android:textColor="@color/colorTextCommonBlack"
-                                android:textSize="12sp"
-                                android:textStyle="bold"/>
-
-                        <TextView
-                                android:id="@+id/tvTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/tvTitle"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginStart="16dp"
-                                android:text="San Francisco, CA"
-                                android:textSize="10sp"/>
-
-                    </RelativeLayout>
+                    <TextView
+                            android:id="@+id/tvUserDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvUserName"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:gravity="start" />
 
                 </RelativeLayout>
 
+                <Button
+                        android:id="@+id/btnRemove"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/btn_blue"
+                        android:text="@string/btn_remove"
+                        android:textAllCaps="false"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorTextCommonWhite" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 

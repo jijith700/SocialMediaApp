@@ -7,12 +7,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sma.liveler.R
 import com.sma.liveler.databinding.LayoutVideoItemBinding
+import com.sma.liveler.interfaces.OnClickPostListener
 
 
-class VideoChannelAdapter : RecyclerView.Adapter<VideoChannelAdapter.VideoItemViewHolder>() {
+class VideoChannelAdapter(private var onClickPostListener: OnClickPostListener)
+    : RecyclerView.Adapter<VideoChannelAdapter.VideoItemViewHolder>() {
 
     private lateinit var layoutVideoItemBinding: LayoutVideoItemBinding
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemViewHolder {
 

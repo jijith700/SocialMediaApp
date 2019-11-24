@@ -1,4 +1,4 @@
-package com.sma.liveler.ui.friends
+package com.sma.liveler.ui.following
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,38 +8,34 @@ import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.sma.liveler.R
-import com.sma.liveler.databinding.FragmentFriendsBinding
+import com.sma.liveler.databinding.FragmentFollowingBinding
 import com.sma.liveler.repository.PostRepository
-import com.sma.liveler.ui.adapter.VideoTabAdapter
-import com.sma.liveler.ui.followers.FollowersFragment
-import com.sma.liveler.ui.following.FollowingFragment
-import com.sma.liveler.ui.myvideos.MyVideoFragment
-import com.sma.liveler.ui.videochannel.VideoChannelFragment
-import com.sma.liveler.ui.videos.VideoFragment
-import kotlinx.android.synthetic.main.fragment_friends.*
-import kotlinx.android.synthetic.main.fragment_video.*
-import timber.log.Timber
+import com.sma.liveler.ui.adapter.FollowingAdapter
+import com.sma.liveler.utils.VerticalDividerItemDecoration
 
 /**
  * A simple [Fragment] subclass.
  * create an instance of this fragment.
  *
  */
-class FriendsFragment : Fragment() {
+class FollowingFragment : Fragment() {
 
-    private lateinit var binding: FragmentFriendsBinding
+    private lateinit var binding: FragmentFollowingBinding
+    private lateinit var friendsAdapter: FollowingAdapter
 
     /**
      * Initializing the view model fo the current activity.
      */
-    private val viewModel: FriendsViewModel by viewModels {
+    private val viewModel: FollowingViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return FriendsViewModel(
+                return FollowingViewModel(
                     activity!!, PostRepository(activity!!)
                 ) as T
             }
@@ -50,14 +46,25 @@ class FriendsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_friends, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_following, container, false)
+        // setting values to model
+        /* val user = DataBindingKotlinModel("Imtiyaz", "Khalani")
+         binding.model = user*/
+        // Inflate the layout for this fragment
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addTabs()
+        friendsAdapter = FollowingAdapter()
+        binding.rvFollowing.layoutManager = GridLayoutManager(context, 1)
+        binding.rvFollowing.addItemDecoration(VerticalDividerItemDecoration(20, false))
+        binding.rvFollowing.adapter = friendsAdapter
+
+        viewModel.friends.observe(this, Observer { friendsAdapter.updateFollowing(it) })
+
+        viewModel.getFollowing();
 
     }
 
@@ -65,17 +72,5 @@ class FriendsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
 
-    }
-
-    /**
-     * Method to add the tab to the view pager.
-     */
-    private fun addTabs() {
-        val categoryPagerAdapter = VideoTabAdapter(childFragmentManager)
-        categoryPagerAdapter.addFragment(FollowersFragment(), "Followers")
-        categoryPagerAdapter.addFragment(FollowingFragment(), "Following")
-
-        vpFriends.adapter = categoryPagerAdapter
-        tlFriends.setupWithViewPager(vpVideos)
     }
 }

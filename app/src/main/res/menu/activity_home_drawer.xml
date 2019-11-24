@@ -4,12 +4,12 @@
         tools:showIn="navigation_view">
 
     <item
-            android:id="@+id/nav_video"
+            android:id="@+id/nav_timeline"
             android:icon="@drawable/ic_star"
             android:title="@string/menu_timeline"
             android:visible="false" />
     <item
-            android:id="@+id/nav_timeline"
+            android:id="@+id/nav_video"
             android:icon="@drawable/ic_star"
             android:title="@string/menu_video" />
     <item

@@ -16,7 +16,7 @@ import com.sma.liveler.vo.Post
 import de.hdodenhof.circleimageview.CircleImageView
 
 
-class FriendsAdapter : RecyclerView.Adapter<FriendsAdapter.FriendItemViewHolder>() {
+class FollowingAdapter : RecyclerView.Adapter<FollowingAdapter.FriendItemViewHolder>() {
 
     private lateinit var layoutFriendItemBinding: LayoutFriendItemBinding
 
@@ -73,7 +73,7 @@ class FriendsAdapter : RecyclerView.Adapter<FriendsAdapter.FriendItemViewHolder>
         }
     }
 
-    fun updateFriends(friends: List<Friend>) {
+    fun updateFollowing(friends: List<Friend>) {
         this.friends = friends
         notifyDataSetChanged()
     }

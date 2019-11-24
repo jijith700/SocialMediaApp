@@ -66,6 +66,7 @@
 
     <!--FriendsFragment-->
     <string name="tv_user_friends">James\'s Freinds (86)</string>
+    <string name="btn_remove">Remove</string>
 
     <!--GroupsFragment-->
     <string name="btn_create_group">Create Group</string>

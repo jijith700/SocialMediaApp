@@ -28,7 +28,7 @@ import com.sma.liveler.ui.friends.FriendsFragment
 import com.sma.liveler.ui.groups.GroupsFragment
 import com.sma.liveler.ui.login.LoginActivity
 import com.sma.liveler.ui.pages.PagesFragment
-import com.sma.liveler.ui.timeline.TimelineFragment
+import com.sma.liveler.ui.timeline.PostFragment
 import com.sma.liveler.ui.videos.VideoFragment
 import timber.log.Timber
 
@@ -92,7 +92,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var tabViewColor6 = childLayout2.getChildAt(0).parent as LinearLayout
         tabViewColor6.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgTab6Normal))
 
-        switchPage(AdRequestFragment(), false)
+        switchPage(PostFragment(), false)
         /*switchPage(VideoChannelFragment(), true)
         switchPage(GalleryFragment(), true)*/
 
@@ -157,7 +157,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                             binding.drawerLayout.closeDrawers()
                         }
-                        switchPage(TimelineFragment(), false)
+                        switchPage(PostFragment(), false)
                     }
                 }
             }
@@ -177,7 +177,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            R.id.nav_timeline -> switchPage(TimelineFragment(), false)
+            R.id.nav_timeline -> switchPage(PostFragment(), false)
             R.id.nav_video -> switchPage(VideoFragment(), false)
             R.id.nav_friends -> switchPage(FriendsFragment(), false)
             R.id.nav_adrequest -> switchPage(AdRequestFragment(), false)
@@ -211,6 +211,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      */
     fun switchPage(fragment: Fragment, addToBackStack: Boolean) {
         Timber.d("addToBackStack = %s", addToBackStack)
+        Timber.i("Fragment Name: %s", fragment.javaClass.getSimpleName())
 
         if (fragment == null) {
             Timber.e("< fragment is null")

@@ -14,7 +14,7 @@ import com.sma.liveler.databinding.FragmentProfileBinding
 import com.sma.liveler.ui.about.AboutFragment
 import com.sma.liveler.ui.adapter.TabAdapter
 import com.sma.liveler.ui.friends.FriendsFragment
-import com.sma.liveler.ui.timeline.TimelineFragment
+import com.sma.liveler.ui.timeline.PostFragment
 
 /**
  * A simple [Fragment] subclass.
@@ -40,7 +40,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         tabAdapter = TabAdapter(fragmentManager!!)
-        tabAdapter.addFragment(TimelineFragment(), getString(R.string.tab_timeline))
+        tabAdapter.addFragment(PostFragment(), getString(R.string.tab_timeline))
         tabAdapter.addFragment(AboutFragment(), getString(R.string.tab_about))
         tabAdapter.addFragment(FriendsFragment(), getString(R.string.tab_friends))
 

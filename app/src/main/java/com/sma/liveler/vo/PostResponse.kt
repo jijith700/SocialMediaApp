@@ -2,7 +2,9 @@ package com.sma.liveler.vo
 
 data class PostResponse(
     val posts: List<Post>,
-    val user: UserDetails
+    val post: List<Post>,
+    val user: UserDetails,
+    val success: String
 )
 
 data class Post(
@@ -86,3 +88,4 @@ data class Comment(
     val user: User,
     val user_id: Int
 )
+

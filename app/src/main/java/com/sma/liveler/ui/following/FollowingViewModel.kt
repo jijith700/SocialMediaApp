@@ -1,4 +1,4 @@
-package com.sma.liveler.ui.friends
+package com.sma.liveler.ui.following
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
@@ -9,9 +9,9 @@ import com.sma.liveler.vo.Friend
 import com.sma.liveler.vo.Post
 import javax.inject.Inject
 
-class FriendsViewModel() : ViewModel() {
+class FollowingViewModel() : ViewModel() {
 
-    var TAG = FriendsViewModel::class.java.simpleName
+    var TAG = FollowingViewModel::class.java.simpleName
 
     private lateinit var context: Context
     private lateinit var postRepository: PostRepository
@@ -31,7 +31,7 @@ class FriendsViewModel() : ViewModel() {
         success = postRepository.success
     }
 
-    fun getFriends() {
+    fun getFollowing() {
         postRepository.getFriends(0)
     }
 }
