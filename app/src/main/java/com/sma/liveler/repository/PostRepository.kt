@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.sma.liveler.R
 import com.sma.liveler.api.ApiService
-import com.sma.liveler.utils.BEARER
-import com.sma.liveler.utils.EMAIL
-import com.sma.liveler.utils.PASSWORD
-import com.sma.liveler.utils.Utils
+import com.sma.liveler.utils.*
 import com.sma.liveler.vo.LoginResponse
 import com.sma.liveler.vo.Post
 import com.sma.liveler.vo.PostResponse
@@ -70,7 +67,60 @@ class PostRepository(var context: Context) {
                 }
 
                 override fun onError(e: Throwable) {
-                    Timber.e(e.message)
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to like a posts.
+     */
+    fun likePost(postId: Int) {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        val request = JSONObject()
+        try {
+            request.accumulate(POST_ID, postId)
+            Timber.d(request.toString());
+        } catch (e: JSONException) {
+            Timber.e(e.toString())
+        }
+
+        val requestBody = RequestBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            request.toString()
+        )
+
+        apiService.likePost(String.format(BEARER, token), requestBody)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<PostResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<PostResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        posts.value = t.body()?.post
+                        success.value = true
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
                     loading.value = View.GONE
                 }
             })

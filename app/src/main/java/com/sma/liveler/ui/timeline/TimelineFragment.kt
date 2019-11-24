@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sma.liveler.R
 import com.sma.liveler.databinding.FragmentTimeLineBinding
+import com.sma.liveler.interfaces.OnClickTimelineListener
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.TimelineAdapter
 import com.sma.liveler.utils.VerticalDividerItemDecoration
@@ -24,7 +25,7 @@ import com.sma.liveler.utils.VerticalDividerItemDecoration
  * A simple [Fragment] subclass.
  *
  */
-class TimelineFragment : Fragment() {
+class TimelineFragment : Fragment(), OnClickTimelineListener {
 
     private lateinit var binding: FragmentTimeLineBinding
     private lateinit var timelineAdapter: TimelineAdapter
@@ -49,7 +50,7 @@ class TimelineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_time_line, container, false)
-        timelineAdapter = TimelineAdapter()
+        timelineAdapter = TimelineAdapter(this)
         return binding.root
     }
 
@@ -69,5 +70,9 @@ class TimelineFragment : Fragment() {
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
+    }
+
+    override fun onClickLike(postId: Int) {
+        viewModel.likePosts(postId)
     }
 }

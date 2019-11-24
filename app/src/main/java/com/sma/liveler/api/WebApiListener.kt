@@ -28,6 +28,10 @@ interface WebApiListener {
     fun getPost(@Header("Authorization") token: String): Observable<Response<PostResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("like-post")
+    fun likePost(@Header("Authorization") token: String, @Body postId: RequestBody): Observable<Response<PostResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-groups")
     fun getGroups(@Header("Authorization") token: String): Observable<Response<GroupResponse>>
 

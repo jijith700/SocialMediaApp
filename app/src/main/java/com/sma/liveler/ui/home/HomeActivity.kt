@@ -92,7 +92,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var tabViewColor6 = childLayout2.getChildAt(0).parent as LinearLayout
         tabViewColor6.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgTab6Normal))
 
-        switchPage(AdRequestFragment(), false)
+        switchPage(TimelineFragment(), false)
         /*switchPage(VideoChannelFragment(), true)
         switchPage(GalleryFragment(), true)*/
 
