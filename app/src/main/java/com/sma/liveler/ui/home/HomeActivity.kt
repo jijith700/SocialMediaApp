@@ -29,7 +29,6 @@ import com.sma.liveler.ui.groups.GroupsFragment
 import com.sma.liveler.ui.login.LoginActivity
 import com.sma.liveler.ui.pages.PagesFragment
 import com.sma.liveler.ui.timeline.PostFragment
-import com.sma.liveler.ui.timeline.PostFragment
 import com.sma.liveler.ui.videos.VideoFragment
 import timber.log.Timber
 
