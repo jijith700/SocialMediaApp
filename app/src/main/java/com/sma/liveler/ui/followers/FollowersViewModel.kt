@@ -1,3 +1,5 @@
+
+
 package com.sma.liveler.ui.followers
 
 import android.content.Context
@@ -33,5 +35,9 @@ class FollowersViewModel() : ViewModel() {
 
     fun getFriends() {
         postRepository.getFriends(0)
+    }
+
+    fun unfriend(userId: Int) {
+        postRepository.unfriend(userId)
     }
 }

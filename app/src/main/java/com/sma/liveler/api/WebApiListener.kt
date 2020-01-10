@@ -48,4 +48,9 @@ interface WebApiListener {
     @POST("get-friends")
     fun getFriends(@Header("Authorization") token: String, @Body postId: RequestBody): Observable<Response<FriendsResponse>>
 
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("unfriend")
+    fun unfriend(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+
+
 }

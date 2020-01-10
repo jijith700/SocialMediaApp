@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sma.liveler.R
 import com.sma.liveler.databinding.FragmentFollowersBinding
+import com.sma.liveler.interfaces.OnClickFriendListener
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.FriendsAdapter
 import com.sma.liveler.utils.VerticalDividerItemDecoration
@@ -23,7 +24,7 @@ import com.sma.liveler.utils.VerticalDividerItemDecoration
  * create an instance of this fragment.
  *
  */
-class FollowersFragment : Fragment() {
+class FollowersFragment : Fragment(), OnClickFriendListener {
 
     private lateinit var binding: FragmentFollowersBinding
     private lateinit var friendsAdapter: FriendsAdapter
@@ -57,7 +58,7 @@ class FollowersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        friendsAdapter = FriendsAdapter()
+        friendsAdapter = FriendsAdapter(this)
         binding.rvFollowers.layoutManager = GridLayoutManager(context, 1)
         binding.rvFollowers.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvFollowers.adapter = friendsAdapter
@@ -72,5 +73,9 @@ class FollowersFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
 
+    }
+
+    override fun onRemove(userId: Int) {
+        viewModel.unfriend(userId)
     }
 }

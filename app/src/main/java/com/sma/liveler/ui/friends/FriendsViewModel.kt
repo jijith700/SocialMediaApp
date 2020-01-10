@@ -34,4 +34,8 @@ class FriendsViewModel() : ViewModel() {
     fun getFriends() {
         postRepository.getFriends(0)
     }
+
+    fun unfriend(userId: Int) {
+        postRepository.unfriend(userId)
+    }
 }
