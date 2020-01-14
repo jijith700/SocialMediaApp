@@ -89,3 +89,11 @@ data class Comment(
     val user_id: Int
 )
 
+
+data class NewPostResponse(
+    val post: Post,
+    val success: String,
+    val user: User
+)
+
+

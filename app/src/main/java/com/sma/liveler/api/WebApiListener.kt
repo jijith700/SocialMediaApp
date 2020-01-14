@@ -50,7 +50,11 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("unfriend")
-    fun unfriend(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+    fun unFriend(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<UnFriendResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("post-status")
+    fun addNewPost(@Header("Authorization") token: String, @Body status: RequestBody): Observable<Response<NewPostResponse>>
 
 
 }

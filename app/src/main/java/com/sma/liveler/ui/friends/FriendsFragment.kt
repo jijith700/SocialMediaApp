@@ -16,12 +16,7 @@ import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.VideoTabAdapter
 import com.sma.liveler.ui.followers.FollowersFragment
 import com.sma.liveler.ui.following.FollowingFragment
-import com.sma.liveler.ui.myvideos.MyVideoFragment
-import com.sma.liveler.ui.videochannel.VideoChannelFragment
-import com.sma.liveler.ui.videos.VideoFragment
 import kotlinx.android.synthetic.main.fragment_friends.*
-import kotlinx.android.synthetic.main.fragment_video.*
-import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -76,6 +71,6 @@ class FriendsFragment : Fragment() {
         categoryPagerAdapter.addFragment(FollowingFragment(), "Following")
 
         vpFriends.adapter = categoryPagerAdapter
-        tlFriends.setupWithViewPager(vpVideos)
+        tlFriends.setupWithViewPager(vpFriends)
     }
 }

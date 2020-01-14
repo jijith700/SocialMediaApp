@@ -5,11 +5,8 @@ package com.sma.liveler.ui.followers
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sma.liveler.api.WebApiListener
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.vo.Friend
-import com.sma.liveler.vo.Post
-import javax.inject.Inject
 
 class FollowersViewModel() : ViewModel() {
 
@@ -37,7 +34,7 @@ class FollowersViewModel() : ViewModel() {
         postRepository.getFriends(0)
     }
 
-    fun unfriend(userId: Int) {
-        postRepository.unfriend(userId)
+    fun unFriend(userId: Int) {
+        postRepository.unFriend(userId)
     }
 }

@@ -60,7 +60,7 @@ class RegisterViewModel() : ViewModel() {
             errorFirstName.value = context.getString(R.string.error_first_name)
         } else if (TextUtils.isEmpty(user.middleName)) {
             errorMiddleName.value = context.getString(R.string.error_middle_name)
-        } else if (TextUtils.isEmpty(user.LastName)) {
+        } else if (TextUtils.isEmpty(user.lastName)) {
             errorLastName.value = context.getString(R.string.error_last_name)
         } else if (TextUtils.isEmpty(user.phone)) {
             errorPhone.value = context.getString(R.string.error_phone)

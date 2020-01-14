@@ -77,4 +77,8 @@ class PostFragment : Fragment(), OnClickPostListener {
     override fun onClickLike(postId: Int) {
         viewModel.likePosts(postId, Utils.loadPreferenceInt(activity!!, USER_ID))
     }
+
+    override fun onClickPost(status: String, type: String) {
+        viewModel.addNewPost(status)
+    }
 }

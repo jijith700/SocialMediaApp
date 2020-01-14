@@ -1,12 +1,11 @@
 package com.sma.liveler.ui.adapter
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -59,6 +58,7 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
 
             if (posts[position].type == TYPE_TEXT) {
                 feedViewHolder.tvFeed?.text = posts[position].post
+                feedViewHolder.tvFeed?.visibility = View.VISIBLE
 
             } else if (posts[position].type == TYPE_IMAGE) {
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
@@ -89,6 +89,16 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
             }
 
             feedViewHolder.ivLike?.setOnClickListener { onClickPostListener.onClickLike(posts[position].id) }
+        } else {
+            val postViewHolder = holder as PostViewHolder
+
+            postViewHolder.btnPost?.setOnClickListener {
+                val status = postViewHolder.edtStatus?.text.toString()
+                if (!TextUtils.isEmpty(status)) {
+                    onClickPostListener.onClickPost(status, TYPE_TEXT)
+                    postViewHolder.edtStatus?.setText("")
+                }
+            }
         }
     }
 
@@ -99,13 +109,23 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
             FEED
     }
 
-
     class PostViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
 
+        var edtStatus: EditText?
+        var ivTypeLocation: ImageView?
+        var ivTypeImage: ImageView?
+        var ivTypeVideo: ImageView?
+        var btnPost: Button?
+        var btnPreview: Button?
+
         init {
-
+            edtStatus = view?.findViewById(R.id.edtMessage)
+            ivTypeImage = view?.findViewById(R.id.ivImage)
+            ivTypeVideo = view?.findViewById(R.id.ivVideo)
+            ivTypeLocation = view?.findViewById(R.id.ivLocation)
+            btnPost = view?.findViewById(R.id.btnPost)
+            btnPreview = view?.findViewById(R.id.btnPreview)
         }
-
     }
 
     class FeedViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
@@ -120,7 +140,6 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
         var tvTime: TextView?
         var clUsers: ConstraintLayout?
         var ivLike: ImageView?
-
 
         init {
             ivUser = view?.findViewById(R.id.ivUser)

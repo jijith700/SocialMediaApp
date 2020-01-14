@@ -12,6 +12,8 @@ const val GROUP_NAME: String = "group_name"
 const val POST_ID: String = "post_id"
 const val USER_ID: String = "user_id"
 
+const val POST: String = "post"
+
 const val BEARER: String = "Bearer %s"
 
 const val TYPE_TEXT: String = "TEXT"

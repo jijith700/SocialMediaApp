@@ -194,7 +194,8 @@ class PostRepository(var context: Context) {
 
         val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
         Timber.d("token = %s", token)
-        apiService.getVideoPost(String.format(BEARER, token)).observeOn(AndroidSchedulers.mainThread())
+        apiService.getVideoPost(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : DisposableObserver<Response<JsonObject>>() {
                 override fun onComplete() {
@@ -206,8 +207,8 @@ class PostRepository(var context: Context) {
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
-                       /* posts.value = t.body()?.posts
-                        success.value = true*/
+                        /* posts.value = t.body()?.posts
+                         success.value = true*/
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))
@@ -278,9 +279,9 @@ class PostRepository(var context: Context) {
     }
 
     /**
-     * Method to unfriend.
+     * Method to unFriend.
      */
-    fun unfriend(userId: Int) {
+    fun unFriend(userId: Int) {
         loading.value = View.VISIBLE
 
         val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
@@ -299,21 +300,79 @@ class PostRepository(var context: Context) {
             request.toString()
         )
 
-        apiService.unfriend(String.format(BEARER, token), requestBody)
+        apiService.unFriend(String.format(BEARER, token), requestBody)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+            .subscribe(object : DisposableObserver<Response<UnFriendResponse>>() {
                 override fun onComplete() {
                     Timber.e("Complete")
                 }
 
-                override fun onNext(t: Response<JsonObject>) {
+                override fun onNext(t: Response<UnFriendResponse>) {
                     Timber.e("%d", t.code())
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
                         /*friends.value = t.body()?.friends
                         success.value = true*/
+                        val friendList = friends.value
+                        friends.value =
+                            friendList?.filter { friend -> friend.id != t.body()?.requested_user?.id }
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to create a new post.
+     */
+    fun addNewPost(status: String) {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        val request = JSONObject()
+        try {
+            request.accumulate(POST, status)
+            Timber.d(request.toString())
+        } catch (e: JSONException) {
+            Timber.e(e.toString())
+        }
+
+        val requestBody = RequestBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            request.toString()
+        )
+
+        apiService.addNewPost(String.format(BEARER, token), requestBody)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<NewPostResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<NewPostResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        var post = ArrayList<Post>(posts.value)
+                        post.add(0, t.body()?.post!!)
+                        posts.value = post
+                        success.value = true
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

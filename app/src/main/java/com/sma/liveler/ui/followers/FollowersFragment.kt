@@ -76,6 +76,6 @@ class FollowersFragment : Fragment(), OnClickFriendListener {
     }
 
     override fun onRemove(userId: Int) {
-        viewModel.unfriend(userId)
+        viewModel.unFriend(userId)
     }
 }

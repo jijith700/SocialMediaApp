@@ -33,4 +33,8 @@ class TimelineViewModel() : ViewModel() {
     fun likePosts(postId: Int, userId: Int) {
         postRepository.likePost(postId, userId)
     }
+
+    fun addNewPost(status: String) {
+        postRepository.addNewPost(status)
+    }
 }
