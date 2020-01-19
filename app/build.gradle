@@ -14,6 +14,7 @@ android {
 
     compileSdkVersion 28
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.sma.liveler"
         minSdkVersion 19
         targetSdkVersion 28
@@ -95,5 +96,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.1'
 
 }

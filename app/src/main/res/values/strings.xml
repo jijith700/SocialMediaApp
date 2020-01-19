@@ -41,11 +41,11 @@
     <string name="menu_myaccount">My account</string>
     <string name="menu_logout">Logout</string>
 
-
     <!--TimelineAdapter-->
     <string name="edt_message">Share what you are thinking here…</string>
     <string name="btn_post_status">Post Status</string>
     <string name="btn_preview">Preview</string>
+    <string name="error_generic">Playback failed</string>
 
     <!--ProfileFragment-->
     <string name="tab_timeline">Timeline</string>

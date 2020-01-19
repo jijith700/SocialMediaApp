@@ -1,6 +1,7 @@
 package com.sma.liveler.ui.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,14 @@ import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.util.Util
 import com.sma.liveler.R
 import com.sma.liveler.databinding.LayoutPostItemBinding
 import com.sma.liveler.interfaces.OnClickPostListener
@@ -69,6 +78,52 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
                 Glide.with(context).load(posts[position].thumbnail).into(feedViewHolder.ivFeed!!)
                 feedViewHolder.rlPlayButton?.visibility = View.VISIBLE
+
+
+                val player = SimpleExoPlayer.Builder(context).build()
+
+                feedViewHolder.playerView?.player = player
+
+                // Produces DataSource instances through which media data is loaded.
+                // Produces DataSource instances through which media data is loaded.
+                val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
+                    context,
+                    Util.getUserAgent(context, context.getString(R.string.app_name))
+                )
+                // This is the MediaSource representing the media to be played.
+                // This is the MediaSource representing the media to be played.
+                val videoSource: MediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
+                    .createMediaSource(Uri.parse(posts[position].video))
+                // Prepare the player with the source.
+                // Prepare the player with the source.
+
+                feedViewHolder.ibPlay?.setOnClickListener {
+                    player.prepare(videoSource)
+                    player.playWhenReady = true
+                    feedViewHolder.pbLoading?.visibility = View.VISIBLE
+                    feedViewHolder.ibPlay?.visibility = View.GONE
+                }
+
+                player.addListener(object : Player.EventListener {
+
+                    override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                        if (playbackState == Player.STATE_READY) {
+                            feedViewHolder.ivFeed?.visibility = View.GONE
+                            feedViewHolder.pbLoading?.visibility = View.GONE
+                            feedViewHolder.ibPlay?.visibility = View.GONE
+                            feedViewHolder.playerView?.visibility = View.VISIBLE
+                        } else if (playbackState == Player.STATE_BUFFERING) {
+                            feedViewHolder.pbLoading?.visibility = View.VISIBLE
+                        } else if (playbackState == Player.STATE_ENDED) {
+                            feedViewHolder.ibPlay?.visibility = View.VISIBLE
+                        }
+                    }
+
+                    override fun onIsPlayingChanged(isPlaying: Boolean) {
+
+                    }
+                })
+
             }
 
             Glide.with(context).load(posts[position].image)
@@ -89,6 +144,8 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
             }
 
             feedViewHolder.ivLike?.setOnClickListener { onClickPostListener.onClickLike(posts[position].id) }
+
+
         } else {
             val postViewHolder = holder as PostViewHolder
 
@@ -140,6 +197,9 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
         var tvTime: TextView?
         var clUsers: ConstraintLayout?
         var ivLike: ImageView?
+        var playerView: PlayerView?
+        var ibPlay: ImageButton?
+        var pbLoading: ProgressBar?
 
         init {
             ivUser = view?.findViewById(R.id.ivUser)
@@ -153,7 +213,9 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
             tvTime = view?.findViewById(R.id.tvTime)
             clUsers = view?.findViewById(R.id.clUsers)
             ivLike = view?.findViewById(R.id.ivLike)
-
+            playerView = view?.findViewById(R.id.playerView)
+            ibPlay = view?.findViewById(R.id.ibPlay)
+            pbLoading = view?.findViewById(R.id.pbLoading)
         }
     }
 

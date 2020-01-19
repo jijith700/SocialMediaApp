@@ -3,10 +3,8 @@ package com.sma.liveler.ui.videochannel
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sma.liveler.api.WebApiListener
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.vo.Post
-import javax.inject.Inject
 
 class VideoChannelViewModel() : ViewModel() {
 
@@ -20,11 +18,13 @@ class VideoChannelViewModel() : ViewModel() {
     var success: MutableLiveData<Boolean> = MutableLiveData()
 
     var posts = MutableLiveData<List<Post>>()
+    var videoPosts = MutableLiveData<List<Post>>()
 
     constructor(context: Context, postRepository: PostRepository) : this() {
         this.context = context
         this.postRepository = postRepository
         posts = postRepository.posts
+        videoPosts = postRepository.videoPosts
         loadingVisibility = postRepository.loading
         errorMessage = postRepository.errrorMessage
         success = postRepository.success

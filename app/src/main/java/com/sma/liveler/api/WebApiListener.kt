@@ -1,6 +1,5 @@
 package com.sma.liveler.api
 
-import com.google.gson.JsonObject
 import com.sma.liveler.vo.*
 import io.reactivex.Observable
 import okhttp3.RequestBody
@@ -42,7 +41,11 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-video-posts")
-    fun getVideoPost(@Header("Authorization") token: String): Observable<Response<JsonObject>>
+    fun getVideoPost(@Header("Authorization") token: String): Observable<Response<VideoPostResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("ajax/get-today-video")
+    fun getDailyVideo(@Header("Authorization") token: String): Observable<Response<TodayVideoResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-friends")

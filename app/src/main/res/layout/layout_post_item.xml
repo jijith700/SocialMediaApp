@@ -30,16 +30,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentTop="true"
-                    android:background="@color/colorLine"/>
+                    android:background="@color/colorLine" />
 
             <ImageView
                     android:id="@+id/ivUser"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/ic_sample"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_sample" />
 
             <EditText
                     android:id="@+id/edtMessage"
@@ -50,13 +50,13 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toEndOf="@id/ivUser"
                     android:backgroundTint="@color/colorTextCommonWhite"
-                    android:hint="@string/edt_message"/>
+                    android:hint="@string/edt_message" />
 
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/colorLine"/>
+                    android:background="@color/colorLine" />
 
         </RelativeLayout>
 
@@ -72,27 +72,27 @@
                     android:id="@+id/ivImage"
                     android:layout_width="28dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/ic_camera"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="23dp"/>
+                    android:layout_marginTop="23dp"
+                    android:background="@drawable/ic_camera" />
 
             <ImageView
                     android:id="@+id/ivVideo"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:background="@drawable/ic_video"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@+id/ivImage"/>
+                    android:layout_toEndOf="@+id/ivImage"
+                    android:background="@drawable/ic_video" />
 
             <ImageView
                     android:id="@+id/ivLocation"
                     android:layout_width="20dp"
                     android:layout_height="28dp"
-                    android:background="@drawable/ic_location"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@+id/ivVideo"/>
+                    android:layout_toEndOf="@+id/ivVideo"
+                    android:background="@drawable/ic_location" />
 
             <Button
                     android:id="@+id/btnPost"
@@ -104,7 +104,7 @@
                     android:background="@drawable/btn_orange"
                     android:text="@string/btn_post_status"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorTextCommonWhite"/>
+                    android:textColor="@color/colorTextCommonWhite" />
 
             <Button
                     android:id="@+id/btnPreview"
@@ -116,7 +116,7 @@
                     android:background="@drawable/btn_preview"
                     android:text="@string/btn_preview"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorTextCommonGrey"/>
+                    android:textColor="@color/colorTextCommonGrey" />
 
         </RelativeLayout>
 

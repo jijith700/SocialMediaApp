@@ -32,7 +32,9 @@ data class Post(
     val user: UserDetails,
     val userName: String,
     val user_id: Int,
-    val video: Any
+    val video: String,
+    val is_daily_video: Int,
+    val time_remaining: String
 )
 
 data class Like(

@@ -11,23 +11,23 @@ data class Video(
 
 data class Posts(
     val current_page: Int,
-    val `data`: List<Any>,
+    val `data`: List<Post>,
     val first_page_url: String,
     val from: Any,
     val last_page: Int,
     val last_page_url: String,
-    val next_page_url: Any,
+    val next_page_url: String,
     val path: String,
     val per_page: Int,
-    val prev_page_url: Any,
+    val prev_page_url: String,
     val to: Any,
     val total: Int
 )
 
 data class Profile(
-    val about: Any,
+    val about: String,
     val birth_place: String,
-    val city: Any,
+    val city: String,
     val cover_picture: String,
     val created_at: String,
     val date_of_birth: String,

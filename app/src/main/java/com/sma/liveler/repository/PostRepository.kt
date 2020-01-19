@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.sma.liveler.R
 import com.sma.liveler.api.ApiService
 import com.sma.liveler.utils.*
@@ -26,7 +25,10 @@ class PostRepository(var context: Context) {
     var success = MutableLiveData<Boolean>()
     var errrorMessage = MutableLiveData<String>()
     var posts = MutableLiveData<List<Post>>()
+    var videoPosts = MutableLiveData<List<Post>>()
     var friends = MutableLiveData<List<Friend>>()
+    var todaysPost = MutableLiveData<Post>()
+    var user = MutableLiveData<User>()
 
     /**
      * Variable hold the object of ApiService and the it will initialized here.
@@ -109,8 +111,8 @@ class PostRepository(var context: Context) {
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
-                        posts.value = t.body()?.post
-                        success.value = true
+                        /*posts.value = t.body()?.post
+                        success.value = true*/
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))
@@ -187,7 +189,7 @@ class PostRepository(var context: Context) {
 
 
     /**
-     * Method to get  all video posts.
+     * Method to get all video posts.
      */
     fun getVideoPost() {
         loading.value = View.VISIBLE
@@ -197,18 +199,58 @@ class PostRepository(var context: Context) {
         apiService.getVideoPost(String.format(BEARER, token))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+            .subscribe(object : DisposableObserver<Response<VideoPostResponse>>() {
                 override fun onComplete() {
                     Timber.e("Complete")
                 }
 
-                override fun onNext(t: Response<JsonObject>) {
+                override fun onNext(t: Response<VideoPostResponse>) {
                     Timber.e("%d", t.code())
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
-                        /* posts.value = t.body()?.posts
-                         success.value = true*/
+                        videoPosts.value = t.body()?.posts?.data
+                        success.value = true
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to get daily video post.
+     */
+    fun getDailyVideo() {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+        apiService.getDailyVideo(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<TodayVideoResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<TodayVideoResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        todaysPost.value = t.body()?.post
+                        user.value = t.body()?.user
+                        success.value = true
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

@@ -32,8 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:paddingTop="20dp"
+                android:paddingEnd="10dp"
                 android:paddingBottom="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -68,7 +68,7 @@
                             android:layout_toStartOf="@+id/ivMore"
                             android:text="Mariana Valentine shared a link"
                             android:textColor="@color/colorTextCommonBlack"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                     <TextView
                             android:id="@+id/tvTime"
@@ -76,13 +76,13 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tvFeedTitle"
                             android:layout_marginStart="10dp"
-                            android:text="March 4 at 2:05pm"/>
+                            android:text="March 4 at 2:05pm" />
 
                     <ImageView
                             android:id="@+id/ivMore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"/>
+                            android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -100,7 +100,7 @@
                         android:id="@+id/tvFeed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hey cindi, you should really checkout this song bv Iron Maid. The next time they come to the city we should totally go! "
+                        android:text=""
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -113,6 +113,18 @@
                         android:layout_height="265dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_sample_video_thumbnail"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.exoplayer2.ui.PlayerView
+                        android:id="@+id/playerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="265dp"
+                        android:scaleType="centerCrop"
+                        android:background="@color/colorTextCommonBlack"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -138,6 +150,13 @@
                             android:layout_centerInParent="true"
                             android:background="@drawable/bg_btn_play" />
 
+                    <ProgressBar
+                            android:id="@+id/pbLoading"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
+
                 </RelativeLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -147,8 +166,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/clFeedContent"
-                    android:visibility="gone"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
 
                 <ImageView
                         android:id="@+id/ivUser1"
@@ -157,7 +176,7 @@
                         android:background="@drawable/ic_sample"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                         android:id="@+id/ivUser2"
@@ -168,7 +187,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivUser1"
                         app:layout_constraintStart_toStartOf="@+id/ivUser1"
                         app:layout_constraintTop_toTopOf="@+id/ivUser1"
-                        app:layout_constraintVertical_bias="0.0"/>
+                        app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
                         android:id="@+id/ivUser3"
@@ -179,7 +198,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivUser2"
                         app:layout_constraintStart_toStartOf="@+id/ivUser2"
                         app:layout_constraintTop_toTopOf="@+id/ivUser2"
-                        app:layout_constraintVertical_bias="0.0"/>
+                        app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
                         android:id="@+id/ivUser4"
@@ -190,7 +209,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivUser3"
                         app:layout_constraintStart_toStartOf="@+id/ivUser3"
                         app:layout_constraintTop_toTopOf="@+id/ivUser3"
-                        app:layout_constraintVertical_bias="0.0"/>
+                        app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
                         android:id="@+id/ivUser5"
@@ -201,7 +220,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ivUser4"
                         app:layout_constraintStart_toStartOf="@+id/ivUser4"
                         app:layout_constraintTop_toTopOf="@+id/ivUser4"
-                        app:layout_constraintVertical_bias="0.0"/>
+                        app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -212,7 +231,7 @@
                     android:layout_below="@id/clUsers"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
-                    android:text="You, Elaine and"
+                    android:text=""
                     android:textColor="@color/colorTextCommonBlack"
                     android:textStyle="bold"
                     android:visibility="gone" />
@@ -222,45 +241,45 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvLikeUser"
-                    android:text="24 more liked this"/>
+                    android:text="" />
 
             <ImageView
                     android:id="@+id/ivTotalComment"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_below="@+id/tvLikeCount"
-                    android:background="@drawable/ic_start_chat_grey"
-                    android:layout_marginTop="15dp" />
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/ic_start_chat_grey" />
 
             <TextView
                     android:id="@+id/tvTotalComment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:layout_below="@+id/tvLikeCount"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@+id/tvLikeCount"
-                    android:layout_toEndOf="@+id/ivTotalComment" />
+                    android:layout_toEndOf="@+id/ivTotalComment"
+                    android:text="" />
 
             <ImageView
                     android:id="@+id/ivTotalShare"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_below="@+id/tvLikeCount"
-                    android:background="@drawable/ic_share_grey"
-                    android:layout_toEndOf="@+id/tvTotalComment"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="15dp"/>
+                    android:layout_toEndOf="@+id/tvTotalComment"
+                    android:background="@drawable/ic_share_grey" />
 
             <TextView
                     android:id="@+id/tvTotalShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:layout_below="@+id/tvLikeCount"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@+id/tvLikeCount"
-                    android:layout_toEndOf="@+id/ivTotalShare"/>
+                    android:layout_toEndOf="@+id/ivTotalShare"
+                    android:text="" />
 
         </RelativeLayout>
 
@@ -268,19 +287,19 @@
                 android:id="@+id/ivLike"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/bg_btn_like"
                 android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_btn_like"
                 app:layout_constraintEnd_toStartOf="@+id/ivChat"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
                 android:id="@+id/ivChat"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/bg_btn_chat"
                 android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_btn_chat"
                 app:layout_constraintEnd_toStartOf="@+id/ivShare"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
                 android:id="@+id/ivShare"
@@ -288,7 +307,7 @@
                 android:layout_height="48dp"
                 android:background="@drawable/bg_btn_share"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

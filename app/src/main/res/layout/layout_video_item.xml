@@ -41,7 +41,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/ivUser"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
@@ -83,7 +83,6 @@
 
                     </RelativeLayout>
 
-
                 </RelativeLayout>
 
                 <ImageView
@@ -97,6 +96,18 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/rlTop" />
+
+                <com.google.android.exoplayer2.ui.PlayerView
+                        android:id="@+id/playerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="265dp"
+                        android:scaleType="centerCrop"
+                        android:background="@color/colorTextCommonBlack"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <RelativeLayout
                         android:id="@+id/rlButton"
@@ -116,6 +127,13 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:background="@drawable/bg_btn_play" />
+
+                    <ProgressBar
+                            android:id="@+id/pbLoading"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone" />
 
                 </RelativeLayout>
 
