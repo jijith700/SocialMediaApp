@@ -203,7 +203,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginStart="5dp"
                                     android:layout_toEndOf="@+id/ivTotalChat"
-                                    android:text="24" />
+                                    android:text="0" />
 
                         </LinearLayout>
 
@@ -252,7 +252,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton2"
+                android:id="@+id/fabUploadVideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"

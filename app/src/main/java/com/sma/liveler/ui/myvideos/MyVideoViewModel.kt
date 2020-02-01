@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sma.liveler.api.WebApiListener
 import com.sma.liveler.repository.PostRepository
+import com.sma.liveler.utils.TYPE_VIDEO
 import com.sma.liveler.vo.Post
 import com.sma.liveler.vo.User
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class MyVideoViewModel() : ViewModel() {
@@ -40,4 +42,7 @@ class MyVideoViewModel() : ViewModel() {
         postRepository.getDailyVideo()
     }
 
+    fun uploadVideo(body: MultipartBody.Part) {
+        postRepository.uploadMedia("", TYPE_VIDEO, body)
+    }
 }

@@ -1,6 +1,7 @@
 package com.sma.liveler.utils
 
 import android.content.Context
+import android.content.DialogInterface
 import android.net.ConnectivityManager
 import android.preference.PreferenceManager
 import android.view.View
@@ -110,6 +111,25 @@ class Utils {
                     dialogInterface.cancel()
                     dialogInterface.dismiss()
                 }
+                .create()
+
+            if (!dialog.isShowing)
+                dialog.show()
+        }
+
+        fun alert(
+            context: Context,
+            msg: String,
+            positiveButtonListener: DialogInterface.OnClickListener
+        ) {
+            val dialog = AlertDialog.Builder(
+                context,
+                R.style.Theme_App_Light_Dialog_NoActionBar
+            )
+                .setMessage(msg)
+                .setCancelable(false)
+                .setPositiveButton(context.getString(R.string.btn_ok), positiveButtonListener)
+
                 .create()
 
             if (!dialog.isShowing)

@@ -76,17 +76,25 @@
     <!--PagesFragment-->
     <string name="btn_create_page">Create Page</string>
 
+    <!--AddBankAccountFragment-->
+    <string name="txt_bank_details">Bank Details</string>
+    <string name="txt_hint_account_holder_name">Account Holder Name</string>
+    <string name="txt_hint_bank_name">Name of Bank</string>
+    <string name="txt_hint_account_number">Account Number</string>
+    <string name="txt_hint_branch">Name of Branch</string>
+    <string name="txt_hint_ifsc">IFSC Code</string>
+    <string name="btn_add_account">Add Bank Account </string>
+
     <string name="btn_ok">OK</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
 
+    <string name="internal_storage">Internal storage</string>
+
+    <!--Error-->
     <string name="error_login">Incorrect email or password</string>
     <string name="error_registration">Registration failed</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--Error-->
     <string name="error_first_name">Invalid first name</string>
     <string name="error_middle_name">Invalid middle name</string>
     <string name="error_last_name">Invalid last name</string>
@@ -96,6 +104,16 @@
     <string name="error_name">"Invalid user name"</string>
     <string name="error_email_response">"The email has already been taken."</string>
     <string name="error_login_response">"User name or password is incorrect"</string>
+
+    <string name="error_holder_name">"Invalid account holder name"</string>
+    <string name="error_bank_name">"Invalid bank name"</string>
+    <string name="error_account_number">"Invalid account number"</string>
+    <string name="error_branch">"Invalid branch"</string>
+    <string name="error_ifsc">"Invalid IFSC code"</string>
+
+    <string name="error_invalid_file">This type of file cannot be supported</string>
+    <string name="error_pic">Select a valid image from gallery</string>
+    <string name="error_status">Please add some status</string>
 
     <!--Preferences-->
     <string name="token">token</string>

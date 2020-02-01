@@ -21,6 +21,7 @@ import com.sma.liveler.R
 import com.sma.liveler.databinding.ActivityHomeBinding
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.about.AboutFragment
+import com.sma.liveler.ui.account.BankAccountFragment
 import com.sma.liveler.ui.adapter.TabAdapter
 import com.sma.liveler.ui.adrequest.AdRequestFragment
 import com.sma.liveler.ui.favfeeds.FavoriteFragment
@@ -30,6 +31,7 @@ import com.sma.liveler.ui.login.LoginActivity
 import com.sma.liveler.ui.pages.PagesFragment
 import com.sma.liveler.ui.timeline.PostFragment
 import com.sma.liveler.ui.videos.VideoFragment
+import com.sma.liveler.utils.Utils
 import timber.log.Timber
 
 
@@ -173,6 +175,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 switchPage(AboutFragment(), false)
             }
         })
+
+
+        viewModel.getUserDetails()
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
@@ -180,11 +185,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_timeline -> switchPage(PostFragment(), false)
             R.id.nav_video -> switchPage(VideoFragment(), false)
             R.id.nav_friends -> switchPage(FriendsFragment(), false)
+            R.id.nav_bank -> switchPage(BankAccountFragment(), false)
             R.id.nav_adrequest -> switchPage(AdRequestFragment(), false)
             R.id.nav_favorites -> switchPage(FavoriteFragment(), false)
             R.id.nav_groups -> switchPage(GroupsFragment(), false)
             R.id.nav_pages -> switchPage(PagesFragment(), false)
             R.id.nav_logout -> {
+                Utils.clearAllPreference(this)
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

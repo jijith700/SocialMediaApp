@@ -20,21 +20,29 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.sma.liveler.R
 import com.sma.liveler.databinding.LayoutPostItemBinding
+import com.sma.liveler.interfaces.OnClickMediaListener
 import com.sma.liveler.interfaces.OnClickPostListener
 import com.sma.liveler.utils.TYPE_IMAGE
 import com.sma.liveler.utils.TYPE_TEXT
 import com.sma.liveler.utils.TYPE_VIDEO
 import com.sma.liveler.vo.Post
 import de.hdodenhof.circleimageview.CircleImageView
+import timber.log.Timber
+import java.io.File
 
 
-class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
+class TimelineAdapter(
+    private var onClickPostListener: OnClickPostListener,
+    private var onClickMediaListener: OnClickMediaListener
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val POST = 0
     private val FEED = 1
     private lateinit var context: Context
     private var posts: List<Post> = ArrayList<Post>()
+    private var postType = TYPE_TEXT;
+    private var file: File? = null
 
     private lateinit var layoutPostItemBinding: LayoutPostItemBinding
 
@@ -63,20 +71,22 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (position >= 1) {
+            val dataPosition = position - 1
             val feedViewHolder = holder as FeedViewHolder
 
-            if (posts[position].type == TYPE_TEXT) {
-                feedViewHolder.tvFeed?.text = posts[position].post
+            if (posts[dataPosition].type == TYPE_TEXT) {
+                feedViewHolder.tvFeed?.text = posts[dataPosition].post
                 feedViewHolder.tvFeed?.visibility = View.VISIBLE
 
-            } else if (posts[position].type == TYPE_IMAGE) {
+            } else if (posts[dataPosition].type == TYPE_IMAGE) {
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
-                Glide.with(context).load(posts[position].image)
+                Glide.with(context).load(posts[dataPosition].image)
                     .into(feedViewHolder.ivFeed!!)
 
-            } else if (posts[position].type == TYPE_VIDEO) {
+            } else if (posts[dataPosition].type == TYPE_VIDEO) {
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
-                Glide.with(context).load(posts[position].thumbnail).into(feedViewHolder.ivFeed!!)
+                Glide.with(context).load(posts[dataPosition].thumbnail)
+                    .into(feedViewHolder.ivFeed!!)
                 feedViewHolder.rlPlayButton?.visibility = View.VISIBLE
 
 
@@ -93,7 +103,7 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
                 // This is the MediaSource representing the media to be played.
                 // This is the MediaSource representing the media to be played.
                 val videoSource: MediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-                    .createMediaSource(Uri.parse(posts[position].video))
+                    .createMediaSource(Uri.parse(posts[dataPosition].video))
                 // Prepare the player with the source.
                 // Prepare the player with the source.
 
@@ -126,16 +136,16 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
 
             }
 
-            Glide.with(context).load(posts[position].image)
+            Glide.with(context).load(posts[dataPosition].image)
                 .placeholder(R.drawable.ic_user_avtar)
                 .into(feedViewHolder.ivUser!!)
 
-            feedViewHolder.tvFeedTitle?.text = posts[position].userName
-            feedViewHolder.tvTime?.text = "" + posts[position].postTime
-            feedViewHolder.tvTotalComment?.text = "" + posts[position].commentsCount
-            feedViewHolder.tvLikeCount?.text = "" + posts[position].likesCount
+            feedViewHolder.tvFeedTitle?.text = posts[dataPosition].userName
+            feedViewHolder.tvTime?.text = "" + posts[dataPosition].postTime
+            feedViewHolder.tvTotalComment?.text = "" + posts[dataPosition].commentsCount
+            feedViewHolder.tvLikeCount?.text = "" + posts[dataPosition].likesCount
 
-            if (posts[position].likesCount > 0) {
+            if (posts[dataPosition].likesCount > 0) {
                 feedViewHolder.tvLikeUsers?.visibility = View.GONE
                 feedViewHolder.clUsers?.visibility = View.GONE
             } else {
@@ -143,18 +153,41 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
                 feedViewHolder.clUsers?.visibility = View.VISIBLE
             }
 
-            feedViewHolder.ivLike?.setOnClickListener { onClickPostListener.onClickLike(posts[position].id) }
-
+            feedViewHolder.ivLike?.setOnClickListener { onClickPostListener.onClickLike(posts[dataPosition].id) }
 
         } else {
             val postViewHolder = holder as PostViewHolder
 
             postViewHolder.btnPost?.setOnClickListener {
                 val status = postViewHolder.edtStatus?.text.toString()
-                if (!TextUtils.isEmpty(status)) {
-                    onClickPostListener.onClickPost(status, TYPE_TEXT)
+                if (!TextUtils.isEmpty(status) && postType.equals(TYPE_TEXT)) {
+                    onClickPostListener.onClickPost(status, postType)
                     postViewHolder.edtStatus?.setText("")
+                    postType = TYPE_TEXT
+                    file = null
+                } else if (!TextUtils.isEmpty(status)) {
+                    onClickPostListener.onClickPost(status, postType, file!!)
+                    postViewHolder.edtStatus?.setText("")
+                    postType = TYPE_TEXT
+                    file = null
+                } else {
+                    Toast.makeText(
+                        context,
+                        context.getText(R.string.error_status),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Timber.w("Invalid post")
                 }
+            }
+
+            postViewHolder.ivTypeImage?.setOnClickListener {
+                postType = TYPE_IMAGE
+                onClickMediaListener.onClickImage()
+            }
+
+            postViewHolder.ivTypeVideo?.setOnClickListener {
+                postType = TYPE_VIDEO
+                onClickMediaListener.onClickVideo()
             }
         }
     }
@@ -222,5 +255,9 @@ class TimelineAdapter(private var onClickPostListener: OnClickPostListener) :
     fun updatePosts(posts: List<Post>) {
         this.posts = posts
         notifyDataSetChanged()
+    }
+
+    fun setFileName(file: File) {
+        this.file = file
     }
 }

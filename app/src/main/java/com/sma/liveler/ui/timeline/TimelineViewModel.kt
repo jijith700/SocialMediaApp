@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.vo.Post
+import okhttp3.MultipartBody
 
 class TimelineViewModel() : ViewModel() {
 
@@ -36,5 +37,9 @@ class TimelineViewModel() : ViewModel() {
 
     fun addNewPost(status: String) {
         postRepository.addNewPost(status)
+    }
+
+    fun uploadMedia(status: String, type: String, body: MultipartBody.Part) {
+        postRepository.uploadMedia(status, type, body)
     }
 }

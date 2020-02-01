@@ -51,6 +51,5 @@
     <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_star"
-            android:title="@string/menu_logout"
-            android:visible="false" />
+            android:title="@string/menu_logout" />
 </menu>
