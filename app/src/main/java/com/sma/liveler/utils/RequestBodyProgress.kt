@@ -14,9 +14,10 @@ import java.io.IOException
  */
 class RequestBodyProgress : RequestBody {
 
-    internal var mFile: File? = null
-    internal val mPath: String? = null
-    internal var mListener: UploadCallbacks? = null
+    private var mFile: File? = null
+    private val mPath: String? = null
+    private var mListener: UploadCallbacks? = null
+    private var fileType = TYPE_IMAGE
 
     private val DEFAULT_BUFFER_SIZE = 2048
 
@@ -28,14 +29,18 @@ class RequestBodyProgress : RequestBody {
         fun onFinish()
     }
 
-    constructor(file: File, listener: UploadCallbacks) {
+    constructor(file: File, fileType: String, listener: UploadCallbacks) {
         mFile = file
+        this.fileType = fileType
         mListener = listener
     }
 
     override fun contentType(): MediaType? {
         // i want to upload only images
-        return MediaType.parse("video/*")
+        if (fileType.equals(TYPE_IMAGE))
+            return MediaType.parse("image/*")
+        else
+            return MediaType.parse("video/*")
         //        return MediaType.parse("multipart/form-data");
     }
 

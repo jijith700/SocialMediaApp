@@ -43,6 +43,7 @@ class TimelineAdapter(
     private var posts: List<Post> = ArrayList<Post>()
     private var postType = TYPE_TEXT;
     private var file: File? = null
+    private var playerMap = HashMap<Int, SimpleExoPlayer>()
 
     private lateinit var layoutPostItemBinding: LayoutPostItemBinding
 
@@ -74,6 +75,13 @@ class TimelineAdapter(
             val dataPosition = position - 1
             val feedViewHolder = holder as FeedViewHolder
 
+            if (!TextUtils.isEmpty(posts[dataPosition].post)) {
+                feedViewHolder.tvFeed?.text = posts[dataPosition].post
+                feedViewHolder.tvFeed?.visibility = View.VISIBLE
+            } else {
+                feedViewHolder.tvFeed?.visibility = View.GONE
+            }
+
             if (posts[dataPosition].type == TYPE_TEXT) {
                 feedViewHolder.tvFeed?.text = posts[dataPosition].post
                 feedViewHolder.tvFeed?.visibility = View.VISIBLE
@@ -82,7 +90,6 @@ class TimelineAdapter(
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
                 Glide.with(context).load(posts[dataPosition].image)
                     .into(feedViewHolder.ivFeed!!)
-
             } else if (posts[dataPosition].type == TYPE_VIDEO) {
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
                 Glide.with(context).load(posts[dataPosition].thumbnail)
@@ -93,6 +100,8 @@ class TimelineAdapter(
                 val player = SimpleExoPlayer.Builder(context).build()
 
                 feedViewHolder.playerView?.player = player
+
+                playerMap.put(dataPosition, player)
 
                 // Produces DataSource instances through which media data is loaded.
                 // Produces DataSource instances through which media data is loaded.
@@ -108,11 +117,26 @@ class TimelineAdapter(
                 // Prepare the player with the source.
 
                 feedViewHolder.ibPlay?.setOnClickListener {
+                    stopAllPlayer()
                     player.prepare(videoSource)
                     player.playWhenReady = true
                     feedViewHolder.pbLoading?.visibility = View.VISIBLE
                     feedViewHolder.ibPlay?.visibility = View.GONE
                 }
+
+                /*           feedViewHolder.playerPlay?.setOnClickListener {
+                               stopAllPlayer()
+                               player.playWhenReady = true
+                               feedViewHolder.pbLoading?.visibility = View.GONE
+                               feedViewHolder.ibPlay?.visibility = View.GONE
+                           }
+
+                           feedViewHolder.playerPause?.setOnClickListener {
+                               feedViewHolder.pbLoading?.visibility = View.GONE
+                               feedViewHolder.ibPlay?.visibility = View.VISIBLE
+                           }*/
+
+
 
                 player.addListener(object : Player.EventListener {
 
@@ -133,10 +157,11 @@ class TimelineAdapter(
 
                     }
                 })
-
             }
 
-            Glide.with(context).load(posts[dataPosition].image)
+
+
+            Glide.with(context).load(posts[dataPosition].user.profile.profile_picture)
                 .placeholder(R.drawable.ic_user_avtar)
                 .into(feedViewHolder.ivUser!!)
 
@@ -233,6 +258,9 @@ class TimelineAdapter(
         var playerView: PlayerView?
         var ibPlay: ImageButton?
         var pbLoading: ProgressBar?
+        var playerPlay: ImageButton?
+        var playerPause: ImageButton?
+
 
         init {
             ivUser = view?.findViewById(R.id.ivUser)
@@ -249,6 +277,8 @@ class TimelineAdapter(
             playerView = view?.findViewById(R.id.playerView)
             ibPlay = view?.findViewById(R.id.ibPlay)
             pbLoading = view?.findViewById(R.id.pbLoading)
+            playerPlay = view?.findViewById(R.id.exo_play)
+            playerPause = view?.findViewById(R.id.exo_pause)
         }
     }
 
@@ -259,5 +289,14 @@ class TimelineAdapter(
 
     fun setFileName(file: File) {
         this.file = file
+    }
+
+    fun stopAllPlayer() {
+        for (i in 0..posts.size) {
+            val player = playerMap[i]
+            if (player != null) {
+                player.playWhenReady = false
+            }
+        }
     }
 }

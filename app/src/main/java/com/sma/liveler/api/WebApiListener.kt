@@ -76,5 +76,5 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("post-media-status")
-    fun addNewMediaPost(@Header("Authorization") token: String, @Body status: RequestBody): Observable<Response<JsonObject>>
+    fun addNewMediaPost(@Header("Authorization") token: String, @Body status: RequestBody): Observable<Response<NewPostResponse>>
 }

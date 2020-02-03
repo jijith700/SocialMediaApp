@@ -31,7 +31,8 @@ import com.sma.liveler.interfaces.OnClickPostListener
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.TimelineAdapter
 import com.sma.liveler.utils.*
-import kotlinx.android.synthetic.main.fragment_my_video.*
+import kotlinx.android.synthetic.main.fragment_my_video.pbLoading
+import kotlinx.android.synthetic.main.fragment_time_line.*
 import okhttp3.MultipartBody
 import timber.log.Timber
 import java.io.ByteArrayOutputStream
@@ -112,7 +113,6 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
 
     override fun onClickPost(status: String, type: String, file: File) {
         uploadFile(status, type, file)
-
     }
 
     override fun onClickImage() {
@@ -241,11 +241,10 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
                 Timber.e(fileName.substring(fileName.lastIndexOf(".") + 1))
 
                 if (!fileName.substring(fileName.lastIndexOf(".") + 1).equals(
-                        "mp4"
+                        "mp4",
+                        ignoreCase = true
                     )
                 ) {
-                    timelineAdapter.setFileName(filePath!!)
-                } else {
                     Toast.makeText(
                         activity!!,
                         getString(R.string.error_invalid_file),
@@ -253,6 +252,7 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
                     ).show()
                     return
                 }
+                timelineAdapter.setFileName(filePath!!)
             } catch (e: FileNotFoundException) {
                 fileName = "";
                 Toast.makeText(activity!!, getString(R.string.error_pic), Toast.LENGTH_SHORT).show()
@@ -282,25 +282,33 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
     }
 
     override fun onProgressUpdate(percentage: Int) {
-        pbLoading.visibility = View.VISIBLE
+        layoutLoading.visibility = View.VISIBLE
         pbLoading.progress = percentage
         Timber.d("progress %d", percentage)
     }
 
     override fun onError() {
-        pbLoading.visibility = View.GONE
+        layoutLoading.visibility = View.GONE
         Utils.alert(activity!!, "Upload failed")
     }
 
     override fun onFinish() {
-        pbLoading.visibility = View.GONE
+        layoutLoading.visibility = View.GONE
         Utils.alert(activity!!, "File uploaded successfully")
     }
 
     private fun uploadFile(status: String, type: String, filePath: File) {
-        val fileBody = RequestBodyProgress(filePath, this)
+        val fileBody = RequestBodyProgress(filePath, type, this)
         val body = MultipartBody.Part.createFormData("file", filePath.getName(), fileBody)
         viewModel.uploadMedia(status, type, body)
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (timelineAdapter != null) {
+            timelineAdapter.stopAllPlayer()
+        } else {
+            Timber.e("timeline adapter is null")
+        }
+    }
 }

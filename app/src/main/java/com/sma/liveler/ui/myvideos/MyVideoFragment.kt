@@ -37,9 +37,7 @@ import com.sma.liveler.R
 import com.sma.liveler.databinding.FragmentMyVideoBinding
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.MyVideoAdapter
-import com.sma.liveler.utils.FileUtils
-import com.sma.liveler.utils.RequestBodyProgress
-import com.sma.liveler.utils.Utils
+import com.sma.liveler.utils.*
 import com.sma.liveler.vo.Post
 import com.sma.liveler.vo.User
 import kotlinx.android.synthetic.main.fragment_my_video.*
@@ -293,7 +291,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
                     return
                 }
 
-                val fileBody = RequestBodyProgress(filePath!!, this)
+                val fileBody = RequestBodyProgress(filePath!!, TYPE_IMAGE, this)
 
                 //                RequestBody tokenBody = RequestBody.create(okhttp3.MultipartBody.FORM, token);
                 //                RequestBody tokenBody = RequestBody.create(MediaType.parse("text/plain"), new String(token));
@@ -354,7 +352,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
                     return
                 }
 
-                val fileBody = RequestBodyProgress(filePath!!, this)
+                val fileBody = RequestBodyProgress(filePath!!, TYPE_VIDEO, this)
 
                 //                RequestBody tokenBody = RequestBody.create(okhttp3.MultipartBody.FORM, token);
 
@@ -397,6 +395,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
     override fun onProgressUpdate(percentage: Int) {
         pbLoading.visibility = View.VISIBLE
         pbLoading.progress = percentage
+        Timber.d("progress %d", percentage)
     }
 
     override fun onError() {

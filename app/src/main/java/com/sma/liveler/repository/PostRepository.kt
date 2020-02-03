@@ -60,6 +60,7 @@ class PostRepository(var context: Context) {
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
+//                        Log.d("success:", Gson().toJson(t.body()))
                         posts.value = t.body()?.posts
                         success.value = true
                     } else {
@@ -657,17 +658,19 @@ class PostRepository(var context: Context) {
         apiService.addNewMediaPost(String.format(BEARER, token), requestBody)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+            .subscribe(object : DisposableObserver<Response<NewPostResponse>>() {
                 override fun onComplete() {
                     Timber.e("Complete")
                 }
 
-                override fun onNext(t: Response<JsonObject>) {
+                override fun onNext(t: Response<NewPostResponse>) {
                     Timber.e("%d", t.code())
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
-                        /*bankDetails.value = t.body()?.bankInfo?.bank_details*/
+                        val post = ArrayList<Post>(posts.value)
+                        post.add(0, t.body()?.post!!)
+                        posts.value = post
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

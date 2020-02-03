@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -43,7 +44,8 @@
             <RelativeLayout
                     android:id="@+id/rlTop"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/ivUser"
@@ -93,8 +95,7 @@
                     android:id="@+id/clFeedContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/rlTop"
-                    android:layout_marginTop="8dp">
+                    android:layout_below="@+id/rlTop">
 
                 <TextView
                         android:id="@+id/tvFeed"
@@ -102,46 +103,50 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
                 <ImageView
                         android:id="@+id/ivFeed"
                         android:layout_width="0dp"
                         android:layout_height="265dp"
+                        android:layout_marginTop="8dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_sample_video_thumbnail"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvFeed"
+                        tools:visibility="visible" />
 
                 <com.google.android.exoplayer2.ui.PlayerView
                         android:id="@+id/playerView"
                         android:layout_width="match_parent"
                         android:layout_height="265dp"
-                        android:scaleType="centerCrop"
+                        android:layout_marginTop="8dp"
                         android:background="@color/colorTextCommonBlack"
+                        android:scaleType="centerCrop"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvFeed" />
 
                 <RelativeLayout
                         android:id="@+id/rlPlayButton"
                         android:layout_width="0dp"
                         android:layout_height="265dp"
+                        android:layout_marginTop="8dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_sample_video_thumbnail"
                         android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/ivThumbnail"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/ivThumbnail">
+                        app:layout_constraintTop_toBottomOf="@+id/tvFeed">
 
                     <ImageButton
                             android:id="@+id/ibPlay"
