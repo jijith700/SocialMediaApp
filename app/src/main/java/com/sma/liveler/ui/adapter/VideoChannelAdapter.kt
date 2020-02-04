@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -21,6 +20,7 @@ import com.sma.liveler.R
 import com.sma.liveler.databinding.LayoutVideoItemBinding
 import com.sma.liveler.interfaces.OnClickPostListener
 import com.sma.liveler.vo.Post
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -43,7 +43,7 @@ class VideoChannelAdapter(private var onClickPostListener: OnClickPostListener)
 
     override fun onBindViewHolder(holder: VideoItemViewHolder, position: Int) {
         holder.ivThumbnail?.visibility = View.VISIBLE
-        Glide.with(context).load(videoPost[position].thumbnail).into(holder.ivThumbnail!!)
+        Picasso.get().load(videoPost[position].thumbnail).into(holder.ivThumbnail!!)
         holder.rlPlayButton?.visibility = View.VISIBLE
 
         holder.tvFeedTitle?.text = videoPost[position].userName

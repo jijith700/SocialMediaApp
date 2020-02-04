@@ -25,7 +25,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -40,6 +39,7 @@ import com.sma.liveler.ui.adapter.MyVideoAdapter
 import com.sma.liveler.utils.*
 import com.sma.liveler.vo.Post
 import com.sma.liveler.vo.User
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_my_video.*
 import okhttp3.MultipartBody
 import timber.log.Timber
@@ -132,7 +132,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
             ivThumbnail?.visibility = View.VISIBLE
             rlPlayButton?.visibility = View.VISIBLE
 
-            Glide.with(this).load(post.thumbnail).into(ivThumbnail!!)
+            Picasso.get().load(post.thumbnail).into(ivThumbnail!!)
 
             tvFeedTitle?.text = post.userName
             tvTime?.text = "" + post.postTime
@@ -191,7 +191,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
     }
 
     private fun updateUserDetails(user: User) {
-        Glide.with(this).load(user?.profile?.profile_picture).into(ivUser!!)
+        Picasso.get().load(user?.profile?.profile_picture).into(ivUser!!)
         tvFeedTitle?.text = user.firstName
         tvCredits.setText("Credits: " + user?.profile?.wallet_amount)
     }

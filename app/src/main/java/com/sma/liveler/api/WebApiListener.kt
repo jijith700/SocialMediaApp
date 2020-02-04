@@ -47,6 +47,10 @@ interface WebApiListener {
     fun getDailyVideo(@Header("Authorization") token: String): Observable<Response<TodayVideoResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("get-friend-requests")
+    fun getFollowing(@Header("Authorization") token: String): Observable<Response<FollowingResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-friends")
     fun getFriends(@Header("Authorization") token: String, @Body postId: RequestBody): Observable<Response<FriendsResponse>>
 
@@ -77,4 +81,9 @@ interface WebApiListener {
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("post-media-status")
     fun addNewMediaPost(@Header("Authorization") token: String, @Body status: RequestBody): Observable<Response<NewPostResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("read-all-notification")
+    fun getNotifications(@Header("Authorization") token: String): Observable<Response<JsonObject>>
+
 }

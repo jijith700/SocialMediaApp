@@ -1,14 +1,14 @@
-package com.sma.liveler.ui.following
+package com.sma.liveler.ui.notification
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sma.liveler.repository.PostRepository
-import com.sma.liveler.vo.Request
+import com.sma.liveler.vo.Friend
 
-class FollowingViewModel() : ViewModel() {
+class NotificationViewModel() : ViewModel() {
 
-    var TAG = FollowingViewModel::class.java.simpleName
+    var TAG = NotificationViewModel::class.java.simpleName
 
     private lateinit var context: Context
     private lateinit var postRepository: PostRepository
@@ -17,18 +17,18 @@ class FollowingViewModel() : ViewModel() {
     var errorMessage: MutableLiveData<String> = MutableLiveData()
     var success: MutableLiveData<Boolean> = MutableLiveData()
 
-    var friendsRequest = MutableLiveData<List<Request>>()
+    var friends = MutableLiveData<List<Friend>>()
 
     constructor(context: Context, postRepository: PostRepository) : this() {
         this.context = context
         this.postRepository = postRepository
-        friendsRequest = postRepository.friendsRequest
+        friends = postRepository.friends
         loadingVisibility = postRepository.loading
         errorMessage = postRepository.errrorMessage
         success = postRepository.success
     }
 
-    fun getFollowing() {
-        postRepository.getFollowing()
+    fun getNotifications() {
+        postRepository.getNotifications()
     }
 }

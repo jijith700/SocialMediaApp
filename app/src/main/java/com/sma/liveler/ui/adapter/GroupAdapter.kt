@@ -10,9 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.sma.liveler.R
 import com.sma.liveler.vo.Group
+import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,7 +42,7 @@ class GroupAdapter : RecyclerView.Adapter<GroupAdapter.GroupItemViewHolder>(), F
     }
 
     override fun onBindViewHolder(holder: GroupItemViewHolder, position: Int) {
-        Glide.with(context).load(groupsFilter[position].created_at).into(holder.ivGroup)
+        Picasso.get().load(groupsFilter[position].created_at).into(holder.ivGroup)
         holder.tvGroupName.text = groupsFilter[position].name
         holder.tvMembers.text =
             String.format(

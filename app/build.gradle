@@ -82,7 +82,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha04'
 
 
-
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     // For Kotlin use navigation-fragment-ktx
     implementation "androidx.navigation:navigation-ui:$nav_version"
@@ -98,5 +97,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.11.1'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

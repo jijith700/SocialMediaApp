@@ -41,7 +41,7 @@ class BankAccountAdapter() :
 
     override fun onBindViewHolder(holder: BankAccountItemViewHolder, position: Int) {
 
-        /*Glide.with(context).load(friends[position].profile_picture)
+        /*Picasso.get().load(friends[position].profile_picture)
             .placeholder(R.drawable.ic_user_avtar)
             .into(holder.ivUser!!)*/
 

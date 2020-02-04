@@ -10,14 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sma.liveler.R
 import com.sma.liveler.databinding.LayoutFriendItemBinding
-import com.sma.liveler.interfaces.OnClickFriendListener
 import com.sma.liveler.vo.Friend
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 
-class FriendsAdapter(private var onClickFriendListener: OnClickFriendListener) :
-    RecyclerView.Adapter<FriendsAdapter.FriendItemViewHolder>() {
+class NotificationAdapter() : RecyclerView.Adapter<NotificationAdapter.FriendItemViewHolder>() {
 
     private lateinit var layoutFriendItemBinding: LayoutFriendItemBinding
 
@@ -30,7 +28,7 @@ class FriendsAdapter(private var onClickFriendListener: OnClickFriendListener) :
         layoutFriendItemBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.layout_friend_item,
+                R.layout.layout_notification_item,
                 parent,
                 false
             )
@@ -52,9 +50,6 @@ class FriendsAdapter(private var onClickFriendListener: OnClickFriendListener) :
 
         holder.tvUserName?.text = friends[position].name
         holder.tvDetails?.text = friends[position].email
-        holder.btnRemove?.setOnClickListener({
-            onClickFriendListener.onRemove(friends[position].user_id)
-        })
     }
 
     override fun getItemCount(): Int {
@@ -63,10 +58,10 @@ class FriendsAdapter(private var onClickFriendListener: OnClickFriendListener) :
 
     class FriendItemViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
 
-//        var ivCover : ImageView?
-        var ivUser : CircleImageView?
-        var tvUserName : TextView?
-        var tvDetails : TextView?
+        //        var ivCover : ImageView?
+        var ivUser: CircleImageView?
+        var tvUserName: TextView?
+        var tvDetails: TextView?
         var btnRemove: Button?
 
         init {

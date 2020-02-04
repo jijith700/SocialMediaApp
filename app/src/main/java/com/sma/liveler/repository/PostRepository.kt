@@ -29,6 +29,7 @@ class PostRepository(var context: Context) {
     var posts = MutableLiveData<List<Post>>()
     var videoPosts = MutableLiveData<List<Post>>()
     var friends = MutableLiveData<List<Friend>>()
+    var friendsRequest = MutableLiveData<List<Request>>()
     var todaysPost = MutableLiveData<Post>()
     var user = MutableLiveData<User>()
     var bankDetails = MutableLiveData<BankDetails>()
@@ -307,6 +308,46 @@ class PostRepository(var context: Context) {
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
                         friends.value = t.body()?.friends
+                        success.value = true
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to get all the friends list.
+     */
+    fun getFollowing() {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        apiService.getFollowing(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<FollowingResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<FollowingResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        friendsRequest.value = t.body()?.requests
                         success.value = true
                     } else {
                         Timber.d("fail: %s", t.body())
@@ -671,6 +712,46 @@ class PostRepository(var context: Context) {
                         val post = ArrayList<Post>(posts.value)
                         post.add(0, t.body()?.post!!)
                         posts.value = post
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to get all the friends list.
+     */
+    fun getNotifications() {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        apiService.getNotifications(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<JsonObject>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        /*friends.value = t.body()?.friends
+                        success.value = true*/
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

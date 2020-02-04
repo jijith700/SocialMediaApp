@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -26,6 +25,7 @@ import com.sma.liveler.utils.TYPE_IMAGE
 import com.sma.liveler.utils.TYPE_TEXT
 import com.sma.liveler.utils.TYPE_VIDEO
 import com.sma.liveler.vo.Post
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import timber.log.Timber
 import java.io.File
@@ -88,11 +88,11 @@ class TimelineAdapter(
 
             } else if (posts[dataPosition].type == TYPE_IMAGE) {
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
-                Glide.with(context).load(posts[dataPosition].image)
+                Picasso.get().load(posts[dataPosition].image)
                     .into(feedViewHolder.ivFeed!!)
             } else if (posts[dataPosition].type == TYPE_VIDEO) {
                 feedViewHolder.ivFeed?.visibility = View.VISIBLE
-                Glide.with(context).load(posts[dataPosition].thumbnail)
+                Picasso.get().load(posts[dataPosition].thumbnail)
                     .into(feedViewHolder.ivFeed!!)
                 feedViewHolder.rlPlayButton?.visibility = View.VISIBLE
 
@@ -159,9 +159,7 @@ class TimelineAdapter(
                 })
             }
 
-
-
-            Glide.with(context).load(posts[dataPosition].user.profile.profile_picture)
+            Picasso.get().load(posts[dataPosition].user.profile.profile_picture)
                 .placeholder(R.drawable.ic_user_avtar)
                 .into(feedViewHolder.ivUser!!)
 

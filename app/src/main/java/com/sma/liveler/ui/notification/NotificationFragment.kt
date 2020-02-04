@@ -1,4 +1,4 @@
-package com.sma.liveler.ui.following
+package com.sma.liveler.ui.notification
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sma.liveler.R
-import com.sma.liveler.databinding.FragmentFollowingBinding
+import com.sma.liveler.databinding.FragmentNotificationBinding
 import com.sma.liveler.repository.PostRepository
-import com.sma.liveler.ui.adapter.FollowingAdapter
+import com.sma.liveler.ui.adapter.NotificationAdapter
 import com.sma.liveler.utils.VerticalDividerItemDecoration
 
 /**
@@ -23,19 +23,19 @@ import com.sma.liveler.utils.VerticalDividerItemDecoration
  * create an instance of this fragment.
  *
  */
-class FollowingFragment : Fragment() {
+class NotificationFragment : Fragment() {
 
-    private lateinit var binding: FragmentFollowingBinding
-    private lateinit var friendsAdapter: FollowingAdapter
+    private lateinit var binding: FragmentNotificationBinding
+    private lateinit var notificationAdapter: NotificationAdapter
 
     /**
      * Initializing the view model fo the current activity.
      */
-    private val viewModel: FollowingViewModel by viewModels {
+    private val viewModel: NotificationViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return FollowingViewModel(
+                return NotificationViewModel(
                     activity!!, PostRepository(activity!!)
                 ) as T
             }
@@ -46,7 +46,8 @@ class FollowingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_following, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_notification, container, false)
         // setting values to model
         /* val user = DataBindingKotlinModel("Imtiyaz", "Khalani")
          binding.model = user*/
@@ -54,23 +55,21 @@ class FollowingFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        friendsAdapter = FollowingAdapter()
-        binding.rvFollowing.layoutManager = GridLayoutManager(context, 1)
-        binding.rvFollowing.addItemDecoration(VerticalDividerItemDecoration(20, false))
-        binding.rvFollowing.adapter = friendsAdapter
+        notificationAdapter = NotificationAdapter()
+        binding.rvNotification.layoutManager = GridLayoutManager(context, 1)
+        binding.rvNotification.addItemDecoration(VerticalDividerItemDecoration(20, false))
+        binding.rvNotification.adapter = notificationAdapter
 
-        viewModel.friendsRequest.observe(this, Observer { friendsAdapter.updateFollowing(it) })
+        viewModel.friends.observe(this, Observer { notificationAdapter.updateFriends(it) })
 
-        viewModel.getFollowing();
+        viewModel.getNotifications();
 
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
-
     }
 }

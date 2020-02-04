@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="oval" android:padding="10dp">
-            <solid android:color="@color/colorBgCommonFeedButton"/>
-        </shape>
-    </item>
-    <item android:drawable="@drawable/ic_like_post"
-          android:bottom="10dp"
-          android:left="10dp"
-          android:right="10dp"
-          android:top="10dp"/>
-</layer-list>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/btn_like_pressed" android:state_pressed="true" />
+    <item android:drawable="@drawable/btn_like_normal" />
+</selector>

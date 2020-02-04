@@ -28,6 +28,7 @@ import com.sma.liveler.ui.favfeeds.FavoriteFragment
 import com.sma.liveler.ui.friends.FriendsFragment
 import com.sma.liveler.ui.groups.GroupsFragment
 import com.sma.liveler.ui.login.LoginActivity
+import com.sma.liveler.ui.notification.NotificationFragment
 import com.sma.liveler.ui.pages.PagesFragment
 import com.sma.liveler.ui.timeline.PostFragment
 import com.sma.liveler.ui.videos.VideoFragment
@@ -160,6 +161,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             binding.drawerLayout.closeDrawers()
                         }
                         switchPage(PostFragment(), false)
+                    }
+                    4 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(NotificationFragment(), false)
                     }
                 }
             }
