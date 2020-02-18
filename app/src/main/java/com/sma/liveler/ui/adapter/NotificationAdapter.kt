@@ -73,7 +73,7 @@ class NotificationAdapter() : RecyclerView.Adapter<NotificationAdapter.FriendIte
         }
     }
 
-    fun updateFriends(friends: List<Friend>) {
+    fun updateNotification(friends: List<Friend>) {
         this.friends = friends
         notifyDataSetChanged()
     }

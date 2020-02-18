@@ -33,6 +33,9 @@ class PostRepository(var context: Context) {
     var todaysPost = MutableLiveData<Post>()
     var user = MutableLiveData<User>()
     var bankDetails = MutableLiveData<BankDetails>()
+    var notifications = MutableLiveData<List<Any>>()
+    var friendRequest = MutableLiveData<List<FriendRequest>>()
+    var ads = MutableLiveData<List<Ad>>()
 
     /**
      * Variable hold the object of ApiService and the it will initialized here.
@@ -347,6 +350,7 @@ class PostRepository(var context: Context) {
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
+                        Timber.d("success: %s", Gson().toJson(t.body()))
                         friendsRequest.value = t.body()?.requests
                         success.value = true
                     } else {
@@ -405,6 +409,62 @@ class PostRepository(var context: Context) {
                         val friendList = friends.value
                         friends.value =
                             friendList?.filter { friend -> friend.id != t.body()?.requested_user?.id }
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to add Friend.
+     */
+    fun addFriend(userId: Int) {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        val request = JSONObject()
+        try {
+            request.accumulate(USER_ID, userId)
+            Timber.d(request.toString())
+        } catch (e: JSONException) {
+            Timber.e(e.toString())
+        }
+
+        val requestBody = RequestBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            request.toString()
+        )
+
+        apiService.addFriend(String.format(BEARER, token), requestBody)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<JsonObject>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        /*friends.value = t.body()?.friends
+                        success.value = true*/
+                        val friendList = friends.value
+                        /*friends.value =
+                            friendList?.filter { friend -> friend.id != t.body()?.requested_user?.id }*/
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))
@@ -740,6 +800,99 @@ class PostRepository(var context: Context) {
         apiService.getNotifications(String.format(BEARER, token))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<NotificationResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<NotificationResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        notifications.value = t.body()?.user?.unread_notifications
+                        friendRequest.value = t.body()?.user?.friendRequests
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to read all the notification list.
+     */
+    fun readAllNotifications() {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        apiService.readAllNotifications(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<JsonObject>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        success.value = true
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+
+    /**
+     * Method to accept friend request.
+     */
+    fun acceptFriendRequest(userId: Int) {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        val request = JSONObject()
+        try {
+            request.accumulate(USER_ID, userId)
+            Timber.d(request.toString())
+        } catch (e: JSONException) {
+            Timber.e(e.toString())
+        }
+
+        val requestBody = RequestBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            request.toString()
+        )
+
+        apiService.acceptFriendRequest(String.format(BEARER, token), requestBody)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
             .subscribe(object : DisposableObserver<Response<JsonObject>>() {
                 override fun onComplete() {
                     Timber.e("Complete")
@@ -752,6 +905,150 @@ class PostRepository(var context: Context) {
                         Timber.d("success: %s", t.body())
                         /*friends.value = t.body()?.friends
                         success.value = true*/
+                        val friendList = friends.value
+                        /*friends.value =
+                            friendList?.filter { friend -> friend.id != t.body()?.requested_user?.id }*/
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+
+    /**
+     * Method to cancel friend request.
+     */
+    fun cancelFriendRequest(userId: Int) {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        val request = JSONObject()
+        try {
+            request.accumulate(USER_ID, userId)
+            Timber.d(request.toString())
+        } catch (e: JSONException) {
+            Timber.e(e.toString())
+        }
+
+        val requestBody = RequestBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            request.toString()
+        )
+
+        apiService.cancelFriendRequest(String.format(BEARER, token), requestBody)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<JsonObject>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        /*friends.value = t.body()?.friends
+                        success.value = true*/
+                        val friendList = friends.value
+                        /*friends.value =
+                            friendList?.filter { friend -> friend.id != t.body()?.requested_user?.id }*/
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to get all ads.
+     */
+    fun getAds() {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+
+        apiService.getAds(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<MyAdResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<MyAdResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        ads.value = t.body()?.ads
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to post an ads.
+     */
+    fun postAds() {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+
+        apiService.postAd(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<JsonObject>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        /*friends.value = t.body()?.friends
+                        success.value = true*/
+                        val friendList = friends.value
+                        /*friends.value =
+                            friendList?.filter { friend -> friend.id != t.body()?.requested_user?.id }*/
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

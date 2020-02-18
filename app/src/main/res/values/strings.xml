@@ -67,6 +67,8 @@
     <!--FriendsFragment-->
     <string name="tv_user_friends">James\'s Freinds (86)</string>
     <string name="btn_remove">Remove</string>
+    <string name="btn_accept">Confirm</string>
+    <string name="btn_decline">Delete</string>
 
     <!--GroupsFragment-->
     <string name="btn_create_group">Create Group</string>
@@ -84,6 +86,13 @@
     <string name="txt_hint_branch">Name of Branch</string>
     <string name="txt_hint_ifsc">IFSC Code</string>
     <string name="btn_add_account">Add Bank Account </string>
+
+    <!--NotificationFragment-->
+    <string name="txt_notification">Notification</string>
+    <string name="txt_read_notification">Read All Notification</string>
+
+    <!--AdFragment-->
+    <string name="btn_payment">Make Payment</string>
 
     <string name="btn_ok">OK</string>
     <string name="btn_yes">Yes</string>

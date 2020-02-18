@@ -1,14 +1,22 @@
-package com.sma.liveler.ui.following
+package com.sma.liveler.ui.myads
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sma.liveler.api.WebApiListener
 import com.sma.liveler.repository.PostRepository
-import com.sma.liveler.vo.Request
+import com.sma.liveler.utils.TYPE_VIDEO
+import com.sma.liveler.vo.Ad
+import com.sma.liveler.vo.User
+import okhttp3.MultipartBody
+import javax.inject.Inject
 
-class FollowingViewModel() : ViewModel() {
+class MyAdViewModel() : ViewModel() {
 
-    var TAG = FollowingViewModel::class.java.simpleName
+    var TAG = MyAdViewModel::class.java.simpleName
+
+    @Inject
+    lateinit var webApiListener: WebApiListener
 
     private lateinit var context: Context
     private lateinit var postRepository: PostRepository
@@ -17,26 +25,24 @@ class FollowingViewModel() : ViewModel() {
     var errorMessage: MutableLiveData<String> = MutableLiveData()
     var success: MutableLiveData<Boolean> = MutableLiveData()
 
-    var friendsRequest = MutableLiveData<List<Request>>()
+    var ads = MutableLiveData<List<Ad>>()
+    var user = MutableLiveData<User>()
 
     constructor(context: Context, postRepository: PostRepository) : this() {
         this.context = context
         this.postRepository = postRepository
-        friendsRequest = postRepository.friendsRequest
+        ads = postRepository.ads
+        user = postRepository.user
         loadingVisibility = postRepository.loading
         errorMessage = postRepository.errrorMessage
         success = postRepository.success
     }
 
-    fun getFollowing() {
-        postRepository.getFollowing()
+    fun getAds() {
+        postRepository.getAds()
     }
 
-    fun acceptFriendRequest(userId: Int) {
-        postRepository.acceptFriendRequest(userId)
-    }
-
-    fun cancelFriendRequest(userId: Int) {
-        postRepository.cancelFriendRequest(userId)
+    fun uploadVideo(body: MultipartBody.Part) {
+        postRepository.uploadMedia("", TYPE_VIDEO, body)
     }
 }

@@ -21,6 +21,9 @@ data class User(
     val profile: Profile? = null
     val role_id: Int? = null
     val updated_at: String? = null
+    val bank_details: BankDetails? = null
+    val friendRequests: List<FriendRequest>? = null
+    val unread_notifications: List<Any>? = null
 
     constructor() : this("", "", "", "", "", "", "")
 }

@@ -25,6 +25,7 @@ import com.sma.liveler.ui.account.BankAccountFragment
 import com.sma.liveler.ui.adapter.TabAdapter
 import com.sma.liveler.ui.adrequest.AdRequestFragment
 import com.sma.liveler.ui.favfeeds.FavoriteFragment
+import com.sma.liveler.ui.following.FollowingFragment
 import com.sma.liveler.ui.friends.FriendsFragment
 import com.sma.liveler.ui.groups.GroupsFragment
 import com.sma.liveler.ui.login.LoginActivity
@@ -161,6 +162,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             binding.drawerLayout.closeDrawers()
                         }
                         switchPage(PostFragment(), false)
+                    }
+                    2 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(FollowingFragment(), false)
                     }
                     4 -> {
                         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {

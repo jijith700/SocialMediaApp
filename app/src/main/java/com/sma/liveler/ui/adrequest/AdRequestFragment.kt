@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.sma.liveler.R
 import com.sma.liveler.databinding.FragmentAdRequestBinding
 import com.sma.liveler.ui.adapter.VideoTabAdapter
+import com.sma.liveler.ui.myads.MyAdFragment
 import com.sma.liveler.ui.request.RequestFragment
 import kotlinx.android.synthetic.main.fragment_video.*
 import timber.log.Timber
@@ -66,7 +67,7 @@ class AdRequestFragment : Fragment() {
         Timber.i("Fragment_Name: %s", AdRequestFragment::class.java.simpleName)
         val categoryPagerAdapter = VideoTabAdapter(childFragmentManager)
         categoryPagerAdapter.addFragment(RequestFragment(), "Request")
-        categoryPagerAdapter.addFragment(RequestFragment(), "My Ads")
+        categoryPagerAdapter.addFragment(MyAdFragment(), "My Ads")
 
         vpVideos.adapter = categoryPagerAdapter
         tlVideo.setupWithViewPager(vpVideos)

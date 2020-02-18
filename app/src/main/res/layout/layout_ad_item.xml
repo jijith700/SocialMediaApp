@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="post"
+                type="com.sma.liveler.vo.Video" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:cardCornerRadius="5dp"
+                app:cardUseCompatPadding="true"
+                android:paddingBottom="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="0dp"
+                    android:paddingBottom="0dp">
+
+                <RelativeLayout
+                        android:id="@+id/rlTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/ivAd"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp" />
+
+                    <RelativeLayout
+                            android:id="@+id/rlTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/ivAd"
+                            android:layout_toEndOf="@id/ivAd">
+
+                        <TextView
+                                android:id="@+id/tvAdTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_toStartOf="@+id/ivMore"
+                                android:text=""
+                                android:textColor="@color/colorTextCommonBlack"
+                                android:textStyle="bold" />
+
+                        <TextView
+                                android:id="@+id/tvTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvAdTitle"
+                                android:layout_marginStart="10dp"
+                                android:text="" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/rlTitle"
+                            android:layout_marginTop="5dp"
+                            android:layout_toEndOf="@id/ivAd">
+
+                        <TextView
+                                android:id="@+id/tvStatus"
+                                android:layout_width="70dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@color/colorTextCommonGrey"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorTextCommonWhite"
+                                android:textSize="12sp" />
+
+                        <Button
+                                android:id="@+id/btnMakePayment"
+                                android:layout_width="70dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorBgBlueButton"
+                                android:text="@string/btn_payment"
+                                android:textAllCaps="false"
+                                android:layout_marginEnd="10dp"
+                                android:textColor="@color/colorTextCommonWhite"
+                                android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</layout>

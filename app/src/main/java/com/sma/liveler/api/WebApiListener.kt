@@ -84,6 +84,30 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("read-all-notification")
-    fun getNotifications(@Header("Authorization") token: String): Observable<Response<JsonObject>>
+    fun readAllNotifications(@Header("Authorization") token: String): Observable<Response<JsonObject>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("get-user")
+    fun getNotifications(@Header("Authorization") token: String): Observable<Response<NotificationResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("add-friend")
+    fun addFriend(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("accept-request")
+    fun acceptFriendRequest(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("cancel-request")
+    fun cancelFriendRequest(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("get-ads")
+    fun getAds(@Header("Authorization") token: String): Observable<Response<MyAdResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("get-ads")
+    fun postAd(@Header("Authorization") token: String): Observable<Response<JsonObject>>
 
 }

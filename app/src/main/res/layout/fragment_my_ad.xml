@@ -7,49 +7,39 @@
 
         <variable
                 name="viewModel"
-                type="com.sma.liveler.ui.notification.NotificationViewModel" />
+                type="com.sma.liveler.ui.myads.MyAdViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
-                android:id="@+id/tvNotification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txt_notification"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-                android:id="@+id/tvReadNotification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/txt_read_notification"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvNotification"
+                android:id="@+id/rvMyAd"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvNotification"
-                tools:listitem="@layout/layout_friend_item" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/layout_video_item" />
 
-        <TextView
-                android:id="@+id/tvNoNotification"
+        <ProgressBar
+                android:id="@+id/pbLoading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No notifications"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tvNoAds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="There are no Ads to show at this moment!"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

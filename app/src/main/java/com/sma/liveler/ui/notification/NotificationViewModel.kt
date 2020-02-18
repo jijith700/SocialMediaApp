@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.vo.Friend
+import com.sma.liveler.vo.FriendRequest
 
 class NotificationViewModel() : ViewModel() {
 
@@ -18,6 +19,8 @@ class NotificationViewModel() : ViewModel() {
     var success: MutableLiveData<Boolean> = MutableLiveData()
 
     var friends = MutableLiveData<List<Friend>>()
+    var notifications = MutableLiveData<List<Any>>()
+    var friendRequest = MutableLiveData<List<FriendRequest>>()
 
     constructor(context: Context, postRepository: PostRepository) : this() {
         this.context = context
@@ -26,9 +29,15 @@ class NotificationViewModel() : ViewModel() {
         loadingVisibility = postRepository.loading
         errorMessage = postRepository.errrorMessage
         success = postRepository.success
+        notifications = postRepository.notifications
+        friendRequest = postRepository.friendRequest
     }
 
     fun getNotifications() {
         postRepository.getNotifications()
+    }
+
+    fun readAllNotifications() {
+        postRepository.readAllNotifications()
     }
 }
