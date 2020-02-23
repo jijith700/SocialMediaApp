@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
@@ -34,6 +35,8 @@ import com.sma.liveler.ui.pages.PagesFragment
 import com.sma.liveler.ui.timeline.PostFragment
 import com.sma.liveler.ui.videos.VideoFragment
 import com.sma.liveler.utils.Utils
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.nav_header_main.*
 import timber.log.Timber
 
 
@@ -191,7 +194,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
 
-        viewModel.getUserDetails()
+        viewModel.getNotifications()
+
+        viewModel.user.observe(this, Observer {
+            Picasso.get().load(it.profile?.profile_picture).placeholder(R.drawable.ic_user_avtar)
+                .into(ivProfilePic)
+            tvUserName.text = it.firstName
+        })
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

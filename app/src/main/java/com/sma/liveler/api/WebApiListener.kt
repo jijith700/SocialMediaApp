@@ -36,7 +36,7 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("details")
-    fun userDetails(@Body groupName: RequestBody): Observable<Response<GroupResponse>>
+    fun userDetails(@Body groupName: RequestBody): Observable<Response<JsonObject>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-video-posts")
@@ -109,5 +109,9 @@ interface WebApiListener {
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-ads")
     fun postAd(@Header("Authorization") token: String): Observable<Response<JsonObject>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("get-personal-info")
+    fun getPersonalInfo(@Header("Authorization") token: String): Observable<Response<UserInfoResponse>>
 
 }
