@@ -33,7 +33,7 @@ class PostRepository(var context: Context) {
     var todaysPost = MutableLiveData<Post>()
     var user = MutableLiveData<User>()
     var bankDetails = MutableLiveData<BankDetails>()
-    var notifications = MutableLiveData<List<Any>>()
+    var notifications = MutableLiveData<List<UnreadNotification>>()
     var friendRequest = MutableLiveData<List<FriendRequest>>()
     var ads = MutableLiveData<List<Ad>>()
 
@@ -810,6 +810,7 @@ class PostRepository(var context: Context) {
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
+                        Timber.d("success: %s", Gson().toJson(t.body()))
                         notifications.value = t.body()?.user?.unread_notifications
                         friendRequest.value = t.body()?.user?.friendRequests
                     } else {

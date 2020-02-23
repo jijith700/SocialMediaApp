@@ -17,7 +17,7 @@ import com.sma.liveler.databinding.FragmentNotificationBinding
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.NotificationAdapter
 import com.sma.liveler.utils.VerticalDividerItemDecoration
-import com.sma.liveler.vo.Friend
+import com.sma.liveler.vo.UnreadNotification
 import kotlinx.android.synthetic.main.fragment_notification.*
 
 /**
@@ -72,7 +72,7 @@ class NotificationFragment : Fragment() {
                 rvNotification.visibility = View.GONE
                 tvNoNotification.visibility = View.VISIBLE
             }
-//            notificationAdapter.updateNotification(it)
+            notificationAdapter.updateNotification(it)
 
         })
 
@@ -83,7 +83,7 @@ class NotificationFragment : Fragment() {
         }
 
         viewModel.success.observe(this, Observer {
-            notificationAdapter.updateNotification(ArrayList<Friend>())
+            notificationAdapter.updateNotification(ArrayList<UnreadNotification>())
             rvNotification.visibility = View.GONE
             tvNoNotification.visibility = View.VISIBLE
         })

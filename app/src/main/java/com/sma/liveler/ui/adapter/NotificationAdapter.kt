@@ -4,28 +4,26 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sma.liveler.R
-import com.sma.liveler.databinding.LayoutFriendItemBinding
-import com.sma.liveler.vo.Friend
+import com.sma.liveler.databinding.LayoutNotificationItemBinding
+import com.sma.liveler.vo.UnreadNotification
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
+class NotificationAdapter() :
+    RecyclerView.Adapter<NotificationAdapter.NotificationItemViewHolder>() {
 
-class NotificationAdapter() : RecyclerView.Adapter<NotificationAdapter.FriendItemViewHolder>() {
+    private lateinit var layoutNotificationItemBinding: LayoutNotificationItemBinding
 
-    private lateinit var layoutFriendItemBinding: LayoutFriendItemBinding
-
-    private var friends: List<Friend> = ArrayList<Friend>()
+    private var notification: List<UnreadNotification> = ArrayList<UnreadNotification>()
     private lateinit var context: Context
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationItemViewHolder {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendItemViewHolder {
-
-        layoutFriendItemBinding =
+        layoutNotificationItemBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.layout_notification_item,
@@ -33,48 +31,39 @@ class NotificationAdapter() : RecyclerView.Adapter<NotificationAdapter.FriendIte
                 false
             )
 
-        context = layoutFriendItemBinding.root.context
+        context = layoutNotificationItemBinding.root.context
 
-        return FriendItemViewHolder(layoutFriendItemBinding.root)
-
+        return NotificationItemViewHolder(layoutNotificationItemBinding.root)
     }
 
-    override fun onBindViewHolder(holder: FriendItemViewHolder, position: Int) {
-        /*Picasso.get().load(friends[position].cover_picture)
-            .placeholder(R.drawable.ic_sample_video_thumbnail)
-            .into(holder.ivCover!!)*/
+    override fun onBindViewHolder(holder: NotificationItemViewHolder, position: Int) {
 
-        Picasso.get().load(friends[position].profile_picture)
+        Picasso.get().load(notification[position].data.image)
             .placeholder(R.drawable.ic_user_avtar)
             .into(holder.ivUser!!)
 
-        holder.tvUserName?.text = friends[position].name
-        holder.tvDetails?.text = friends[position].email
+        holder.tvNotification?.text = notification[position].data.message
+        holder.tvTime?.text = notification[position].data.time
     }
 
     override fun getItemCount(): Int {
-        return friends.size;
+        return notification.size;
     }
 
-    class FriendItemViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
-
-        //        var ivCover : ImageView?
+    class NotificationItemViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var ivUser: CircleImageView?
-        var tvUserName: TextView?
-        var tvDetails: TextView?
-        var btnRemove: Button?
+        var tvNotification: TextView?
+        var tvTime: TextView?
 
         init {
-//            ivCover = view?.findViewById(R.id.ivCover)
             ivUser = view?.findViewById(R.id.ivUser)
-            tvUserName = view?.findViewById(R.id.tvUserName)
-            tvDetails = view?.findViewById(R.id.tvUserDetails)
-            btnRemove = view?.findViewById(R.id.btnRemove)
+            tvNotification = view?.findViewById(R.id.tvNotification)
+            tvTime = view?.findViewById(R.id.tvTime)
         }
     }
 
-    fun updateNotification(friends: List<Friend>) {
-        this.friends = friends
+    fun updateNotification(notification: List<UnreadNotification>) {
+        this.notification = notification
         notifyDataSetChanged()
     }
 }

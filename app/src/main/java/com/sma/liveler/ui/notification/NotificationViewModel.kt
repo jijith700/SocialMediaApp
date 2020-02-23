@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.vo.Friend
 import com.sma.liveler.vo.FriendRequest
+import com.sma.liveler.vo.UnreadNotification
 
 class NotificationViewModel() : ViewModel() {
 
@@ -19,7 +20,7 @@ class NotificationViewModel() : ViewModel() {
     var success: MutableLiveData<Boolean> = MutableLiveData()
 
     var friends = MutableLiveData<List<Friend>>()
-    var notifications = MutableLiveData<List<Any>>()
+    var notifications = MutableLiveData<List<UnreadNotification>>()
     var friendRequest = MutableLiveData<List<FriendRequest>>()
 
     constructor(context: Context, postRepository: PostRepository) : this() {

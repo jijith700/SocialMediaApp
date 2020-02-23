@@ -103,9 +103,7 @@ class LoginActivity : AppCompatActivity() {
             this,
             arrayOf(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_SMS,
-                Manifest.permission.WRITE_SETTINGS
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
             ),
             id
         )

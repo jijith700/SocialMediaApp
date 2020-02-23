@@ -23,7 +23,7 @@ data class User(
     val updated_at: String? = null
     val bank_details: BankDetails? = null
     val friendRequests: List<FriendRequest>? = null
-    val unread_notifications: List<Any>? = null
+    val unread_notifications: List<UnreadNotification>? = null
 
     constructor() : this("", "", "", "", "", "", "")
 }
