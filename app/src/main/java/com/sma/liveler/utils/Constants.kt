@@ -1,7 +1,8 @@
 package com.sma.liveler.utils
 
 /** The base URL of the API */
-const val BASE_URL: String = "http://www.liveler.com/api/"
+//const val BASE_URL: String = "http://www.liveler.com/api/"
+const val BASE_URL: String = "http://3.15.138.106/socialmedia/public/api/"
 
 const val NAME: String = "name"
 const val EMAIL: String = "email"
@@ -11,6 +12,12 @@ const val GROUP_NAME: String = "group_name"
 
 const val POST_ID: String = "post_id"
 const val USER_ID: String = "user_id"
+
+const val FRIEND_ID: String = "friend_id"
+
+const val FROM_ID: String = "from_id"
+const val TO_ID: String = "to_id"
+const val MESSAGE: String = "message"
 
 const val POST: String = "post"
 
@@ -29,8 +36,11 @@ const val FILE_SAVED_NAME: String = "file-saved-name"
 const val THUMB_NAME: String = "thumb-name"
 const val FILE_THUMB: String = "file-thumb"
 
-
+const val FRIEND: String = "friend"
 
 const val TYPE_TEXT: String = "TEXT"
 const val TYPE_IMAGE: String = "IMAGE"
 const val TYPE_VIDEO: String = "VIDEO"
+
+const val TYPE_SEND: String = "SEND"
+const val TYPE_RECEIVE: String = "RECEIVE"

@@ -114,4 +114,16 @@ interface WebApiListener {
     @POST("get-personal-info")
     fun getPersonalInfo(@Header("Authorization") token: String): Observable<Response<UserInfoResponse>>
 
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("set-personal-info")
+    fun setPersonalInfo(@Header("Authorization") token: String): Observable<Response<JsonObject>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("send-message")
+    fun sendMessage(@Header("Authorization") token: String, @Body chat: RequestBody): Observable<Response<SendMessageResponse>>
+
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("get-messages")
+    fun getMessage(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<ReceiveMessageResponse>>
+
 }

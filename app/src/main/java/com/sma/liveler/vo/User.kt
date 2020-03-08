@@ -16,7 +16,7 @@ data class User(
 
     val avatar: String = ""
     val created_at: String = ""
-    val email_verified_at: Any = ""
+    val email_verified_at: String = ""
     val id: Int? = null
     val profile: Profile? = null
     val role_id: Int? = null

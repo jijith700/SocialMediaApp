@@ -25,6 +25,7 @@ import com.sma.liveler.ui.about.AboutFragment
 import com.sma.liveler.ui.account.BankAccountFragment
 import com.sma.liveler.ui.adapter.TabAdapter
 import com.sma.liveler.ui.adrequest.AdRequestFragment
+import com.sma.liveler.ui.chatlist.ChatListFragment
 import com.sma.liveler.ui.favfeeds.FavoriteFragment
 import com.sma.liveler.ui.following.FollowingFragment
 import com.sma.liveler.ui.friends.FriendsFragment
@@ -44,6 +45,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var tabAdapter: TabAdapter
+
+    var userId: Int? = null
 
     /**
      * Initializing the view model fo the current activity.
@@ -172,11 +175,23 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         }
                         switchPage(FollowingFragment(), false)
                     }
+                    3 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(ChatListFragment(), false)
+                    }
                     4 -> {
                         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                             binding.drawerLayout.closeDrawers()
                         }
                         switchPage(NotificationFragment(), false)
+                    }
+                    6 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(ChatListFragment(), false)
                     }
                 }
             }
@@ -200,6 +215,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Picasso.get().load(it.profile?.profile_picture).placeholder(R.drawable.ic_user_avtar)
                 .into(ivProfilePic)
             tvUserName.text = it.firstName
+            userId = it.id
         })
     }
 
