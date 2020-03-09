@@ -10,7 +10,6 @@ import com.sma.liveler.R
 import com.sma.liveler.interfaces.OnClickChatListener
 import com.sma.liveler.vo.ChatMessage
 import de.hdodenhof.circleimageview.CircleImageView
-import timber.log.Timber
 
 class ChatAdapter(
     private var context: Context,
@@ -24,14 +23,13 @@ class ChatAdapter(
     private var chatMessage: ArrayList<ChatMessage> = ArrayList<ChatMessage>()
     var currentUserId: Int? = null
 
-
     override fun getItemCount(): Int {
         return chatMessage.size
     }
 
     // Determines the appropriate ViewType according to the sender of the message.
     override fun getItemViewType(position: Int): Int {
-        return if (chatMessage[position].from_user == currentUserId) { // If the current user is the sender of the message
+        return if (chatMessage[position].from_user == currentUserId!!) { // If the current user is the sender of the message
             VIEW_TYPE_MESSAGE_SENT
         } else { // If some other user sent the message
             VIEW_TYPE_MESSAGE_RECEIVED
@@ -69,7 +67,7 @@ class ChatAdapter(
             tvMessage.setText(chatMessage.content)
             // Format the stored timestamp into a readable String using method.
             tvTime.setText(chatMessage.created_at)
-            Timber.d("Chat adapter " + chatMessage)
+//            Timber.d("Chat adapter " + chatMessage)
         }
 
         init {
@@ -91,7 +89,7 @@ class ChatAdapter(
             tvTime.setText(chatMessage.created_at)
             tvUserName.setText(chatMessage.receiver_name)
 
-            Timber.d("Chat adapter " + chatMessage)
+//            Timber.d("Chat adapter " + chatMessage)
         }
 
         init {
@@ -116,5 +114,6 @@ class ChatAdapter(
 
     fun updateUserId(userId: Int) {
         this.currentUserId = userId
+        notifyDataSetChanged()
     }
 }

@@ -29,4 +29,7 @@
 
     <color name="colorBgPlay">#C34F3D</color>
 
+    <color name="colorBgSendMessage">#ff5e3a</color>
+    <color name="colorBgReceiveMessage">#7442ce</color>
+
 </resources>

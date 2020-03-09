@@ -44,3 +44,6 @@ const val TYPE_VIDEO: String = "VIDEO"
 
 const val TYPE_SEND: String = "SEND"
 const val TYPE_RECEIVE: String = "RECEIVE"
+
+const val TYPE_FRIENDS: String = "FRIENDS"
+const val TYPE_PENDING: String = "PENDING_FIRST_SECOND"

@@ -126,4 +126,7 @@ interface WebApiListener {
     @POST("get-messages")
     fun getMessage(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<ReceiveMessageResponse>>
 
+    @Headers("Accept: application/json", "Content-type:application/json")
+    @POST("all-users")
+    fun getAllUsers(@Header("Authorization") token: String): Observable<Response<AllUsersResponse>>
 }

@@ -40,6 +40,7 @@ class PostRepository(var context: Context) {
     var chatMessages = MutableLiveData<List<ChatMessage>>()
     var sendUser = MutableLiveData<User>()
     var receiverUser = MutableLiveData<User>()
+    var allUsers = MutableLiveData<List<AllUsers>>()
 
     /**
      * Variable hold the object of ApiService and the it will initialized here.
@@ -1205,6 +1206,48 @@ class PostRepository(var context: Context) {
                         Timber.d("success: %s", t.body())
                         receiverUser.value = t.body()?.user
                         chatMessages.value = t.body()?.messages
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to get all users.
+     */
+    fun getAllUsers() {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+
+        apiService.getAllUsers(String.format(BEARER, token))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<AllUsersResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<AllUsersResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        allUsers.value = t.body()?.users
+                        /*friends.value = t.body()?.friends
+                        success.value = true*/
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

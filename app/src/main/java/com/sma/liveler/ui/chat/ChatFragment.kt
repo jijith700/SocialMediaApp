@@ -95,24 +95,25 @@ class ChatFragment : Fragment(), OnClickChatListener {
 
             val chatMessage = ChatMessage(
                 edtMessage.text.toString(), "",
-                it.role_id!!, it.id!!, "", "",
+                it.id!!, it.role_id!!, "", "",
                 it.firstName, it.avatar, friend?.user_id!!, ""
             )
+            Timber.e("Send user" + chatMessage)
             edtMessage.setText("")
             chatAdapter.updateChatMessage(chatMessage)
             Utils.hideKeyboard(activity!!, edtMessage)
-            Timber.e(TAG, chatMessage)
         })
 
         viewModel.receiverUser.observe(this, Observer {
-            chatAdapter.updateUserId(it?.role_id!!)
+            Timber.e("Receiver user" + it.id)
+            chatAdapter.updateUserId(it?.id!!)
         })
 
         viewModel.chatMessages.observe(this, Observer {
             if (it != null) {
                 chatAdapter.updateChatMessage(ArrayList<ChatMessage>(it))
             } else {
-                Timber.e(TAG, "empty message")
+                Timber.e("empty message")
             }
         })
 
