@@ -85,15 +85,6 @@
                     android:layout_toEndOf="@+id/ivImage"
                     android:background="@drawable/ic_video" />
 
-            <ImageView
-                    android:id="@+id/ivLocation"
-                    android:layout_width="20dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@+id/ivVideo"
-                    android:background="@drawable/ic_location" />
-
             <Button
                     android:id="@+id/btnPost"
                     android:layout_width="120dp"

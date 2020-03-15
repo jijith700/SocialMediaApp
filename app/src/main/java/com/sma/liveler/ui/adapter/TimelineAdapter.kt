@@ -212,6 +212,19 @@ class TimelineAdapter(
                 postType = TYPE_VIDEO
                 onClickMediaListener.onClickVideo()
             }
+
+            postViewHolder.btnPreview?.setOnClickListener {
+                val status = postViewHolder.edtStatus?.text.toString()
+                if (!TextUtils.isEmpty(status)) {
+                    onClickMediaListener.onClickPreview(status, file!!, postType)
+                } else {
+                    Toast.makeText(
+                        context,
+                        context.getText(R.string.error_status),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
     }
 
@@ -225,7 +238,6 @@ class TimelineAdapter(
     class PostViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
 
         var edtStatus: EditText?
-        var ivTypeLocation: ImageView?
         var ivTypeImage: ImageView?
         var ivTypeVideo: ImageView?
         var btnPost: Button?
@@ -235,7 +247,6 @@ class TimelineAdapter(
             edtStatus = view?.findViewById(R.id.edtMessage)
             ivTypeImage = view?.findViewById(R.id.ivImage)
             ivTypeVideo = view?.findViewById(R.id.ivVideo)
-            ivTypeLocation = view?.findViewById(R.id.ivLocation)
             btnPost = view?.findViewById(R.id.btnPost)
             btnPreview = view?.findViewById(R.id.btnPreview)
         }

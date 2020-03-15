@@ -125,6 +125,28 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
         onSelectGallery()
     }
 
+    override fun onClickPreview(status: String, fileName: File, type: String) {
+        if (type == TYPE_IMAGE) {
+            val imagePreviewDialogFragment = ImagePreviewDialogFragment()
+            imagePreviewDialogFragment.setStatus(status)
+            imagePreviewDialogFragment.setFileName(fileName)
+            imagePreviewDialogFragment.show(
+                childFragmentManager,
+                imagePreviewDialogFragment.javaClass.simpleName
+            )
+        } else if (type == TYPE_VIDEO) {
+            val videoPreviewDialogFragment = VideoPreviewDialogFragment()
+            videoPreviewDialogFragment.setStatus(status)
+            videoPreviewDialogFragment.setFileName(fileName)
+            videoPreviewDialogFragment.show(
+                childFragmentManager,
+                videoPreviewDialogFragment.javaClass.simpleName
+            )
+        } else {
+            Timber.e("Invalid media")
+        }
+    }
+
 
     private fun onSelectGallery() {
         if (Build.VERSION.SDK_INT >= 23) {
