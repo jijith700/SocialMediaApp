@@ -29,6 +29,9 @@ const val BANK: String = "bank"
 const val BRANCH: String = "branch"
 const val IFSC: String = "ifsc"
 
+const val TITLE_TEXT: String = "title"
+const val VIDEO_URL: String = "videoUrl"
+const val THUMB_URL: String = "thumbUrl"
 
 const val STATUS_MEDIA_TEXT: String = "status-media-text"
 const val FILE_TYPE: String = "file-type"

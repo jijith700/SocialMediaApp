@@ -74,6 +74,13 @@ interface WebApiListener {
     @POST("upload")
     fun uploadVideo(@Header("Authorization") token: String, @Part file: MultipartBody.Part): Observable<Response<UploadResponse>>
 
+    @Multipart
+    @POST("upload")
+    fun uploadVideoAd(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): Observable<Response<UploadResponse>>
+
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("details")
     fun getUserDetails(@Header("Authorization") token: String): Observable<Response<JsonObject>>
@@ -107,8 +114,11 @@ interface WebApiListener {
     fun getAds(@Header("Authorization") token: String): Observable<Response<MyAdResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
-    @POST("get-ads")
-    fun postAd(@Header("Authorization") token: String): Observable<Response<JsonObject>>
+    @POST("post-ad")
+    fun postAd(
+        @Header("Authorization") token: String,
+        @Body videoDetails: RequestBody
+    ): Observable<Response<PostAdResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-personal-info")

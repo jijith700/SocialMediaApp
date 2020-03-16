@@ -24,9 +24,14 @@ import timber.log.Timber
  * A simple [Fragment] subclass.
  *
  */
-class AdRequestFragment : Fragment() {
+class AdRequestFragment : Fragment(), RequestFragment.OnAdPostListener {
 
     private lateinit var binding: FragmentAdRequestBinding
+
+    private var mRequestFragment = RequestFragment()
+
+    private var mMyAdFragment = MyAdFragment()
+
 
     /**
      * Initializing the view model fo the current activity.
@@ -52,6 +57,7 @@ class AdRequestFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mRequestFragment.setOnAdPostListener(this)
         addTabs()
     }
 
@@ -66,10 +72,14 @@ class AdRequestFragment : Fragment() {
     private fun addTabs() {
         Timber.i("Fragment_Name: %s", AdRequestFragment::class.java.simpleName)
         val categoryPagerAdapter = VideoTabAdapter(childFragmentManager)
-        categoryPagerAdapter.addFragment(RequestFragment(), "Request")
-        categoryPagerAdapter.addFragment(MyAdFragment(), "My Ads")
+        categoryPagerAdapter.addFragment(mRequestFragment, "Request")
+        categoryPagerAdapter.addFragment(mMyAdFragment, "My Ads")
 
         vpVideos.adapter = categoryPagerAdapter
         tlVideo.setupWithViewPager(vpVideos)
+    }
+
+    override fun onAdPost() {
+        mMyAdFragment.updateAds()
     }
 }

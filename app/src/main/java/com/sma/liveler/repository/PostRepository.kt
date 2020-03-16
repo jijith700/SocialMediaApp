@@ -1031,50 +1031,6 @@ class PostRepository(var context: Context) {
     /**
      * Method to post an ads.
      */
-    fun postAds() {
-        loading.value = View.VISIBLE
-
-        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
-        Timber.d("token = %s", token)
-
-
-        apiService.postAd(String.format(BEARER, token))
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(object : DisposableObserver<Response<JsonObject>>() {
-                override fun onComplete() {
-                    Timber.e("Complete")
-                }
-
-                override fun onNext(t: Response<JsonObject>) {
-                    Timber.e("%d", t.code())
-
-                    if (t.code() == 200) {
-                        Timber.d("success: %s", t.body())
-                        /*friends.value = t.body()?.friends
-                        success.value = true*/
-                        val friendList = friends.value
-                        /*friends.value =
-                            friendList?.filter { friend -> friend.id != t.body()?.requested_user?.id }*/
-                    } else {
-                        Timber.d("fail: %s", t.body())
-                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
-                        Timber.e("fail: %s", t.message())
-                        errrorMessage.value = context.getString(R.string.error_email_response)
-                    }
-                    loading.value = View.GONE
-                }
-
-                override fun onError(e: Throwable) {
-                    Timber.e(e)
-                    loading.value = View.GONE
-                }
-            })
-    }
-
-    /**
-     * Method to post an ads.
-     */
     fun getPersonalInfo() {
         loading.value = View.VISIBLE
 
@@ -1248,6 +1204,105 @@ class PostRepository(var context: Context) {
                         allUsers.value = t.body()?.users
                         /*friends.value = t.body()?.friends
                         success.value = true*/
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to upload video Ad.
+     */
+    fun uploadMediaAd(title: String, body: MultipartBody.Part) {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        apiService.uploadVideoAd(String.format(BEARER, token), body)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<UploadResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<UploadResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        val uploadResponse = t.body()
+
+                        addNewMediaAd(
+                            title,
+                            uploadResponse?.file!!,
+                            uploadResponse.thumb
+                        )
+                    } else {
+                        Timber.d("fail: %s", t.body())
+                        Timber.d("fail: %s", Gson().toJson(t.errorBody()))
+                        Timber.e("fail: %s", t.message())
+                        errrorMessage.value = context.getString(R.string.error_email_response)
+                    }
+                    loading.value = View.GONE
+                }
+
+                override fun onError(e: Throwable) {
+                    Timber.e(e)
+                    loading.value = View.GONE
+                }
+            })
+    }
+
+    /**
+     * Method to add ne media post.
+     */
+    fun addNewMediaAd(title: String, videoUrl: String, thumbUrl: String) {
+        loading.value = View.VISIBLE
+
+        val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
+        Timber.d("token = %s", token)
+
+        val request = JSONObject()
+        try {
+            request.accumulate(TITLE_TEXT, title)
+            request.accumulate(VIDEO_URL, videoUrl)
+            request.accumulate(THUMB_URL, thumbUrl)
+            Timber.d(request.toString())
+        } catch (e: JSONException) {
+            Timber.e(e.toString())
+        }
+
+        val requestBody = RequestBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            request.toString()
+        )
+
+        apiService.postAd(String.format(BEARER, token), requestBody)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : DisposableObserver<Response<PostAdResponse>>() {
+                override fun onComplete() {
+                    Timber.e("Complete")
+                }
+
+                override fun onNext(t: Response<PostAdResponse>) {
+                    Timber.e("%d", t.code())
+
+                    if (t.code() == 200) {
+                        Timber.d("success: %s", t.body())
+                        success.value = true
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

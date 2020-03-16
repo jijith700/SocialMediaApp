@@ -108,7 +108,7 @@ class MyAdFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
             adAdapter.updateAds(it)
         })
 
-        viewModel.getAds()
+        updateAds()
         pbLoading.visibility = View.VISIBLE
 
     }
@@ -402,4 +402,7 @@ class MyAdFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
         Utils.alert(activity!!, "File uploaded successfully")
     }
 
+    fun updateAds() {
+        viewModel.getAds()
+    }
 }
