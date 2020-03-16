@@ -111,6 +111,11 @@
     <!--AllUsersFragment-->
     <string name="btn_add_friend">Add Friend</string>
 
+    <!--RequestFragment-->
+    <string name="txt_hint_title">Title</string>
+    <string name="btn_browse">Browse</string>
+    <string name="btn_request_ad">Request Ad</string>
+
     <string name="btn_ok">OK</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
@@ -140,6 +145,7 @@
     <string name="error_invalid_file">This type of file cannot be supported</string>
     <string name="error_pic">Select a valid image from gallery</string>
     <string name="error_status">Please add some status</string>
+    <string name="error_title">Please add some title</string>
 
     <!--Preferences-->
     <string name="token">token</string>

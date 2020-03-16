@@ -17,13 +17,23 @@
                 android:id="@+id/ivThumbnail"
                 android:layout_width="0dp"
                 android:layout_height="265dp"
-                android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_sample_video_thumbnail"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rlTop" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/playerView"
+                android:layout_width="0dp"
+                android:layout_height="265dp"
+                android:background="@color/colorTextCommonBlack"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
                 android:id="@+id/rlButton"
@@ -38,12 +48,12 @@
                 app:layout_constraintTop_toTopOf="@+id/ivThumbnail">
 
             <Button
-                    android:id="@+id/ibPlay"
+                    android:id="@+id/btnBrowse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_yellow"
-                    android:text="Browse"
+                    android:text="@string/btn_browse"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextCommonWhite" />
 
@@ -55,38 +65,58 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Share URL"
+                android:text="@string/txt_hint_title"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rlButton" />
 
-
         <EditText
-                android:id="@+id/editText"
+                android:id="@+id/edtTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
-                android:hint="URL"
+                android:hint="@string/txt_hint_title"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvUrl"
                 app:layout_constraintTop_toBottomOf="@+id/tvUrl" />
 
         <Button
-                android:id="@+id/btnCreatePage"
+                android:id="@+id/btnRequestAd"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:background="@drawable/btn_blue"
-                android:text="Request Ad"
+                android:text="@string/btn_request_ad"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBgCommonWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/edtTitle" />
+
+        <RelativeLayout
+                android:id="@+id/layoutLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                    android:id="@+id/pbLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
+
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
