@@ -1,8 +1,8 @@
 package com.sma.liveler.utils
 
 /** The base URL of the API */
-//const val BASE_URL: String = "http://www.liveler.com/api/"
-const val BASE_URL: String = "http://3.15.138.106/socialmedia/public/api/"
+const val BASE_URL: String = "http://www.liveler.com/api/"
+//const val BASE_URL: String = "http://3.15.138.106/socialmedia/public/api/"
 
 const val NAME: String = "name"
 const val EMAIL: String = "email"
@@ -35,6 +35,7 @@ const val THUMB_URL: String = "thumbUrl"
 
 const val STATUS_MEDIA_TEXT: String = "status-media-text"
 const val FILE_TYPE: String = "file-type"
+const val IS_DAILY: String = "isdaily"
 const val FILE_SAVED_NAME: String = "file-saved-name"
 const val THUMB_NAME: String = "thumb-name"
 const val FILE_THUMB: String = "file-thumb"

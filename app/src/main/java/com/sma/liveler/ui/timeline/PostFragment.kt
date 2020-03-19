@@ -92,6 +92,7 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
         binding.rvTimeline.adapter = timelineAdapter
 
         viewModel.posts.observe(this, Observer {
+            layoutLoading?.visibility = View.GONE
             timelineAdapter.updatePosts(it)
         })
 

@@ -32,4 +32,6 @@
     <color name="colorBgSendMessage">#ff5e3a</color>
     <color name="colorBgReceiveMessage">#7442ce</color>
 
+    <color name="colorBgInactive">#888da8</color>
+
 </resources>

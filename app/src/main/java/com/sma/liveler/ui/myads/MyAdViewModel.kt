@@ -43,6 +43,6 @@ class MyAdViewModel() : ViewModel() {
     }
 
     fun uploadVideo(body: MultipartBody.Part) {
-        postRepository.uploadMedia("", TYPE_VIDEO, body)
+        postRepository.uploadMedia("", false, TYPE_VIDEO, body)
     }
 }

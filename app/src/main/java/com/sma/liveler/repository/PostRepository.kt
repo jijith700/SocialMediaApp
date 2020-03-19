@@ -124,8 +124,7 @@ class PostRepository(var context: Context) {
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
-                        /*posts.value = t.body()?.post
-                        success.value = true*/
+                        success.value = true
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))
@@ -645,7 +644,7 @@ class PostRepository(var context: Context) {
     /**
      * Method to upload video.
      */
-    fun uploadMedia(status: String, type: String, body: MultipartBody.Part) {
+    fun uploadMedia(status: String, isDaily: Boolean, type: String, body: MultipartBody.Part) {
         loading.value = View.VISIBLE
 
         val token = Utils.loadPreferenceString(context, context.getString(R.string.token))
@@ -669,9 +668,10 @@ class PostRepository(var context: Context) {
                         addNewMediaPost(
                             status,
                             type,
+                            isDaily,
                             uploadResponse?.fileName!!,
-                            uploadResponse.thumbName,
-                            uploadResponse.thumb
+                            uploadResponse?.thumbName,
+                            uploadResponse?.thumb
                         )
                     } else {
                         Timber.d("fail: %s", t.body())
@@ -735,6 +735,7 @@ class PostRepository(var context: Context) {
     fun addNewMediaPost(
         status: String,
         type: String,
+        isDaily: Boolean,
         fileSavedName: String,
         thumbName: String,
         fileThumb: String
@@ -748,6 +749,7 @@ class PostRepository(var context: Context) {
         try {
             request.accumulate(STATUS_MEDIA_TEXT, status)
             request.accumulate(FILE_TYPE, type)
+            request.accumulate(IS_DAILY, isDaily)
             request.accumulate(FILE_SAVED_NAME, fileSavedName)
             request.accumulate(THUMB_NAME, thumbName)
             request.accumulate(FILE_THUMB, fileThumb)
@@ -774,9 +776,15 @@ class PostRepository(var context: Context) {
 
                     if (t.code() == 200) {
                         Timber.d("success: %s", t.body())
-                        val post = ArrayList<Post>(posts.value)
-                        post.add(0, t.body()?.post!!)
-                        posts.value = post
+                        if (posts.value.isNullOrEmpty()) {
+                            val post = ArrayList<Post>()
+                            post.add(t.body()?.post!!)
+                            posts.value = post
+                        } else {
+                            val post = ArrayList<Post>(posts.value)
+                            post.add(0, t.body()?.post!!)
+                            posts.value = post
+                        }
                     } else {
                         Timber.d("fail: %s", t.body())
                         Timber.d("fail: %s", Gson().toJson(t.errorBody()))

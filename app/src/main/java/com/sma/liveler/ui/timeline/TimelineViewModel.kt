@@ -40,6 +40,6 @@ class TimelineViewModel() : ViewModel() {
     }
 
     fun uploadMedia(status: String, type: String, body: MultipartBody.Part) {
-        postRepository.uploadMedia(status, type, body)
+        postRepository.uploadMedia(status, false, type, body)
     }
 }

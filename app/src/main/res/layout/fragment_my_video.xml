@@ -14,221 +14,225 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clTodaysVideoParent"
+        <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                tools:visibility="visible">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <RelativeLayout
-                    android:id="@+id/relativeLayout2"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clTodaysVideoParent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
-                <TextView
-                        android:id="@+id/tvCredits"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="Credits: 20$"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                <TextView
-                        android:id="@+id/tvRemainingTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvCredits"
-                        android:layout_marginStart="10dp"
-                        android:text="Time Remaining"
-                        android:textSize="16sp" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                    android:id="@+id/layoutPost"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingStart="10dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="0dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
-
-                <androidx.cardview.widget.CardView
+                <RelativeLayout
+                        android:id="@+id/relativeLayout2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="5dp"
-                        app:cardUseCompatPadding="true">
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <TextView
+                            android:id="@+id/tvCredits"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:id="@+id/tvRemainingTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvCredits"
+                            android:layout_marginStart="10dp"
+                            android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:id="@+id/layoutPost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingStart="10dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+                    <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp">
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="5dp"
+                            app:cardUseCompatPadding="true">
 
-                        <RelativeLayout
-                                android:id="@+id/rlTop"
+                        <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                    android:id="@+id/ivUser"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginStart="10dp"
-                                    android:background="@drawable/ic_sample" />
+                                android:layout_height="match_parent"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp">
 
                             <RelativeLayout
+                                    android:id="@+id/rlTop"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_toEndOf="@id/ivUser">
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
 
-                                <TextView
-                                        android:id="@+id/tvFeedTitle"
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/ivUser"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="10dp"
+                                        android:background="@drawable/ic_sample" />
+
+                                <RelativeLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginStart="10dp"
-                                        android:layout_marginEnd="10dp"
-                                        android:layout_toStartOf="@+id/ivMore"
-                                        android:text="Mariana Valentine shared a link"
-                                        android:textColor="@color/colorTextCommonBlack"
-                                        android:textStyle="bold" />
+                                        android:layout_centerVertical="true"
+                                        android:layout_toEndOf="@id/ivUser">
 
-                                <TextView
-                                        android:id="@+id/tvTime"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_below="@id/tvFeedTitle"
-                                        android:layout_marginStart="10dp"
-                                        android:text="March 4 at 2:05pm" />
+                                    <TextView
+                                            android:id="@+id/tvFeedTitle"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="10dp"
+                                            android:layout_marginEnd="10dp"
+                                            android:layout_toStartOf="@+id/ivMore"
+                                            android:textColor="@color/colorTextCommonBlack"
+                                            android:textStyle="bold" />
 
-                                <ImageView
-                                        android:id="@+id/ivMore"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="true" />
+                                    <TextView
+                                            android:id="@+id/tvTime"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@id/tvFeedTitle"
+                                            android:layout_marginStart="10dp" />
+
+                                    <ImageView
+                                            android:id="@+id/ivMore"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true" />
+
+                                </RelativeLayout>
 
                             </RelativeLayout>
 
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                                android:id="@+id/layoutVideo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/rlTop">
-
-                            <ImageView
-                                    android:id="@+id/ivThumbnail"
+                            <RelativeLayout
+                                    android:id="@+id/layoutVideo"
                                     android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/rlTop">
+
+                                <ImageView
+                                        android:id="@+id/ivThumbnail"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="265dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/ic_sample_video_thumbnail"
+                                        android:visibility="visible" />
+
+                                <com.google.android.exoplayer2.ui.PlayerView
+                                        android:id="@+id/playerView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="265dp"
+                                        android:background="@color/colorTextCommonBlack"
+                                        android:scaleType="centerCrop"
+                                        android:visibility="gone" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                    android:id="@+id/rlPlayButton"
+                                    android:layout_width="0dp"
                                     android:layout_height="265dp"
                                     android:scaleType="centerCrop"
                                     android:src="@drawable/ic_sample_video_thumbnail"
-                                    android:visibility="visible" />
+                                    android:visibility="visible"
+                                    app:layout_constraintBottom_toBottomOf="@+id/layoutVideo"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/layoutVideo">
 
-                            <com.google.android.exoplayer2.ui.PlayerView
-                                    android:id="@+id/playerView"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="265dp"
-                                    android:background="@color/colorTextCommonBlack"
-                                    android:scaleType="centerCrop"
-                                    android:visibility="gone" />
+                                <ImageButton
+                                        android:id="@+id/ibPlay"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:background="@drawable/bg_btn_play" />
 
-                        </RelativeLayout>
+                            </RelativeLayout>
 
-                        <RelativeLayout
-                                android:id="@+id/rlPlayButton"
-                                android:layout_width="0dp"
-                                android:layout_height="265dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_sample_video_thumbnail"
-                                android:visibility="visible"
-                                app:layout_constraintBottom_toBottomOf="@+id/layoutVideo"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/layoutVideo">
-
-                            <ImageButton
-                                    android:id="@+id/ibPlay"
+                            <LinearLayout
+                                    android:id="@+id/llLike"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:background="@drawable/bg_btn_play" />
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="10dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/rlPlayButton">
 
-                        </RelativeLayout>
+                                <ImageView
+                                        android:id="@+id/ivTotalLike"
+                                        android:layout_width="18dp"
+                                        android:layout_height="18dp"
+                                        android:layout_gravity="center"
+                                        android:background="@drawable/ic_like_post_grey" />
 
-                        <LinearLayout
-                                android:id="@+id/llLike"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="10dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/rlPlayButton">
+                                <TextView
+                                        android:id="@+id/tvTotalLike"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginStart="5dp" />
 
-                            <ImageView
-                                    android:id="@+id/ivTotalLike"
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/ic_like_post_grey" />
+                            </LinearLayout>
 
-                            <TextView
-                                    android:id="@+id/tvTotalLike"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/tvLike"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="5dp"
-                                    android:layout_toEndOf="@+id/ivTotalChat"
-                                    android:text="0" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                <Button
+                        android:id="@+id/btnRequestAmount"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/btn_blue"
+                        android:text="@string/btn_request_amount"
+                        android:textAllCaps="false"
+                        android:enabled="false"
+                        android:textColor="@color/colorBgCommonWhite"
+                        app:layout_constraintEnd_toEndOf="@+id/clTodaysVideoParent"
+                        app:layout_constraintTop_toBottomOf="@+id/layoutPost" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                    android:id="@+id/btnCreatePage"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/btn_blue"
-                    android:text="Request Amount"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorBgCommonWhite"
-                    app:layout_constraintEnd_toEndOf="@+id/clTodaysVideoParent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutPost" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
         <ProgressBar
                 android:id="@+id/pbLoading"
@@ -244,7 +248,7 @@
                 android:id="@+id/tvNoVideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No videos uploaded today"
+                android:text="@string/error_no_video"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

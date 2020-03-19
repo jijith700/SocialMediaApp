@@ -116,6 +116,13 @@
     <string name="btn_browse">Browse</string>
     <string name="btn_request_ad">Request Ad</string>
 
+    <!--VideoUploadDialogFragment-->
+    <string name="btn_post">Post</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!--MyVideoFragment-->
+    <string name="btn_request_amount">Request Amount</string>
+
     <string name="btn_ok">OK</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
@@ -146,6 +153,8 @@
     <string name="error_pic">Select a valid image from gallery</string>
     <string name="error_status">Please add some status</string>
     <string name="error_title">Please add some title</string>
+
+    <string name="error_no_video">No videos uploaded today</string>
 
     <!--Preferences-->
     <string name="token">token</string>

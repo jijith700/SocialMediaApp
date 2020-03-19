@@ -308,4 +308,7 @@ class TimelineAdapter(
             }
         }
     }
+
+    fun update() {
+    }
 }

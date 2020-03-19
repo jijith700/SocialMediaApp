@@ -26,12 +26,14 @@ class MyVideoViewModel() : ViewModel() {
     var success: MutableLiveData<Boolean> = MutableLiveData()
 
     var todaysPost = MutableLiveData<Post>()
+    var posts = MutableLiveData<List<Post>>()
     var user = MutableLiveData<User>()
 
     constructor(context: Context, postRepository: PostRepository) : this() {
         this.context = context
         this.postRepository = postRepository
         todaysPost = postRepository.todaysPost
+        posts = postRepository.posts
         user = postRepository.user
         loadingVisibility = postRepository.loading
         errorMessage = postRepository.errrorMessage
@@ -42,7 +44,11 @@ class MyVideoViewModel() : ViewModel() {
         postRepository.getDailyVideo()
     }
 
-    fun uploadVideo(body: MultipartBody.Part) {
-        postRepository.uploadMedia("", TYPE_VIDEO, body)
+    fun uploadVideo(title: String, body: MultipartBody.Part) {
+        postRepository.uploadMedia(title, true, TYPE_VIDEO, body)
+    }
+
+    fun redeem() {
+
     }
 }

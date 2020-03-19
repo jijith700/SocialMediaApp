@@ -53,7 +53,8 @@ import java.io.InputStream
  * A simple [Fragment] subclass.
  *
  */
-class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
+class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks,
+    VideoUploadDialogFragment.OnClickPostListener {
 
     private val REQUEST_PICK_VIDEO = 83
     private val REQUEST_VIDEO_CAPTURE = 84
@@ -111,11 +112,20 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
             pbLoading.visibility = View.GONE
         })
 
+        viewModel.posts.observe(this, Observer {
+            pbLoading.visibility = View.GONE
+            viewModel.getDailyVideo()
+        })
+
         viewModel.getDailyVideo()
         pbLoading.visibility = View.VISIBLE
 
         fabUploadVideo.setOnClickListener {
             onSelectGallery()
+        }
+
+        btnRequestAmount.setOnClickListener {
+            viewModel.redeem()
         }
     }
 
@@ -124,7 +134,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
         binding.viewModel = viewModel
     }
 
-    fun updateVideoDetails(post: Post) {
+    private fun updateVideoDetails(post: Post) {
         if (post != null) {
             clTodaysVideoParent.visibility = View.VISIBLE
             tvNoVideo.visibility = View.GONE
@@ -135,27 +145,20 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
             Picasso.get().load(post.thumbnail).into(ivThumbnail!!)
 
             tvFeedTitle?.text = post.userName
-            tvTime?.text = "" + post.postTime
-            tvTotalLike?.text = "" + post.likesCount
-            tvRemainingTime.text = "Time Remaining: " + post.time_remaining
-
+            tvTime?.text = String.format("%s", post.postTime)
+            tvTotalLike?.text = String.format("%s", post.likesCount)
+            tvRemainingTime.text = String.format("Time Remaining: %s", post.time_remaining)
 
             val player = SimpleExoPlayer.Builder(activity!!).build()
-
             playerView?.player = player
 
-            // Produces DataSource instances through which media data is loaded.
-            // Produces DataSource instances through which media data is loaded.
             val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
                 activity!!,
                 Util.getUserAgent(activity!!, getString(R.string.app_name))
             )
-            // This is the MediaSource representing the media to be played.
-            // This is the MediaSource representing the media to be played.
+
             val videoSource: MediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(Uri.parse(post.video))
-            // Prepare the player with the source.
-            // Prepare the player with the source.
 
             ibPlay?.setOnClickListener {
                 player.prepare(videoSource)
@@ -298,19 +301,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
                 //                MultipartBody.Part body = MultipartBody.Part.createFormData("myFile", new File(imageUri.getPath()).getName(), RequestBody.create(MediaType.parse("image/*"), fileBody));
                 val body = MultipartBody.Part.createFormData("file", filePath.getName(), fileBody)
 
-//                productImage.setImageBitmap(bitmap)
-
-
-//                Picasso
-//                        .with(activity!!)
-//                        .load(File(fileName))
-//                        .placeholder(R.drawable.ic_ph_product)
-//                        .into(productImage)
-
             } catch (e: NullPointerException) {
-                //                if (mProgressDialog.isShowing())
-                //                    mProgressDialog.dismiss();
-                //                fileName = "";
                 Toast.makeText(activity!!, getString(R.string.error_pic), Toast.LENGTH_SHORT).show()
                 Timber.e(e.toString())
             }
@@ -322,7 +313,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
             val imageUri = data?.data
             val imageStream: InputStream
             try {
-                imageStream = activity!!.contentResolver.openInputStream(imageUri)
+                imageStream = activity?.contentResolver?.openInputStream(imageUri!!)!!
                 val bitmap = BitmapFactory.decodeStream(imageStream)
 
                 Timber.e("FILE PATH %s", imageUri!!.path)
@@ -352,21 +343,16 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
                     return
                 }
 
-                val fileBody = RequestBodyProgress(filePath!!, TYPE_VIDEO, this)
-
-                //                RequestBody tokenBody = RequestBody.create(okhttp3.MultipartBody.FORM, token);
-
-                //                RequestBody tokenBody = RequestBody.create(MediaType.parse("text/plain"), new String(token));
-                //                MultipartBody.Part body = MultipartBody.Part.createFormData("myFile", new File(imageUri.getPath()).getName(), RequestBody.create(MediaType.parse("image/*"), fileBody));
-                val body = MultipartBody.Part.createFormData("file", filePath.getName(), fileBody)
-
-                viewModel.uploadVideo(body)
-
+                val videoUploadDialogFragment = VideoUploadDialogFragment()
+                videoUploadDialogFragment.setFileName(filePath!!)
+                videoUploadDialogFragment.setOnClickPostListener(this)
+                videoUploadDialogFragment.isCancelable = false
+                videoUploadDialogFragment.show(
+                    childFragmentManager,
+                    videoUploadDialogFragment.javaClass.simpleName
+                )
 
             } catch (e: FileNotFoundException) {
-                //                if (mProgressDialog.isShowing())
-                //                    mProgressDialog.dismiss();
-                //                fileName = "";
                 Toast.makeText(activity!!, getString(R.string.error_pic), Toast.LENGTH_SHORT).show()
                 Timber.e(e.toString())
             } catch (e: NullPointerException) {
@@ -384,7 +370,7 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
         }
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
@@ -408,4 +394,9 @@ class MyVideoFragment : Fragment(), RequestBodyProgress.UploadCallbacks {
         Utils.alert(activity!!, "File uploaded successfully")
     }
 
+    override fun onClickPost(title: String, fileName: File) {
+        val fileBody = RequestBodyProgress(fileName, TYPE_VIDEO, this)
+        val body = MultipartBody.Part.createFormData("file", fileName.name, fileBody)
+        viewModel.uploadVideo(title, body)
+    }
 }

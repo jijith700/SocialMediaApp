@@ -25,7 +25,10 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("like-post")
-    fun likePost(@Header("Authorization") token: String, @Body postId: RequestBody): Observable<Response<PostResponse>>
+    fun likePost(
+        @Header("Authorization") token: String,
+        @Body postId: RequestBody
+    ): Observable<Response<PostResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-groups")
@@ -52,19 +55,31 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-friends")
-    fun getFriends(@Header("Authorization") token: String, @Body postId: RequestBody): Observable<Response<FriendsResponse>>
+    fun getFriends(
+        @Header("Authorization") token: String,
+        @Body postId: RequestBody
+    ): Observable<Response<FriendsResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("unfriend")
-    fun unFriend(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<UnFriendResponse>>
+    fun unFriend(
+        @Header("Authorization") token: String,
+        @Body userId: RequestBody
+    ): Observable<Response<UnFriendResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("post-status")
-    fun addNewPost(@Header("Authorization") token: String, @Body status: RequestBody): Observable<Response<NewPostResponse>>
+    fun addNewPost(
+        @Header("Authorization") token: String,
+        @Body status: RequestBody
+    ): Observable<Response<NewPostResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("set-bank-info")
-    fun addBankAccount(@Header("Authorization") token: String, @Body status: RequestBody): Observable<Response<BankResponse>>
+    fun addBankAccount(
+        @Header("Authorization") token: String,
+        @Body status: RequestBody
+    ): Observable<Response<BankResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-bank-info")
@@ -72,7 +87,10 @@ interface WebApiListener {
 
     @Multipart
     @POST("upload")
-    fun uploadVideo(@Header("Authorization") token: String, @Part file: MultipartBody.Part): Observable<Response<UploadResponse>>
+    fun uploadVideo(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): Observable<Response<UploadResponse>>
 
     @Multipart
     @POST("upload")
@@ -87,7 +105,10 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("post-media-status")
-    fun addNewMediaPost(@Header("Authorization") token: String, @Body status: RequestBody): Observable<Response<NewPostResponse>>
+    fun addNewMediaPost(
+        @Header("Authorization") token: String,
+        @Body status: RequestBody
+    ): Observable<Response<NewPostResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("read-all-notification")
@@ -99,15 +120,24 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("add-friend")
-    fun addFriend(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+    fun addFriend(
+        @Header("Authorization") token: String,
+        @Body userId: RequestBody
+    ): Observable<Response<JsonObject>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("accept-request")
-    fun acceptFriendRequest(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+    fun acceptFriendRequest(
+        @Header("Authorization") token: String,
+        @Body userId: RequestBody
+    ): Observable<Response<JsonObject>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("cancel-request")
-    fun cancelFriendRequest(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<JsonObject>>
+    fun cancelFriendRequest(
+        @Header("Authorization") token: String,
+        @Body userId: RequestBody
+    ): Observable<Response<JsonObject>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-ads")
@@ -130,11 +160,17 @@ interface WebApiListener {
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("send-message")
-    fun sendMessage(@Header("Authorization") token: String, @Body chat: RequestBody): Observable<Response<SendMessageResponse>>
+    fun sendMessage(
+        @Header("Authorization") token: String,
+        @Body chat: RequestBody
+    ): Observable<Response<SendMessageResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("get-messages")
-    fun getMessage(@Header("Authorization") token: String, @Body userId: RequestBody): Observable<Response<ReceiveMessageResponse>>
+    fun getMessage(
+        @Header("Authorization") token: String,
+        @Body userId: RequestBody
+    ): Observable<Response<ReceiveMessageResponse>>
 
     @Headers("Accept: application/json", "Content-type:application/json")
     @POST("all-users")
