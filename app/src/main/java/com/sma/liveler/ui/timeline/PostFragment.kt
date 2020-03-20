@@ -92,10 +92,17 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
         binding.rvTimeline.adapter = timelineAdapter
 
         viewModel.posts.observe(this, Observer {
+            if (it.isNullOrEmpty()) {
+                tvNoPost.visibility = View.VISIBLE
+            } else {
+                tvNoPost.visibility = View.GONE
+            }
             layoutLoading?.visibility = View.GONE
             timelineAdapter.updatePosts(it)
         })
 
+        layoutLoading?.visibility = View.VISIBLE
+        tvNoPost.visibility = View.GONE
         viewModel.getPosts()
     }
 
@@ -147,7 +154,6 @@ class PostFragment : Fragment(), OnClickPostListener, OnClickMediaListener,
             Timber.e("Invalid media")
         }
     }
-
 
     private fun onSelectGallery() {
         if (Build.VERSION.SDK_INT >= 23) {

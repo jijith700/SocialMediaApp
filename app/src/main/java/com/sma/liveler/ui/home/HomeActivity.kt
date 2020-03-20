@@ -377,5 +377,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } catch (e: IllegalStateException) {
             Timber.e("fragment already added: %s", e.toString())
         }
+
+        Utils.hideKeyboard(this, tabLayout)
     }
 }

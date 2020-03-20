@@ -18,6 +18,7 @@ import com.sma.liveler.interfaces.OnAllUsersListener
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.AllUsersAdapter
 import com.sma.liveler.utils.VerticalDividerItemDecoration
+import kotlinx.android.synthetic.main.fragment_all_users.*
 
 /**
  * A simple [Fragment] subclass.
@@ -63,8 +64,18 @@ class AllUsersFragment : Fragment(), OnAllUsersListener {
         binding.rvFollowers.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvFollowers.adapter = allUsersAdapter
 
-        viewModel.allUsers.observe(this, Observer { allUsersAdapter?.updateAllUsers(it) })
+        viewModel.allUsers.observe(this, Observer {
+            if (it.isNullOrEmpty()) {
+                tvNoUsers.visibility = View.VISIBLE
+            } else {
+                tvNoUsers.visibility = View.GONE
+            }
+            layoutLoading.visibility = View.GONE
+            allUsersAdapter?.updateAllUsers(it)
+        })
 
+        layoutLoading.visibility = View.VISIBLE
+        tvNoUsers.visibility = View.GONE
         viewModel.getAllUsers();
     }
 

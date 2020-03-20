@@ -22,6 +22,7 @@ import com.sma.liveler.ui.home.HomeActivity
 import com.sma.liveler.utils.FRIEND
 import com.sma.liveler.utils.VerticalDividerItemDecoration
 import com.sma.liveler.vo.Friend
+import kotlinx.android.synthetic.main.fragment_chat_list.*
 
 /**
  * A simple [Fragment] subclass.
@@ -59,7 +60,6 @@ class ChatListFragment : Fragment(), OnClickFriendListener {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chatListAdapter = ChatListAdapter(this)
@@ -67,10 +67,19 @@ class ChatListFragment : Fragment(), OnClickFriendListener {
         binding.rvFollowers.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvFollowers.adapter = chatListAdapter
 
-        viewModel.friends.observe(this, Observer { chatListAdapter.updateFriends(it) })
+        viewModel.friends.observe(this, Observer {
+            if (it.isNullOrEmpty()) {
+                tvNoChat.visibility = View.VISIBLE
+            } else {
+                tvNoChat.visibility = View.GONE
+            }
+            layoutLoading.visibility = View.GONE
+            chatListAdapter.updateFriends(it)
+        })
 
+        layoutLoading.visibility = View.VISIBLE
+        tvNoChat.visibility = View.GONE
         viewModel.getFriends();
-
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {

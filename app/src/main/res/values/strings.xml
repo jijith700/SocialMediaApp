@@ -155,6 +155,11 @@
     <string name="error_title">Please add some title</string>
 
     <string name="error_no_video">No videos uploaded today</string>
+    <string name="error_no_notification">No notifications</string>
+    <string name="error_no_post">No posts are available</string>
+    <string name="error_no_friends">No friend requests are available</string>
+    <string name="error_no_chat">No chat history is available</string>
+    <string name="error_no_users">No users are is available</string>
 
     <!--Preferences-->
     <string name="token">token</string>

@@ -18,6 +18,7 @@ import com.sma.liveler.interfaces.OnClickFriendListener
 import com.sma.liveler.repository.PostRepository
 import com.sma.liveler.ui.adapter.FollowingAdapter
 import com.sma.liveler.utils.VerticalDividerItemDecoration
+import kotlinx.android.synthetic.main.fragment_following.*
 
 /**
  * A simple [Fragment] subclass.
@@ -55,7 +56,6 @@ class FollowingFragment : Fragment(), OnClickFriendListener {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         friendsAdapter = FollowingAdapter(this)
@@ -63,16 +63,24 @@ class FollowingFragment : Fragment(), OnClickFriendListener {
         binding.rvFollowing.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvFollowing.adapter = friendsAdapter
 
-        viewModel.friendsRequest.observe(this, Observer { friendsAdapter.updateFollowing(it) })
+        viewModel.friendsRequest.observe(this, Observer {
+            if (it.isNullOrEmpty()) {
+                tvNoFollowing.visibility = View.VISIBLE
+            } else {
+                tvNoFollowing.visibility = View.GONE
+            }
+            layoutLoading.visibility = View.GONE
+            friendsAdapter.updateFollowing(it)
+        })
 
+        layoutLoading.visibility = View.VISIBLE
+        tvNoFollowing.visibility = View.GONE
         viewModel.getFollowing()
-
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
-
     }
 
     override fun onRemove(userId: Int) {
