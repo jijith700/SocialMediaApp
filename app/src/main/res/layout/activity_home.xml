@@ -75,5 +75,44 @@
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="fixed" />
 
+        <LinearLayout
+                android:id="@+id/layoutSearch"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/colorTab"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.040000002">
+
+
+            <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight=".9"
+                    android:focusable="true"
+                    android:hint="@string/hint_search"
+                    android:textColor="@color/colorBgCommonWhite"
+                    android:textColorHint="@color/colorBgCommonWhite">
+
+                <requestFocus />
+            </EditText>
+
+            <ImageButton
+                    android:id="@+id/ibClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:drawable/ic_menu_close_clear_cancel" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

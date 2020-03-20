@@ -27,7 +27,7 @@ import com.sma.liveler.utils.VerticalDividerItemDecoration
 class AllUsersFragment : Fragment(), OnAllUsersListener {
 
     private lateinit var binding: FragmentAllUsersBinding
-    private lateinit var allUsersAdapter: AllUsersAdapter
+    private var allUsersAdapter: AllUsersAdapter? = null
 
     /**
      * Initializing the view model fo the current activity.
@@ -63,7 +63,7 @@ class AllUsersFragment : Fragment(), OnAllUsersListener {
         binding.rvFollowers.addItemDecoration(VerticalDividerItemDecoration(20, false))
         binding.rvFollowers.adapter = allUsersAdapter
 
-        viewModel.allUsers.observe(this, Observer { allUsersAdapter.updateAllUsers(it) })
+        viewModel.allUsers.observe(this, Observer { allUsersAdapter?.updateAllUsers(it) })
 
         viewModel.getAllUsers();
     }
@@ -71,10 +71,13 @@ class AllUsersFragment : Fragment(), OnAllUsersListener {
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
-
     }
 
     override fun onClickAddFriend(userId: Int) {
         viewModel.addFriend(userId)
+    }
+
+    fun search(keyword: String) {
+        allUsersAdapter?.filter?.filter(keyword)
     }
 }

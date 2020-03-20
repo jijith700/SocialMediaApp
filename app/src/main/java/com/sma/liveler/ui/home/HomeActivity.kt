@@ -2,7 +2,9 @@ package com.sma.liveler.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
@@ -38,6 +40,7 @@ import com.sma.liveler.ui.timeline.PostFragment
 import com.sma.liveler.ui.videos.VideoFragment
 import com.sma.liveler.utils.Utils
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import timber.log.Timber
 
@@ -48,6 +51,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var tabAdapter: TabAdapter
 
     var userId: Int? = null
+
+    private var allUsersFragment: AllUsersFragment? = null
 
     /**
      * Initializing the view model fo the current activity.
@@ -142,11 +147,55 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                if (tab!!.position == 0) {
-                    if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                        binding.drawerLayout.openDrawer(GravityCompat.START)
-                    } else {
-                        binding.drawerLayout.closeDrawers()
+                when (tab!!.position) {
+                    0 -> {
+                        if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.openDrawer(GravityCompat.START)
+                        } else {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                    }
+                    1 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(PostFragment(), false)
+                    }
+                    2 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(FollowingFragment(), false)
+                    }
+                    3 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(ChatListFragment(), false)
+                    }
+                    4 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(NotificationFragment(), false)
+                    }
+                    5 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        layoutSearch.visibility = View.VISIBLE
+                        if (allUsersFragment != null) {
+                            switchPage(allUsersFragment!!, false)
+                        } else {
+                            allUsersFragment = AllUsersFragment()
+                            switchPage(allUsersFragment!!, false)
+                        }
+                    }
+                    6 -> {
+                        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                            binding.drawerLayout.closeDrawers()
+                        }
+                        switchPage(ChatListFragment(), false)
                     }
                 }
             }
@@ -192,7 +241,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                             binding.drawerLayout.closeDrawers()
                         }
-                        switchPage(AllUsersFragment(), false)
+                        layoutSearch.visibility = View.VISIBLE
+                        if (allUsersFragment != null) {
+                            switchPage(allUsersFragment!!, false)
+                        } else {
+                            allUsersFragment = AllUsersFragment()
+                            switchPage(allUsersFragment!!, false)
+                        }
                     }
                     6 -> {
                         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -223,6 +278,24 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .into(ivProfilePic)
             tvUserName.text = it.firstName
             userId = it.id
+        })
+
+        ibClose.setOnClickListener {
+            layoutSearch.visibility = View.GONE
+            edtSearch.setText("")
+            switchPage(PostFragment(), false)
+        }
+
+        edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                allUsersFragment?.search(p0.toString())
+            }
         })
     }
 
