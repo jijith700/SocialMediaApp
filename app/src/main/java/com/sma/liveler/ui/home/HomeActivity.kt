@@ -28,6 +28,7 @@ import com.sma.liveler.ui.account.BankAccountFragment
 import com.sma.liveler.ui.adapter.TabAdapter
 import com.sma.liveler.ui.adrequest.AdRequestFragment
 import com.sma.liveler.ui.allusers.AllUsersFragment
+import com.sma.liveler.ui.birthday.BirthdayFragment
 import com.sma.liveler.ui.chatlist.ChatListFragment
 import com.sma.liveler.ui.favfeeds.FavoriteFragment
 import com.sma.liveler.ui.following.FollowingFragment
@@ -309,6 +310,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_favorites -> switchPage(FavoriteFragment(), false)
             R.id.nav_groups -> switchPage(GroupsFragment(), false)
             R.id.nav_pages -> switchPage(PagesFragment(), false)
+            R.id.nav_birthdays -> switchPage(BirthdayFragment(), false)
             R.id.nav_logout -> {
                 Utils.clearAllPreference(this)
                 val intent = Intent(this, LoginActivity::class.java)
