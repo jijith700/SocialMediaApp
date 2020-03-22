@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_following.*
 class BirthdayFragment : Fragment(), OnClickFriendListener {
 
     private lateinit var binding: FragmentBirthdayBinding
-    private lateinit var bithDayAdapter: BirthDayAdapter
+    private lateinit var birthDayAdapter: BirthDayAdapter
 
     /**
      * Initializing the view model fo the current activity.
@@ -60,16 +60,21 @@ class BirthdayFragment : Fragment(), OnClickFriendListener {
         super.onViewCreated(view, savedInstanceState)
 
         val birthDayList = viewModel.getBirthDay()
-        bithDayAdapter = BirthDayAdapter(activity!!, this, birthDayList)
+        birthDayAdapter = BirthDayAdapter(activity!!, this, birthDayList)
         binding.rvFollowing.layoutManager = GridLayoutManager(context, 1)
-        binding.rvFollowing.addItemDecoration(VerticalDividerItemDecoration(20, false))
-        binding.rvFollowing.adapter = bithDayAdapter
+        binding.rvFollowing.addItemDecoration(VerticalDividerItemDecoration(15, false))
+        binding.rvFollowing.adapter = birthDayAdapter
+
+        for (i in 0 until birthDayList.size) {
+            birthDayAdapter.toggleGroup(i)
+        }
 
         viewModel.friends.observe(this, Observer {
             layoutLoading.visibility = View.GONE
             if (!it.isNullOrEmpty()) {
                 viewModel.getBirthDay(birthDayList, it)
-                bithDayAdapter.notifyDataSetChanged()
+                birthDayAdapter.notifyDataSetChanged()
+
             }
         })
 
@@ -81,13 +86,5 @@ class BirthdayFragment : Fragment(), OnClickFriendListener {
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewModel = viewModel
-    }
-
-    override fun onRemove(userId: Int) {
-        viewModel.acceptFriendRequest(userId)
-    }
-
-    override fun onAdd(userId: Int) {
-        viewModel.cancelFriendRequest(userId)
     }
 }

@@ -15,6 +15,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.sma.liveler.R
 import com.sma.liveler.databinding.FragmentAboutBinding
 import com.sma.liveler.repository.PostRepository
+import com.sma.liveler.ui.home.HomeActivity
+import com.sma.liveler.ui.profile.EditProfileFragment
+import com.sma.liveler.utils.PROFILE
+import com.sma.liveler.vo.PersonalInfo
 import kotlinx.android.synthetic.main.fragment_about.*
 
 
@@ -25,6 +29,9 @@ import kotlinx.android.synthetic.main.fragment_about.*
 class AboutFragment : Fragment() {
 
     private lateinit var binding: FragmentAboutBinding
+
+    private lateinit var personalInfo: PersonalInfo
+
     /**
      * Initializing the view model fo the current activity.
      */
@@ -54,9 +61,12 @@ class AboutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        layoutLoading.visibility = View.VISIBLE
         viewModel.getPersonalIfo()
 
         viewModel.userInfo.observe(this, Observer {
+            layoutLoading.visibility = View.GONE
+            personalInfo = it.personalInfo
             if (it != null) {
                 tvUserName.text = it.personalInfo.name
                 tvUserDetails.text = it.personalInfo.profile.city
@@ -82,8 +92,15 @@ class AboutFragment : Fragment() {
                 tv_status.text = ""
                 tv_email.text = ""
             }
-
         })
+
+        tv_edit.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable(PROFILE, personalInfo)
+            val editProfileFragment = EditProfileFragment()
+            editProfileFragment.arguments = bundle
+            (context as HomeActivity).switchPage(editProfileFragment, true)
+        }
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {

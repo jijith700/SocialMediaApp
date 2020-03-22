@@ -60,9 +60,11 @@
     <string name="tv_lives_in">Lives in</string>
     <string name="tv_occupation">Occupation</string>
     <string name="tv_joined">Joined</string>
+    <string name="tv_website">Website</string>
     <string name="tv_gender">Gender</string>
     <string name="tv_status">Status</string>
     <string name="tv_email">Email</string>
+    <string name="tv_edit">Edit</string>
 
     <!--FriendsFragment-->
     <string name="tv_user_friends">James\'s Freinds (86)</string>
@@ -101,8 +103,21 @@
     <string name="txt_hint_lives_in">Lives in</string>
     <string name="txt_hint_occupation">Occupation</string>
     <string name="txt_hint_joined">Joined</string>
+    <string name="txt_hint_website">Website</string>
     <string name="txt_hint_gender">Gender</string>
     <string name="txt_hint_status">Status</string>
+
+    <array name="gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </array>
+
+    <array name="status">
+        <item>Select Status</item>
+        <item>Single</item>
+        <item>Married</item>
+    </array>
 
     <!--ChatFragment-->
     <string name="txt_hint_message">Enter message</string>

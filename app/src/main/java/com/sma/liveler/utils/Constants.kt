@@ -41,6 +41,7 @@ const val THUMB_NAME: String = "thumb-name"
 const val FILE_THUMB: String = "file-thumb"
 
 const val FRIEND: String = "friend"
+const val PROFILE: String = "profile"
 
 const val TYPE_TEXT: String = "TEXT"
 const val TYPE_IMAGE: String = "IMAGE"

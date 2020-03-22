@@ -1,5 +1,8 @@
 package com.sma.liveler.vo
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 data class Video(
     val title: String,
     val time: String,
@@ -24,6 +27,7 @@ data class Posts(
     val total: Int
 )
 
+@Parcelize
 data class Profile(
     val about: String,
     val birth_place: String,
@@ -42,8 +46,9 @@ data class Profile(
     val user_id: Int,
     val wallet_amount: String,
     val website: String
-)
+) : Parcelable
 
+@Parcelize
 data class Settings(
     val locale: String
-)
+) : Parcelable

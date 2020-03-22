@@ -88,19 +88,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.040000002">
 
-
             <EditText
                     android:id="@+id/edtSearch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_weight=".9"
-                    android:focusable="true"
                     android:hint="@string/hint_search"
                     android:textColor="@color/colorBgCommonWhite"
                     android:textColorHint="@color/colorBgCommonWhite">
 
-                <requestFocus />
             </EditText>
 
             <ImageButton

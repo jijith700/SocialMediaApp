@@ -4,7 +4,9 @@ import com.sma.liveler.vo.Friend
 
 interface OnClickFriendListener {
 
-    fun onRemove(userId: Int)
+    fun onRemove(userId: Int) {
+
+    }
 
     fun onAdd(userId: Int) {
 
