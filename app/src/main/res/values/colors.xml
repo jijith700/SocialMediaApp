@@ -8,11 +8,13 @@
     <color name="colorEdtLine">#ffc000</color>
     <color name="colorTextForgotPass">#e60808</color>
 
+    <color name="colorBackgroundCommon">#9E0813</color>
     <color name="colorTextCommonWhite">#FFFFFF</color>
     <color name="colorTextCommonBlack">#000000</color>
     <color name="colorTextCommonGrey">#9C9A9A</color>
     <color name="colorBgCommonFeedButton">#9A9EC2</color>
     <color name="colorBgBlueButton">#38a9ff</color>
+    <color name="colorTextCommonRed">#9E0813</color>
 
 
     <color name="colorTab">#3f4156</color>

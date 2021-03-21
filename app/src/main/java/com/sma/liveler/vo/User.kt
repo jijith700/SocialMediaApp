@@ -10,7 +10,8 @@ data class User(
     @SerializedName("name") @Expose val firstName: String,
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String,
-    @SerializedName("cpassword") val cPassword: String
+    @SerializedName("cpassword") val cPassword: String,
+    @SerializedName("cdob") val dateOfBirth: String
 
 ) {
 
@@ -25,5 +26,5 @@ data class User(
     val friendRequests: List<FriendRequest>? = null
     val unread_notifications: List<UnreadNotification>? = null
 
-    constructor() : this("", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "", "")
 }

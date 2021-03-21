@@ -9,23 +9,23 @@
                 type="com.sma.liveler.vo.User" />
 
         <variable
-            name="viewModel"
+                name="viewModel"
                 type="com.sma.liveler.ui.registration.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_login">
+            android:background="@color/colorBackgroundCommon">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <EditText
                     android:id="@+id/edtFirstName"
@@ -34,132 +34,100 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
-                    android:backgroundTint="@color/colorEdtLine"
+                    android:background="@drawable/edt_white_normal"
+                    android:drawableStart="@drawable/ic_user"
                     android:ems="10"
                     android:hint="@string/txt_hint_first_name"
                     android:inputType="textPersonName"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:textColor="@color/colorTextCommonWhite"
-                    android:textColorHint="@color/colorTextCommonWhite"
+                    android:padding="15dp"
+                    android:textColor="@color/colorTextCommonRed"
+                    android:textColorHint="@color/colorTextCommonRed"
+                    app:layout_constraintBottom_toTopOf="@+id/edtEmail"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                    android:id="@+id/edtMiddleName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/colorEdtLine"
-                    android:ems="10"
-                    android:hint="@string/txt_hint_middle_name"
-                    android:text="@{viewModel.user.middleName}"
-                    android:inputType="textPersonName"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:textColor="@color/colorTextCommonWhite"
-                    android:textColorHint="@color/colorTextCommonWhite"
-                    app:layout_constraintEnd_toEndOf="@+id/edtFirstName"
-                    app:layout_constraintStart_toStartOf="@+id/edtFirstName"
-                    app:layout_constraintTop_toBottomOf="@+id/edtFirstName" />
-
-            <EditText
-                    android:id="@+id/edtLastName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/colorEdtLine"
-                    android:ems="10"
-                    android:hint="@string/txt_hint_last_name"
-                    android:text="@{viewModel.user.lastName}"
-                    android:inputType="textPersonName"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:textColor="@color/colorTextCommonWhite"
-                    android:textColorHint="@color/colorTextCommonWhite"
-                    app:layout_constraintEnd_toEndOf="@+id/edtMiddleName"
-                    app:layout_constraintStart_toStartOf="@+id/edtMiddleName"
-                    app:layout_constraintTop_toBottomOf="@+id/edtMiddleName" />
-
-            <EditText
-                    android:id="@+id/edtPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/colorEdtLine"
-                    android:ems="10"
-                    android:hint="@string/txt_hint_phone"
-                    android:text="@{viewModel.user.phone}"
-                    android:inputType="phone"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:textColor="@color/colorTextCommonWhite"
-                    android:textColorHint="@color/colorTextCommonWhite"
-                    app:layout_constraintEnd_toEndOf="@+id/edtLastName"
-                    app:layout_constraintStart_toStartOf="@+id/edtLastName"
-                    app:layout_constraintTop_toBottomOf="@+id/edtLastName" />
 
             <EditText
                     android:id="@+id/edtEmail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/colorEdtLine"
+                    android:background="@drawable/edt_white_normal"
+                    android:drawableStart="@drawable/ic_user"
                     android:ems="10"
                     android:hint="@string/txt_hint_email"
-                    android:text="@{viewModel.user.email}"
                     android:inputType="textEmailAddress"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:textColor="@color/colorTextCommonWhite"
-                    android:textColorHint="@color/colorTextCommonWhite"
-                    app:layout_constraintEnd_toEndOf="@+id/edtPhone"
-                    app:layout_constraintStart_toStartOf="@+id/edtPhone"
-                    app:layout_constraintTop_toBottomOf="@+id/edtPhone" />
+                    android:padding="15dp"
+                    android:text="@{viewModel.user.email}"
+                    android:textColor="@color/colorTextCommonRed"
+                    android:textColorHint="@color/colorTextCommonRed"
+                    app:layout_constraintBottom_toTopOf="@+id/edtPassword"
+                    app:layout_constraintEnd_toEndOf="@+id/edtFirstName"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/edtFirstName"
+                    app:layout_constraintTop_toBottomOf="@+id/edtFirstName" />
 
             <EditText
                     android:id="@+id/edtPassword"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/colorEdtLine"
+                    android:background="@drawable/edt_white_normal"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawableRight="@drawable/ic_psw_visibility"
                     android:ems="10"
                     android:hint="@string/txt_hint_password"
-                    android:text="@{viewModel.user.password}"
-                    android:drawableRight="@drawable/ic_psw_visibility"
                     android:inputType="textPassword"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:textColor="@color/colorTextCommonWhite"
-                    android:textColorHint="@color/colorTextCommonWhite"
+                    android:padding="15dp"
+                    android:text="@{viewModel.user.password}"
+                    android:textColor="@color/colorTextCommonRed"
+                    android:textColorHint="@color/colorTextCommonRed"
+                    app:layout_constraintBottom_toTopOf="@+id/edtBirthDay"
                     app:layout_constraintEnd_toEndOf="@+id/edtEmail"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="@+id/edtEmail"
                     app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
-            <Button
-                    android:id="@+id/btnRegister"
+
+            <EditText
+                    android:id="@+id/edtBirthday"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/btn_yellow"
-                    android:text="@string/txt_register"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorTextCommonWhite"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_white_normal"
+                    android:drawableStart="@drawable/ic_password"
+                    android:ems="10"
+                    android:hint="@string/txt_hint_dob"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:text="@{viewModel.user.password}"
+                    android:textColor="@color/colorTextCommonRed"
+                    android:textColorHint="@color/colorTextCommonRed"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="@+id/edtPassword"
                     app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <TextView
-                android:id="@+id/tvLogin"
-                android:layout_width="wrap_content"
+        <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="@string/txt_already_login"
-                android:onClick="@{viewModel.loginClickListener}"
+                android:layout_marginStart="90dp"
+                android:layout_marginEnd="90dp"
+                android:background="@drawable/btn_red"
+                android:text="@string/txt_register"
+                android:textAllCaps="false"
                 android:textColor="@color/colorTextCommonWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="0.19999999" />
 
         <RelativeLayout
                 android:id="@+id/layoutLoading"
@@ -167,16 +135,16 @@
                 android:layout_height="0dp"
                 android:clickable="true"
                 android:visibility="gone"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <ProgressBar
                     android:id="@+id/pbLoading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true" />
 
         </RelativeLayout>
 

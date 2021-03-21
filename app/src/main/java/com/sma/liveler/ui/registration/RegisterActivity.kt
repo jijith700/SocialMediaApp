@@ -54,20 +54,14 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.errorFirstName.observe(this, Observer {
             binding.edtFirstName.error = it
         })
-        viewModel.errorMiddleName.observe(this, Observer {
-            binding.edtMiddleName.error = it
-        })
-        viewModel.errorLastName.observe(this, Observer {
-            binding.edtLastName.error = it
-        })
-        viewModel.errorPhone.observe(this, Observer {
-            binding.edtPhone.error = it
-        })
         viewModel.errorPassword.observe(this, Observer {
             binding.edtPassword.error = it
         })
         viewModel.errorEmail.observe(this, Observer {
             binding.edtEmail.error = it
+        })
+        viewModel.errorPhone.observe(this, Observer {
+            binding.edtBirthday.error = it
         })
         viewModel.errorMessage.observe(this, Observer {
             Utils.alert(this, it)
@@ -75,9 +69,9 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             val user = User(
-                edtFirstName.text.toString(), edtMiddleName.text.toString(),
-                edtLastName.text.toString(), edtEmail.text.toString(), edtPhone.text.toString(),
-                edtPassword.text.toString(), edtPassword.text.toString()
+                edtFirstName.text.toString(), "", "", edtEmail.text.toString(), "",
+                edtPassword.text.toString(), edtPassword.text.toString(),
+                edtBirthday.text.toString()
             )
             viewModel.register(user)
         }
