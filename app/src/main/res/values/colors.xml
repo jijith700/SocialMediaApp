@@ -17,14 +17,14 @@
     <color name="colorTextCommonRed">#9E0813</color>
 
 
-    <color name="colorTab">#3f4156</color>
-    <color name="colorBgTab1Normal">#ff5e3a</color>
-    <color name="colorBgTab1Selected">#EB5535</color>
+    <color name="colorTab">#9E0813</color>
+    <color name="colorBgTab1Normal">#9E0813</color>
+    <color name="colorBgTab1Selected">#AB9E0813</color>
     <color name="colorBgCommonSelected">#EB5535</color>
     <color name="colorBgTab6Normal">#7442ce</color>
     <color name="colorBgTab6Selected">#653AB6</color>
-    <color name="colorBgTabNormal">#3D3F53</color>
-    <color name="colorBgTabSelected">#37394B</color>
+    <color name="colorBgTabNormal">#9E0813</color>
+    <color name="colorBgTabSelected">#AB9E0813</color>
 
     <color name="colorLine">#37000000</color>
     <color name="colorBgCommonWhite">#FFFFFF</color>

@@ -76,50 +76,42 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         binding.viewModel = viewModel
 
-
         val tabView1 = View.inflate(this, R.layout.layout_tab, null)
-//        tabView1.setBackgroundColor(resources.getColor(R.color.colorBgTab1Normal, null))
-        tabView1.setBackgroundResource(R.drawable.rb_tab_menu)
-//        tabView1.findViewById<ImageView>(R.id.icon).setBackgroundResource(R.drawable.rb_tab_menu)
+        tabView1.setBackgroundResource(R.drawable.rb_tab_feed)
         binding.tabLayout.addTab(binding.tabLayout.newTab().setCustomView(tabView1))
 
-
-        /*binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab_menu))*/
         binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab_home))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab2))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab3))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab4))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab5))
 
-        val tabView6 = View.inflate(this, R.layout.layout_tab, null)
-        tabView6.setBackgroundResource(R.drawable.rb_tab6)
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setCustomView(tabView6))
+        val tabView5 = View.inflate(this, R.layout.layout_tab, null)
+        tabView5.setBackgroundResource(R.drawable.rb_tab_menu)
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setCustomView(tabView5))
 
         /* binding.tabLayout.addTab(binding.tabLayout.newTab().setIcon(R.drawable.rb_tab6))*/
         binding.tabLayout.tabSelectedIndicator
 
         val tabsContainer = binding.tabLayout.getChildAt(0) as LinearLayout
-
         val childLayout1 = tabsContainer.getChildAt(0) as LinearLayout
-        val childLayout2 = tabsContainer.getChildAt(6) as LinearLayout
+        val childLayout2 = tabsContainer.getChildAt(4) as LinearLayout
 
-        var tabViewColor1 = childLayout1.getChildAt(0).parent as LinearLayout
-        tabViewColor1.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgTab1Normal))
+        val tabViewColor1 = childLayout1.getChildAt(0).parent as LinearLayout
+        tabViewColor1.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgCommonWhite))
 
-        var tabViewColor6 = childLayout2.getChildAt(0).parent as LinearLayout
-        tabViewColor6.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgTab6Normal))
+        val tabViewColor6 = childLayout2.getChildAt(0).parent as LinearLayout
+        tabViewColor6.setBackgroundColor(ContextCompat.getColor(this, R.color.colorBgCommonWhite))
 
         switchPage(PostFragment(), false)
         /*switchPage(VideoChannelFragment(), true)
         switchPage(GalleryFragment(), true)*/
-
-
-//        val mLocalActivityManager = LocalActivityManager(this, false)
-//        mLocalActivityManager.dispatchCreate(savedInstanceState);
 //
-//        binding.thTabs.setup(mLocalActivityManager)
 //
-//        binding.thTabs.
+////        val mLocalActivityManager = LocalActivityManager(this, false)
+////        mLocalActivityManager.dispatchCreate(savedInstanceState);
+////
+////        binding.thTabs.setup(mLocalActivityManager)
+////
+////        binding.thTabs.
 //
 //        var tab1 = binding.thTabs.newTabSpec("A")
 //        tab1.setIndicator("A", resources.getDrawable(R.drawable.rb_tab_menu, null))

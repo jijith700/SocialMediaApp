@@ -4,11 +4,11 @@
         <shape
                 android:shape="rectangle"
                 android:padding="10dp">
-            <solid android:color="@color/colorBgTabSelected" />
+            <solid android:color="#9E0813" />
         </shape>
     </item>
     <item
-            android:drawable="@drawable/ic_followers"
+            android:drawable="@drawable/ic_feed_icon"
             android:bottom="5dp"
             android:left="5dp"
             android:right="5dp"

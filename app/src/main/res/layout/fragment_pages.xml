@@ -13,29 +13,40 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg_post_item"
             tools:context=".ui.groups.GroupsFragment">
 
         <RelativeLayout
                 android:id="@+id/rlTop"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/bg_common_white"
+                android:layout_height="150dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_common_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_goneMarginTop="50dp">
+
+            <ImageView
+                    android:id="@+id/ivCreatePage"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_page_icon" />
 
             <Button
                     android:id="@+id/btnCreatePage"
-                    android:layout_width="150dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/btn_blue"
+                    android:layout_below="@+id/ivCreatePage"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/btn_red_stoke"
                     android:text="@string/btn_create_page"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorBgCommonWhite" />
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorTextCommonRed"
+                    android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -44,8 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/bg_common_white"
                 app:layout_constraintTop_toBottomOf="@+id/rlTop">
 
@@ -58,26 +69,26 @@
                     android:paddingEnd="20dp">
 
                 <LinearLayout
-                        android:layout_width="250dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:background="@drawable/bg_user_details"
                         android:orientation="horizontal"
-                        android:layout_gravity="center"
                         android:weightSum="1">
 
                     <EditText
                             android:id="@+id/edtSearch"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="45dp"
                             android:layout_marginStart="10dp"
                             android:layout_weight=".85"
-                            android:hint="@string/hint_search"
-                            android:background="@android:color/transparent" />
+                            android:background="@android:color/transparent"
+                            android:hint="@string/hint_search" />
 
                     <ImageButton
                             android:id="@+id/ivSearch"
                             android:layout_width="0dp"
-                            android:layout_height="40dp"
+                            android:layout_height="45dp"
                             android:layout_weight=".15"
                             android:background="@drawable/bg_btn_friends_search" />
 
@@ -96,7 +107,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rlSearch"
-                tools:listitem="@layout/layout_group_item"/>
+                tools:listitem="@layout/layout_group_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

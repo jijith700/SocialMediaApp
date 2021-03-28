@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBgCommonWhite">
+            android:background="@drawable/bg_post_item">
 
         <RelativeLayout
                 android:id="@+id/rlHeader"
@@ -34,23 +34,31 @@
 
             <ImageView
                     android:id="@+id/ivUser"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
                     android:background="@drawable/ic_sample" />
+
+            <TextView
+                    android:id="@+id/tvMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/ivUser"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toEndOf="@id/ivUser"
+                    android:hint="@string/edt_message" />
 
             <EditText
                     android:id="@+id/edtMessage"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_alignTop="@id/ivUser"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toEndOf="@id/ivUser"
-                    android:backgroundTint="@color/colorTextCommonWhite"
-                    android:hint="@string/edt_message" />
+                    android:layout_below="@id/tvMessage"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="2dp" />
 
             <View
                     android:layout_width="match_parent"
@@ -62,7 +70,7 @@
 
         <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="160dp"
+                android:layout_height="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +82,7 @@
                     android:layout_height="20dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="23dp"
-                    android:background="@drawable/ic_camera" />
+                    android:background="@drawable/ic_post_camera" />
 
             <ImageView
                     android:id="@+id/ivVideo"
@@ -85,16 +93,27 @@
                     android:layout_toEndOf="@+id/ivImage"
                     android:background="@drawable/ic_video" />
 
+            <ImageView
+                    android:id="@+id/ivText"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toEndOf="@+id/ivVideo"
+                    android:background="@drawable/ic_status" />
+
             <Button
                     android:id="@+id/btnPost"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/btn_orange"
                     android:text="@string/btn_post_status"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
                     android:textColor="@color/colorTextCommonWhite" />
 
             <Button
@@ -107,7 +126,8 @@
                     android:background="@drawable/btn_preview"
                     android:text="@string/btn_preview"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorTextCommonGrey" />
+                    android:textColor="@color/colorTextCommonGrey"
+                    android:visibility="gone" />
 
         </RelativeLayout>
 

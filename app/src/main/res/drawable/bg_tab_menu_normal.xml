@@ -2,12 +2,11 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle" android:padding="10dp">
-            <solid android:color="@color/colorBgTab1Normal"/>
+            <solid android:color="#FFFFFF" />
         </shape>
     </item>
     <item android:drawable="@drawable/ic_menu"
           android:bottom="2dp"
           android:left="2dp"
-          android:right="2dp"
           android:top="2dp"/>
 </layer-list>
